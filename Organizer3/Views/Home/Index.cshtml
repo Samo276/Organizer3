@@ -1,6 +1,51 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@model TestModel
+@using Microsoft.AspNetCore.Identity
+@using Organizer3.Areas.Identity.Data
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+    <p>@Model.userId</p>
+
+    @if (@Model.Access.Recruter)
+    {
+        <p>Recruter</p>
+    }
+    @if (@Model.Access.Scheduler)
+    {
+        <p>Scheduler</p>
+    }
+    @if (@Model.Access.LeaveEditor)
+    {
+        <p>LeaveEditor</p>
+    }
+    @if (@Model.Access.UserViewer)
+    {
+        <p>UserViewer</p>
+    }
+    @if (@Model.Access.FacilityEditor)
+    {
+        <p>FacilityEditor</p>
+    }
+    @if (@Model.Access.Announcer)
+    {
+        <p>Announcer</p>
+    }
+    @if (@Model.Access.PersonalViewer)
+    {
+        <p>PersonalViewer</p>
+    }
+    @if (@Model.Access.PersonalViewer)
+    {
+        <p>PersonalViewer</p>
+    }
+    @if (@Model.Access.PartnerViewer)
+    {
+        <p>PartnerViewer</p>
+    }
+
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
