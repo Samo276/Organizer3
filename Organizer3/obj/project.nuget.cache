@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "wiBHyUTyYtmkzF0zpdXrAcSrpI3DTHRAKCYIp5mzf/HrqnQzvLMYkFZI4XMUYPgSZbNaHEU63arAys3udTV+/w==",
+  "dgSpecHash": "ztOpdeQN5Q0rwnHDWjvcb6GvMhGmMmap1p+RZ2Ze2lD8Xr1M+IMaiMAAoGmMNNC+XgeZQC+K0mslXnAdwNBeqw==",
   "success": true,
   "projectFilePath": "D:\\Ath\\Organizer3\\Organizer3\\Organizer3.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Smokiel\\.nuget\\packages\\bootstrap\\5.1.3\\bootstrap.5.1.3.nupkg.sha512",
     "C:\\Users\\Smokiel\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Smokiel\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
     "C:\\Users\\Smokiel\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",
