@@ -12,5 +12,9 @@ namespace Organizer3.Models
             Access = access;
             this.userId = userId;
         }
+
+        public TestModel()
+        {
+        }
     }
 }

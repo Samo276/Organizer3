@@ -24,9 +24,16 @@ namespace Organizer3.Controllers
 
         public IActionResult Index()
         {
-            var cuid = _userManager.GetUserId(User);
-            var cu = new TestModel(_context.AccessPermisions.First(x => x.UserId == cuid), cuid);
-            return View(cu);
+            if (User.Identity.IsAuthenticated)
+            {
+                var cuid = _userManager.GetUserId(User);
+                var cu = new TestModel(_context.AccessPermisions.First(x => x.UserId == cuid), cuid);
+                return View(cu);
+            }
+            else{
+                return View(new TestModel());
+            }
+
         }
 
         public IActionResult Privacy()

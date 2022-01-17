@@ -7,6 +7,8 @@
 @inject SignInManager<AppUser> SignInManager
 @inject UserManager<AppUser> UserManager
 
+@if (User.Identity.IsAuthenticated)
+{
     <p>@Model.userId</p>
 
     @if (@Model.Access.Recruter)
@@ -46,6 +48,7 @@
         <p>PartnerViewer</p>
     }
 
+}
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
