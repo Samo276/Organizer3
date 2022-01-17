@@ -27,12 +27,15 @@ namespace Organizer3.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 var cuid = _userManager.GetUserId(User);
-                var cu = new TestModel(_context.AccessPermisions.First(x => x.UserId == cuid), cuid);
+                var cu = new FunctionsListModel(_context.AccessPermisions.First(x => x.UserId == cuid));
+                ViewBag.FunctionsAvailability = cu;
                 return View(cu);
             }
-            else{
-                return View(new TestModel());
+            else
+            {
+                return View(new FunctionsListModel());
             }
+            
 
         }
 

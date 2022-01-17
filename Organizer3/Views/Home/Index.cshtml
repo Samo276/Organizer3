@@ -1,53 +1,19 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-@model TestModel
+@model FunctionsListModel
 @using Microsoft.AspNetCore.Identity
 @using Organizer3.Areas.Identity.Data
 @inject SignInManager<AppUser> SignInManager
 @inject UserManager<AppUser> UserManager
 
-@if (User.Identity.IsAuthenticated)
+<div>
+    <div class></div>
+    <div></div>
+</div>
+@if (SignInManager.IsSignedIn(User))
 {
-    <p>@Model.userId</p>
-
-    @if (@Model.Access.Recruter)
-    {
-        <p>Recruter</p>
-    }
-    @if (@Model.Access.Scheduler)
-    {
-        <p>Scheduler</p>
-    }
-    @if (@Model.Access.LeaveEditor)
-    {
-        <p>LeaveEditor</p>
-    }
-    @if (@Model.Access.UserViewer)
-    {
-        <p>UserViewer</p>
-    }
-    @if (@Model.Access.FacilityEditor)
-    {
-        <p>FacilityEditor</p>
-    }
-    @if (@Model.Access.Announcer)
-    {
-        <p>Announcer</p>
-    }
-    @if (@Model.Access.PersonalViewer)
-    {
-        <p>PersonalViewer</p>
-    }
-    @if (@Model.Access.PersonalViewer)
-    {
-        <p>PersonalViewer</p>
-    }
-    @if (@Model.Access.PartnerViewer)
-    {
-        <p>PartnerViewer</p>
-    }
-
+    <partial name="_FunctionsList"/>
 }
 
 <div class="text-center">

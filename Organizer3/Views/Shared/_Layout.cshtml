@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Organizer3</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Organizer3.styles.css" asp-append-version="true" />
 </head>
@@ -26,7 +27,31 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                         <!---->
-                        
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-dark" href="#" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Menu
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="dropdown03">
+                                    <li>
+                                        <a class="dropdown-item" href="https://vetexpert.eu/sklep/391-large_default/urinovet-cat-dilution-preparat-na-uklad-moczowy-dla-kotow.jpg">Action1</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg">Action2</a>
+                                    </li>
+
+
+
+                                    @if (@ViewBag.FunctionsAvailability.Access.Recruter)
+                                    {
+                                        <li>
+                                            <a class="dropdown-item" href="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg">Recruter</a>
+                                        </li>
+                                    }
+                                </ul>
+                            </li>
+                        }
                         <!---->
                     </ul>
                 </div>
