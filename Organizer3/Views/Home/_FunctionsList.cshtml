@@ -1,0 +1,44 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model FunctionsListModel
+@{ 
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+    
+    @if (@Model.Access.Recruter)
+    {
+        <a type="button" class="w-100 mb-1 btn btn-outline-info text-dark" asp-controller="Home" asp-action="Index">Recruter</a>      
+    }
+    @if (@Model.Access.Scheduler)
+    {   
+        <a type="button" class="w-100 mb-1 btn btn-outline-info text-dark" asp-controller="Home" asp-action="Index">Scheduler</a>        
+    }
+    @if (@Model.Access.LeaveEditor)
+    {
+        <a type="button" class="w-100 mb-1 btn btn-outline-info text-dark" asp-controller="Home" asp-action="Index">LeaveEditor</a>
+    }
+    @if (@Model.Access.UserViewer)
+    {
+        <a type="button" class="w-100 mb-1 btn btn-outline-info text-dark" asp-controller="Home" asp-action="Index">UserViewer</a>
+    }
+    @if (@Model.Access.FacilityEditor)
+    {
+        <a type="button" class="w-100 mb-1 btn btn-outline-info text-dark" asp-controller="Home" asp-action="Index">FacilityEditor</a>
+    }
+    @if (@Model.Access.Announcer)
+    {
+        <a type="button" class="w-100 mb-1 btn btn-outline-info text-dark" asp-controller="Announcements" asp-action="AnnouncerIndex">Announcer</a>
+    }
+    @if (@Model.Access.PersonalViewer)
+    {
+        <a type="button" class="w-100 mb-1 btn btn-outline-info text-dark" asp-controller="Home" asp-action="Index">PersonalViewer</a>        
+    }
+    @if (@Model.Access.PartnerViewer)
+    {
+        <a type="button" class="w-100 mb-1 btn btn-outline-info text-dark" asp-controller="Home" asp-action="Index">PartnerViewer</a> 
+    }
+    
+}

@@ -27,8 +27,8 @@ namespace Organizer3.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 var cuid = _userManager.GetUserId(User);
-                var cu = new FunctionsListModel(_context.AccessPermisions.First(x => x.UserId == cuid));
-                ViewBag.FunctionsAvailability = cu;
+                var cu = new FunctionsListModel(_context.AccessPermisions.First(x => x.UserId == cuid));               
+                //ViewBag.FunctionsAvailability = cu;
                 return View(cu);
             }
             else

@@ -1,0 +1,54 @@
+﻿@model Organizer3.Areas.Identity.Data.AnnouncerModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Szczegóły</h1>
+
+<div>
+
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Tytuł
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class = "col-sm-2">
+            Data Utworzenia
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CreationTime)
+        </dd>
+        <dt class = "col-sm-2">
+            Autor
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Sender)
+        </dd>
+
+        @if(!(@Model.EditedBy=="" || @Model.EditedBy ==string.Empty))
+        {
+            <dt class = "col-sm-2">
+                Edytowane
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.EditedBy)
+            </dd>
+        }
+        
+        <dt class = "col-sm-2">
+            Treść
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MessageContent)
+        </dd>        
+    </dl>
+</div>
+<div class="float-end ">    
+    <a type="button" class=" mt-1 mr-1   btn btn-outline-light text-dark" asp-controller="Announcements" asp-action="AnnouncerIndex">Wstecz</a>
+    <a type="button" class=" mt-1 mr-1   btn btn-primary"  asp-controller="Announcements" asp-action="Edit" asp-route-id="@Model?.Id">Edytuj</a> 
+    <a type="button" class=" mt-1 mr-1   btn btn-danger"  asp-controller="Announcements" asp-action="Delete" asp-route-id="@Model?.Id">Usuń</a>
+</div>

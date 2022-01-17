@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Organizer3.Areas.Identity.Data.AnnouncerModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <h1 class=col-md-4>Ogłoszenia</h1>
+    <!-- a  class=" col-md-3 float-lg-end" asp-action="Create">
+        <button role="button" class="btn-lg button-primary"></button>
+    <a-->
+<div class="col-md-6 float-end"></div>
+    <a type="button" class="col-md-2  btn-lg btn btn-primary" asp-controller="Announcements" asp-action="Create">Dodaj Nowe</a>
+
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Tytuł
+            </th>
+            <th>
+                Data Utworzenia
+            </th>
+            <th>
+                Autor
+            </th>          
+            <th>
+                Edytowane
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+    
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreationTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sender)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.EditedBy)
+            </td>
+            <td>
+                <!--a asp-action="Edit" asp-route-id="item.Id">Edit</a-->
+                <a type="button" class="  btn btn-sm btn-light text-dark" asp-controller="Announcements" asp-action="Details" asp-route-id="@item.Id">więcej</a>
+                <!--a asp-action="Delete" asp-route-id="item.Id">Delete<a-->
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

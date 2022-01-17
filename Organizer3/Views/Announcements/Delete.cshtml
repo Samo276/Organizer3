@@ -1,0 +1,56 @@
+﻿@model Organizer3.Areas.Identity.Data.AnnouncerModel
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Potwierdź usunięcie tego ogłoszenia</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Tytuł
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class = "col-sm-2">
+            Data Utworzenia
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CreationTime)
+        </dd>
+        <dt class = "col-sm-2">
+            Autor
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Sender)
+        </dd>
+
+        @if(!(@Model.EditedBy=="" || @Model.EditedBy ==string.Empty))
+        {
+            <dt class = "col-sm-2">
+                Edytowane
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.EditedBy)
+            </dd>
+        }
+        
+        <dt class = "col-sm-2">
+            Treść
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MessageContent)
+        </dd>        
+    </dl>
+    <div class="float-end">
+    <form asp-controller="Announcements" asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Potwierdzam" class="btn btn-outline-danger" />
+        <a type="button" class="btn btn-secondary" asp-controller="Announcements" asp-action="Details" asp-route-id="@Model.Id">Anuluj</a>
+        <!--a asp-action="AnnouncerIndex">Wstecz</a-->
+    </form>
+    </div>
+</div>

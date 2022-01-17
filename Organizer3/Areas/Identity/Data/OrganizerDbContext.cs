@@ -13,6 +13,7 @@ public class OrganizerDbContext : IdentityDbContext<AppUser>
     }
 
     public DbSet<UserAccess> AccessPermisions { get; set; }
+    public DbSet<AnnouncerModel> Announcements { get; set; }
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);

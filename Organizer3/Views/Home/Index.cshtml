@@ -7,16 +7,22 @@
 @inject SignInManager<AppUser> SignInManager
 @inject UserManager<AppUser> UserManager
 
-<div>
-    <div class></div>
-    <div></div>
-</div>
-@if (SignInManager.IsSignedIn(User))
-{
-    <partial name="_FunctionsList"/>
-}
+<div class="row">
+    
+    <div class="col-md-2 min-vw-50">
+        @if (SignInManager.IsSignedIn(User)){            
+                <partial name="_FunctionsList"/>
+            }
+    </div>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+        <div class="col-md-9" style="background-color:lightgray">
+            <div class="text-center">
+        <h1 class="display-4">Welcome</h1>
+        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+        </div>
+    
+    </div>
 </div>
+
+
+
