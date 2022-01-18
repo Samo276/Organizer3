@@ -26,6 +26,10 @@ public class OrganizerDbContext : IdentityDbContext<AppUser>
             .HasOne(a=>a.EmploymentStatus)
             .WithOne(a=>a.User)
             .HasForeignKey<EmploymentStatus>(a => a.UserId);
+        builder.Entity<EmploymentStatus>()
+            .HasOne(a=>a.Facility)
+            .WithMany(a=>a.Employments)
+            .HasForeignKey(a => a.FacilityId);
 
         // Customize the ASP.NET Identity model and override the defaults if needed.
         // For example, you can rename the ASP.NET Identity table names and more.
