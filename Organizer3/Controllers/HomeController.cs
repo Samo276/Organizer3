@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Organizer3.Areas.Identity.Data;
 using Organizer3.Data;
 using Organizer3.Models;
@@ -22,21 +23,23 @@ namespace Organizer3.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             if (User.Identity.IsAuthenticated)
             {
                 var cuid = _userManager.GetUserId(User);
-                var cu = new FunctionsListModel(_context.AccessPermisions.First(x => x.UserId == cuid));               
-                //ViewBag.FunctionsAvailability = cu;
+                var cu = new FunctionsListModel( 
+                    await _context.AccessPermisions.FirstAsync (x => x.UserId == cuid),
+                    await _context.Announcements.OrderByDescending(x => x.CreationTime).Take(20).ToListAsync()
+                    ); 
+                
+
                 return View(cu);
             }
             else
             {
                 return View(new FunctionsListModel());
             }
-            
-
         }
 
         public IActionResult Privacy()

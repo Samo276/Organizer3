@@ -1,0 +1,15 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Organizer3.Areas.Identity.Data.AnnouncerModel
+
+<div class="card-body shadow p-3 mb-3 bg-white rounded" style="background-color:white;">
+                    <h4>@Model.Title</h4>
+                    <p>@Model.Sender @Model.CreationTime @Model.EditedBy</p>
+                    <hr/>
+                    <p>@Model.MessageContent</p>
+</div>
+<a class="btn btn-secondary float-end" asp-controller="Home" asp-action="Index">Wstecz</a>
