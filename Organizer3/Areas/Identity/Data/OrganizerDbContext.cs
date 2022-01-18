@@ -14,6 +14,7 @@ public class OrganizerDbContext : IdentityDbContext<AppUser>
 
     public DbSet<UserAccess> AccessPermisions { get; set; }
     public DbSet<AnnouncerModel> Announcements { get; set; }
+    public DbSet<EmploymentStatus> EmploymentStatuses { get; set; }
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
@@ -21,7 +22,10 @@ public class OrganizerDbContext : IdentityDbContext<AppUser>
             .HasOne(a => a.Accesses)
             .WithOne(a => a.User)
             .HasForeignKey<UserAccess>(a => a.UserId);
-            
+        builder.Entity<AppUser>()
+            .HasOne(a=>a.EmploymentStatus)
+            .WithOne(a=>a.User)
+            .HasForeignKey<EmploymentStatus>(a => a.UserId);
 
         // Customize the ASP.NET Identity model and override the defaults if needed.
         // For example, you can rename the ASP.NET Identity table names and more.

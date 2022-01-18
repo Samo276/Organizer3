@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
@@ -18,7 +19,10 @@ public class AppUser : IdentityUser
     public string? ApartmentNumber { get; set; }
     public string? PhotoLocation { get; set; }
     public virtual UserAccess Accesses { get; set; }
-    
+    [ForeignKey("EmploymentStatus")]
+    public int EmploymentStatusId { get; set; }
+    public virtual EmploymentStatus EmploymentStatus { get; set; }
+
 
 }
 
