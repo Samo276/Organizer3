@@ -4,7 +4,7 @@
 
 namespace Organizer3.Migrations
 {
-    public partial class m4 : Migration
+    public partial class m3 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

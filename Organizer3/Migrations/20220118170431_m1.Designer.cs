@@ -12,7 +12,7 @@ using Organizer3.Data;
 namespace Organizer3.Migrations
 {
     [DbContext(typeof(OrganizerDbContext))]
-    [Migration("20220118134031_m1")]
+    [Migration("20220118170431_m1")]
     partial class m1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -220,6 +220,12 @@ namespace Organizer3.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<int>("EmploymentStatusId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
@@ -279,6 +285,82 @@ namespace Organizer3.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("Organizer3.Areas.Identity.Data.EmploymentStatus", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime?>("ContractExpiration")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ContractType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("EmployedSince")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("FacilityId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsEmployed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Ocupation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SupervisorId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FacilityId");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("EmploymentStatuses");
+                });
+
+            modelBuilder.Entity("Organizer3.Areas.Identity.Data.Facility", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("AdditionalInfo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Adress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Region")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Facilities");
                 });
 
             modelBuilder.Entity("Organizer3.Areas.Identity.Data.UserAccess", b =>
@@ -382,6 +464,25 @@ namespace Organizer3.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Organizer3.Areas.Identity.Data.EmploymentStatus", b =>
+                {
+                    b.HasOne("Organizer3.Areas.Identity.Data.Facility", "Facility")
+                        .WithMany("Employments")
+                        .HasForeignKey("FacilityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Organizer3.Areas.Identity.Data.AppUser", "User")
+                        .WithOne("EmploymentStatus")
+                        .HasForeignKey("Organizer3.Areas.Identity.Data.EmploymentStatus", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Facility");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Organizer3.Areas.Identity.Data.UserAccess", b =>
                 {
                     b.HasOne("Organizer3.Areas.Identity.Data.AppUser", "User")
@@ -397,6 +498,14 @@ namespace Organizer3.Migrations
                 {
                     b.Navigation("Accesses")
                         .IsRequired();
+
+                    b.Navigation("EmploymentStatus")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Organizer3.Areas.Identity.Data.Facility", b =>
+                {
+                    b.Navigation("Employments");
                 });
 #pragma warning restore 612, 618
         }

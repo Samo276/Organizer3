@@ -6,15 +6,12 @@
 }
 @model ICollection<UserViewerModel>
 <div class="row">
-    <h1 class=col-md-4>Pracownicy</h1>
+    <h1 class=col-md-4>Byli pracownicy</h1>
 
     <div class="col-md-4 float-end"></div>
     <div class="col-md-4 btn-group" role="group" aria-label="Basic example">
-        <a type="button" class="float-end btn-lg btn btn-secondary" asp-controller="UserViewer" asp-action="LegacyUserViewerIndex">
-            Byli Pracownicy
-        </a>
-        <a type="button" class="float-end btn-lg btn btn-primary" asp-controller="" asp-action="">
-            Nowy
+        <a type="button" class="float-end btn-lg btn btn-secondary" asp-controller="UserViewer" asp-action="UserViewerIndex">
+            Wstecz
         </a>
     </div>
 </div>
@@ -56,17 +53,9 @@
                 @Html.DisplayFor(modelItem => item.FacilityName)
             </td>
             <td>
-                <div class="button-grp float-end">
-                <a type="button" class="  btn btn-sm btn-light text-dark" asp-controller="UserViewer" asp-action="" asp-route-id="@item.UserId">
-                    Uprawnienia
+                <a type="button" class="  btn btn-sm btn-light text-dark" asp-controller="" asp-action="" asp-route-id="@item.UserId">
+                    więcej
                 </a>
-                <a type="button" class="  btn btn-sm btn-light text-dark" asp-controller="UserViewer" asp-action="" asp-route-id="@item.UserId">
-                    Dane
-                </a>
-                <a type="button" class="  btn btn-sm btn-light text-dark" asp-controller="UserViewer" asp-action="EmploymentStatusEditor" asp-route-id="@item.UserId">
-                    Status zatrudnienia(coś nie tak z validacja modelu)
-                </a>
-                </div>
             </td>
         </tr>
 }

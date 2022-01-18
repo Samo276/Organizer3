@@ -302,8 +302,12 @@ namespace Organizer3.Migrations
                     b.Property<DateTime?>("EmployedSince")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("FacilityId")
+                    b.Property<int?>("FacilityId")
+                        .IsRequired()
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsEmployed")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Ocupation")
                         .HasColumnType("nvarchar(max)");
@@ -314,6 +318,9 @@ namespace Organizer3.Migrations
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("otherInfo")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -355,7 +362,7 @@ namespace Organizer3.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Facility");
+                    b.ToTable("Facilities");
                 });
 
             modelBuilder.Entity("Organizer3.Areas.Identity.Data.UserAccess", b =>

@@ -12,8 +12,8 @@ using Organizer3.Data;
 namespace Organizer3.Migrations
 {
     [DbContext(typeof(OrganizerDbContext))]
-    [Migration("20220118153807_m5")]
-    partial class m5
+    [Migration("20220118201121_m3")]
+    partial class m3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -304,8 +304,12 @@ namespace Organizer3.Migrations
                     b.Property<DateTime?>("EmployedSince")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("FacilityId")
+                    b.Property<int?>("FacilityId")
+                        .IsRequired()
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsEmployed")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Ocupation")
                         .HasColumnType("nvarchar(max)");
@@ -316,6 +320,9 @@ namespace Organizer3.Migrations
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("otherInfo")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -357,7 +364,7 @@ namespace Organizer3.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Facility");
+                    b.ToTable("Facilities");
                 });
 
             modelBuilder.Entity("Organizer3.Areas.Identity.Data.UserAccess", b =>

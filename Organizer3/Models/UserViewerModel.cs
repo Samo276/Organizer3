@@ -2,9 +2,20 @@
 {
     public class UserViewerModel
     {
-        public int id;
-        public AppUser AppUserData { get; set; }
-        public UserAccess userAccessData { get; set; }
-        public EmploymentStatus EmploymentStatusData { get; set; }
+        
+        public string UserId { get; set; }
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
+        public string? Ocupation { get; set; }
+        public string? FacilityName { get; set; }
+
+        public UserViewerModel(string userId, string? firstName, string? lastName, string? ocupation, string? facilityName)
+        {
+            UserId = userId;
+            FirstName = firstName;
+            LastName = lastName;
+            Ocupation = ocupation;
+            FacilityName = facilityName;
+        }
     }
 }

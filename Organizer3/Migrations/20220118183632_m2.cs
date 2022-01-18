@@ -4,13 +4,13 @@
 
 namespace Organizer3.Migrations
 {
-    public partial class m5 : Migration
+    public partial class m2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
-                name: "FirstName",
-                table: "AspNetUsers",
+                name: "otherInfo",
+                table: "EmploymentStatuses",
                 type: "nvarchar(max)",
                 nullable: true);
         }
@@ -18,8 +18,8 @@ namespace Organizer3.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "FirstName",
-                table: "AspNetUsers");
+                name: "otherInfo",
+                table: "EmploymentStatuses");
         }
     }
 }

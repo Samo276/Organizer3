@@ -1,0 +1,75 @@
+﻿@model Organizer3.Areas.Identity.Data.EmploymentStatus
+
+@{
+    ViewData["Title"] = "EmploymentStatusEditor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>@ViewBag.name</h1>
+
+<h4>Status zatrudnienia</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EmploymentStatusEditor">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <input type="hidden" asp-for="UserId" value="@Model.UserId"/>
+                <!--label asp-for="UserId" class="control-label"></!--label>
+                <select asp-for="UserId" class="form-control" asp-items="ViewBag.UserId"></select>
+                <span-- asp-validation-for="UserId" class="text-danger"></span-->
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsEmployed" value="@Model.IsEmployed" /> 
+                    Jest Obecnie Zatrudniony 
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ocupation" class="control-label"></label>
+                <input asp-for="Ocupation" class="form-control" />
+                <span asp-validation-for="Ocupation" class="text-danger"></span>
+            </div>
+            <div class="form-group">                
+                <input type="hidden" asp-for="FacilityId" class="form-control" value="@Model.FacilityId">
+                <span asp-validation-for="FacilityId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmployedSince" class="control-label"></label>
+                <input asp-for="EmployedSince" class="form-control" />
+                <span asp-validation-for="EmployedSince" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ContractType" class="control-label"></label>
+                <input asp-for="ContractType" class="form-control" value="@Model.ContractExpiration" />
+                <span asp-validation-for="ContractType" class="text-danger"></span>
+            </div>          
+            <div class="form-group">
+                <label asp-for="ContractExpiration" class="control-label"></label>
+                <input asp-for="ContractExpiration" class="form-control" />
+                <span asp-validation-for="ContractExpiration" class="text-danger"></span>
+            </div>
+            <div class="form-group">                
+                <input type="hidden" asp-for="SupervisorId" class="form-control" value="@Model.SupervisorId"/>
+                <span asp-validation-for="SupervisorId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="otherInfo" class="control-label"></label>
+                @Html.TextAreaFor(m => m.otherInfo, new { @class = "form-control", @style="min-height:10em;"})
+                <span asp-validation-for="otherInfo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a type="button" class="btn btn-secondary" asp-controller="UserViewerIndex" asp-action="UserViewerIndex">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

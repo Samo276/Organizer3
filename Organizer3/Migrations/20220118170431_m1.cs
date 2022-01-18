@@ -45,6 +45,7 @@ namespace Organizer3.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SecondaryName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AltEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -53,6 +54,7 @@ namespace Organizer3.Migrations
                     Street = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ApartmentNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PhotoLocation = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EmploymentStatusId = table.Column<int>(type: "int", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -71,6 +73,23 @@ namespace Organizer3.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Facilities",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Region = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Adress = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AdditionalInfo = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Facilities", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -208,6 +227,38 @@ namespace Organizer3.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "EmploymentStatuses",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    IsEmployed = table.Column<bool>(type: "bit", nullable: false),
+                    Ocupation = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FacilityId = table.Column<int>(type: "int", nullable: false),
+                    EmployedSince = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ContractType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ContractExpiration = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    SupervisorId = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EmploymentStatuses", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_EmploymentStatuses_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_EmploymentStatuses_Facilities_FacilityId",
+                        column: x => x.FacilityId,
+                        principalTable: "Facilities",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AccessPermisions_UserId",
                 table: "AccessPermisions",
@@ -252,6 +303,17 @@ namespace Organizer3.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EmploymentStatuses_FacilityId",
+                table: "EmploymentStatuses",
+                column: "FacilityId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EmploymentStatuses_UserId",
+                table: "EmploymentStatuses",
+                column: "UserId",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -278,10 +340,16 @@ namespace Organizer3.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "EmploymentStatuses");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Facilities");
         }
     }
 }

@@ -28,21 +28,11 @@ namespace Organizer3.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 var cuid = _userManager.GetUserId(User);
-                var getPermissions = await _context.AccessPermisions.FirstAsync(x => x.UserId == cuid);
-                if(getPermissions == null) 
-                    getPermissions =new UserAccess { 
-                        Announcer = false,
-                        UserId = cuid,
-                        Recruter = false,
-                        LeaveEditor = false,
-                        Scheduler = false,
-                        UserEditor = false, 
-                        UserViewer = false,
-                        FacilityEditor = false,
-                        FacilityViewer = false,
-                        PersonalViewer = true,
-                        PartnerViewer = false                    
-                    };
+                var getPermissions = new UserAccess();
+                if (_context.AccessPermisions.Where(x => x.UserId == cuid).Any())
+                {
+                    getPermissions = await _context.AccessPermisions.FirstAsync(x => x.UserId == cuid);
+                }                
                 var getNews = await _context.Announcements.OrderByDescending(x => x.CreationTime).Take(20).ToListAsync();
                 var cu = new FunctionsListModel(getPermissions,getNews);
 
