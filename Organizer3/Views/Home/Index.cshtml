@@ -27,7 +27,11 @@
                     @if (@item.MessageContent.Length > 400)
                     {
                         <p>@item.MessageContent.Substring(0,350)<a class="" asp-controller="ReadSingleAnnouncement" asp-action="ReadSingleAnnouncement" asp-route-id="@item.Id">...czytaj dalej.</a>
-                            </p>
+                        </p>
+                    }
+                    else
+                    {
+                        <p>@item.MessageContent</p>
                     }
                 
                 </div>

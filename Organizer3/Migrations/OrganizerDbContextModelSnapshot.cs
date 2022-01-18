@@ -159,7 +159,7 @@ namespace Organizer3.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Organizer3.Areas.Identity.Data.Announcement", b =>
+            modelBuilder.Entity("Organizer3.Areas.Identity.Data.AnnouncerModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -171,7 +171,6 @@ namespace Organizer3.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("EditedBy")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MessageContent")

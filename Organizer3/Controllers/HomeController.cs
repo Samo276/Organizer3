@@ -28,9 +28,11 @@ namespace Organizer3.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 var cuid = _userManager.GetUserId(User);
+                var getPermissions = await _context.AccessPermisions.FirstAsync(x => x.UserId == cuid);
+                var getNews = await _context.Announcements.OrderByDescending(x => x.CreationTime).Take(20).ToListAsync();
                 var cu = new FunctionsListModel( 
-                    await _context.AccessPermisions.FirstAsync (x => x.UserId == cuid),
-                    await _context.Announcements.OrderByDescending(x => x.CreationTime).Take(20).ToListAsync()
+                     getPermissions,
+                    getNews
                     ); 
                 
 

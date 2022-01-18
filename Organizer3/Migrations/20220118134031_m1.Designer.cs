@@ -12,7 +12,7 @@ using Organizer3.Data;
 namespace Organizer3.Migrations
 {
     [DbContext(typeof(OrganizerDbContext))]
-    [Migration("20220116183502_m1")]
+    [Migration("20220118134031_m1")]
     partial class m1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -161,6 +161,37 @@ namespace Organizer3.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Organizer3.Areas.Identity.Data.AnnouncerModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("EditedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MessageContent")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Sender")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Announcements");
+                });
+
             modelBuilder.Entity("Organizer3.Areas.Identity.Data.AppUser", b =>
                 {
                     b.Property<string>("Id")
@@ -168,6 +199,15 @@ namespace Organizer3.Migrations
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
+
+                    b.Property<string>("AltEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ApartmentNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -179,6 +219,9 @@ namespace Organizer3.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -203,7 +246,19 @@ namespace Organizer3.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("PhotoLocation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PostalCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SecondaryName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Street")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("TwoFactorEnabled")
@@ -224,6 +279,56 @@ namespace Organizer3.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("Organizer3.Areas.Identity.Data.UserAccess", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<bool>("Announcer")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("FacilityEditor")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("FacilityViewer")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("LeaveEditor")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("PartnerViewer")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("PersonalViewer")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Recruter")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Scheduler")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("UserEditor")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("UserViewer")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("AccessPermisions");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -274,6 +379,23 @@ namespace Organizer3.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Organizer3.Areas.Identity.Data.UserAccess", b =>
+                {
+                    b.HasOne("Organizer3.Areas.Identity.Data.AppUser", "User")
+                        .WithOne("Accesses")
+                        .HasForeignKey("Organizer3.Areas.Identity.Data.UserAccess", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Organizer3.Areas.Identity.Data.AppUser", b =>
+                {
+                    b.Navigation("Accesses")
                         .IsRequired();
                 });
 #pragma warning restore 612, 618
