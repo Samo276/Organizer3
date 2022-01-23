@@ -1,9 +1,9 @@
-﻿namespace Organizer3.Areas.Identity.Data
+﻿
+namespace Organizer3.Controllers
 {
-    public class UserAccess
+    public class UserAccessDataEditModel
     {
         public int Id { get; set; }
-        public virtual AppUser User { get; set; }
         public string UserId { get; set; }
         public bool Recruter { get; set; } //--
         public bool Scheduler { get; set; }//--
@@ -16,9 +16,8 @@
         public bool PersonalViewer { get; set; }//--
         public bool PartnerViewer { get; set; }//--
 
-        public UserAccess()
+        public UserAccessDataEditModel()
         {
         }
     }
-
 }

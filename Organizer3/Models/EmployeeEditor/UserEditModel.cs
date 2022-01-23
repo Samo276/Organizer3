@@ -1,10 +1,11 @@
-﻿using Organizer3.Areas.Identity.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Organizer3.Areas.Identity.Data;
 
 namespace Organizer3.Models
 {
     public class UserEditModel
     {
-        public string UserId { get; set;}
+        public string UserId { get; set; }
         public string? FirstName { get; set; }
         public string? SecondaryName { get; set; }
         public string? LastName { get; set; }
@@ -30,13 +31,13 @@ namespace Organizer3.Models
             ApartmentNumber = appUserData.ApartmentNumber;
             PhotoLocation = appUserData.PhotoLocation;
             userAccessData = accessData;
-            EmploymentStatusData=employment;
-            FacilityData=facilityData;
+            EmploymentStatusData = employment;
+            FacilityData = facilityData;
         }
 
         public UserEditModel()
         {
         }
     }
-        
+
 }

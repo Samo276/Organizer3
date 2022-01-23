@@ -1,0 +1,125 @@
+﻿@using Organizer3.Controllers
+
+@model UserAccessDataEditModel
+
+@{
+    ViewData["Title"] = "UserAccessDataEditor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>@ViewBag.UserName</h1>
+
+<h4>Uprawnienia dostepu do funkcji aplikacji.</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" asp-action="UserAccessDataEditorApply">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" value="@Model.Id"/>
+            <input type="hidden" asp-for="UserId" class="form-control" value="@Model.UserId"/>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    @if (@Model.Recruter)
+                    {
+                    <input class="form-check-input" asp-for="Recruter" value="@Model.Recruter" />
+                    }else{<input class="form-check-input" asp-for="Recruter" />}
+                     @Html.DisplayNameFor(model => model.Recruter)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    @if (@Model.Scheduler)
+                    {
+                    <input class="form-check-input" asp-for="Scheduler" value="@Model.Scheduler"/>
+                    }else{<input class="form-check-input" asp-for="Scheduler" />}
+                     @Html.DisplayNameFor(model => model.Scheduler)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    @if (@Model.LeaveEditor)
+                    {
+                    <input class="form-check-input" asp-for="LeaveEditor" value="@Model.LeaveEditor"/>
+                    }else{<input class="form-check-input" asp-for="LeaveEditor" />}
+                     @Html.DisplayNameFor(model => model.LeaveEditor)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    @if (@Model.UserEditor)
+                    {
+                    <input class="form-check-input" asp-for="UserEditor" value="@Model.UserEditor"/>
+                    }else{<input class="form-check-input" asp-for="UserEditor" />}
+                     @Html.DisplayNameFor(model => model.UserEditor)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    @if (@Model.UserViewer)
+                    {
+                    <input class="form-check-input" asp-for="UserViewer" value="@Model.UserViewer"/>
+                    }else{<input class="form-check-input" asp-for="UserViewer" />}
+                     @Html.DisplayNameFor(model => model.UserViewer)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    @if (@Model.FacilityEditor)
+                    {
+                    <input class="form-check-input" asp-for="FacilityEditor" value="@Model.FacilityEditor"/>
+                    }else{<input class="form-check-input" asp-for="FacilityEditor" />}
+                     @Html.DisplayNameFor(model => model.FacilityEditor)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    @if (@Model.FacilityViewer)
+                    {
+                    <input class="form-check-input" asp-for="FacilityViewer" value="@Model.FacilityViewer"/>
+                    }else{<input class="form-check-input" asp-for="FacilityViewer" />}
+                     @Html.DisplayNameFor(model => model.FacilityViewer)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    @if (@Model.Announcer)
+                    {
+                    <input class="form-check-input" asp-for="Announcer" value="@Model.Announcer"/>
+                    }else{<input class="form-check-input" asp-for="Announcer" />}
+                     @Html.DisplayNameFor(model => model.Announcer)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    @if (@Model.PersonalViewer)
+                    {
+                    <input class="form-check-input" asp-for="PersonalViewer" value="@Model.PersonalViewer"/>
+                    }else{<input class="form-check-input" asp-for="PersonalViewer" />}
+                     @Html.DisplayNameFor(model => model.PersonalViewer)
+                </label>
+            </div>
+            
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    @if (@Model.PartnerViewer)
+                    {
+                        <input class="form-check-input" asp-for="PartnerViewer" value="@Model.PartnerViewer"/>
+                    }else{<input class="form-check-input" asp-for="PartnerViewer" />}
+                    @Html.DisplayNameFor(model => model.PartnerViewer)
+                </label>
+                </div>
+            <div class="form-group btn-group float-end">
+                <input type="submit" value="Zapisz zmiany" class="btn btn-primary" />
+                <a type="button" class="btn btn-secondary text-decoration-none" asp-controller="UserViewer" asp-action="UserViewerIndex">Wstecz</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

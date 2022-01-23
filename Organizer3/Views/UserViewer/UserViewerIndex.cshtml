@@ -13,7 +13,7 @@
         <a type="button" class="float-end btn-lg btn btn-secondary" asp-controller="UserViewer" asp-action="LegacyUserViewerIndex">
             Byli Pracownicy
         </a>
-        <a type="button" class="float-end btn-lg btn btn-primary" asp-controller="" asp-action="">
+        <a type="button" class="float-end btn-lg btn btn-primary" asp-controller="UserViewer" asp-action="CreateNewUser">
             Nowy
         </a>
     </div>
@@ -57,14 +57,17 @@
             </td>
             <td>
                 <div class="button-grp float-end">
-                <a type="button" class="  btn btn-sm btn-light text-dark" asp-controller="UserViewer" asp-action="" asp-route-id="@item.UserId">
+                <a type="button" class="  btn btn-sm btn-light text-dark" asp-controller="UserViewer" asp-action="UserAccessDataEditor" asp-route-id="@item.UserId">
                     Uprawnienia
                 </a>
-                <a type="button" class="  btn btn-sm btn-light text-dark" asp-controller="UserViewer" asp-action="" asp-route-id="@item.UserId">
+                <a type="button" class="  btn btn-sm btn-light text-dark" asp-controller="UserViewer" asp-action="UserDataEditor" asp-route-id="@item.UserId">
                     Dane
                 </a>
                 <a type="button" class="  btn btn-sm btn-light text-dark" asp-controller="UserViewer" asp-action="EmploymentStatusEditor" asp-route-id="@item.UserId">
-                    Status zatrudnienia(coś nie tak z validacja modelu)
+                    Status zatrudnienia
+                </a>
+                <a type="button" class="  btn btn-sm btn-light text-dark" asp-controller="UserViewer" asp-action="EditUserPhoto" asp-route-id="@item.UserId">
+                    Zdjęcie
                 </a>
                 </div>
             </td>

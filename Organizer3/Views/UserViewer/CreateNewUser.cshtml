@@ -1,0 +1,190 @@
+﻿@using Organizer3.Models.EmployeeEditor
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model CreateUserModel
+
+<h4>Dodaj Nowego użykownika</h4>
+<hr/>
+<form asp-action="Create" asp-controller="UserViewer">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="row">
+
+        <div class="col-md-4">
+                   <p>Dane Osobowe</p>
+                   <hr/>
+            <!------>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" value="@Model.FirstName"/>
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SecondaryName" class="control-label"></label>
+                <input asp-for="SecondaryName" class="form-control" value="@Model.SecondaryName"/>
+                <span asp-validation-for="SecondaryName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" value="@Model.LastName"/>
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div><div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" value="@Model.Email"/>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div><div class="form-group">
+                <label asp-for="City" class="control-label"></label>
+                <input asp-for="City" class="form-control" value="@Model.City"/>
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div><div class="form-group">
+                <label asp-for="PostalCode" class="control-label"></label>
+                <input asp-for="PostalCode" class="form-control" value="@Model.PostalCode"/>
+                <span asp-validation-for="PostalCode" class="text-danger"></span>
+            </div><div class="form-group">
+                <label asp-for="Street" class="control-label"></label>
+                <input asp-for="Street" class="form-control" value="@Model.Street"/>
+                <span asp-validation-for="Street" class="text-danger"></span>
+            </div><div class="form-group">
+                <label asp-for="ApartmentNumber" class="control-label"></label>
+                <input asp-for="ApartmentNumber" class="form-control" value="@Model.ApartmentNumber"/>
+                <span asp-validation-for="ApartmentNumber" class="text-danger"></span>
+            </div>  
+        </div>
+    <!------------------------------------------>
+        <div class="col-md-4">
+            <p>Dane zatrudnienia</p>
+            <hr/>
+            <div class="form-group">
+                <label asp-for="Ocupation" class="control-label"></label>
+                <input asp-for="Ocupation" class="form-control" />
+                <span asp-validation-for="Ocupation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmployedSince" class="control-label"></label>
+                <input asp-for="EmployedSince" class="form-control" />
+                <span asp-validation-for="EmployedSince" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ContractType" class="control-label"></label>
+                <input asp-for="ContractType" class="form-control"/>
+                <span asp-validation-for="ContractType" class="text-danger"></span>
+            </div>          
+            <div class="form-group">
+                <label asp-for="ContractExpiration" class="control-label"></label>
+              
+                <input asp-for="ContractExpiration" class="form-control"/>
+                <span asp-validation-for="ContractExpiration" class="text-danger"></span>
+            </div>
+            <div class="form-group">                
+                <input type="hidden" asp-for="SupervisorId" class="form-control" value="@Model.SupervisorId"/>
+                <span asp-validation-for="SupervisorId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="otherInfo" class="control-label"></label>
+                @Html.TextAreaFor(m => m.otherInfo, new { @class = "form-control", @style="min-height:10em;"})
+                <span asp-validation-for="otherInfo" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <p>Dostęp do funkcji aplikacji</p>
+            <hr/>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    @if (@Model.Recruter)
+                    {
+                    <input class="form-check-input" asp-for="Recruter" value="@Model.Recruter" />
+                    }else{<input class="form-check-input" asp-for="Recruter" />}
+                     @Html.DisplayNameFor(model => model.Recruter)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    @if (@Model.Scheduler)
+                    {
+                    <input class="form-check-input" asp-for="Scheduler" value="@Model.Scheduler"/>
+                    }else{<input class="form-check-input" asp-for="Scheduler" />}
+                     @Html.DisplayNameFor(model => model.Scheduler)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    @if (@Model.LeaveEditor)
+                    {
+                    <input class="form-check-input" asp-for="LeaveEditor" value="@Model.LeaveEditor"/>
+                    }else{<input class="form-check-input" asp-for="LeaveEditor" />}
+                     @Html.DisplayNameFor(model => model.LeaveEditor)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    @if (@Model.UserEditor)
+                    {
+                    <input class="form-check-input" asp-for="UserEditor" value="@Model.UserEditor"/>
+                    }else{<input class="form-check-input" asp-for="UserEditor" />}
+                     @Html.DisplayNameFor(model => model.UserEditor)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    @if (@Model.UserViewer)
+                    {
+                    <input class="form-check-input" asp-for="UserViewer" value="@Model.UserViewer"/>
+                    }else{<input class="form-check-input" asp-for="UserViewer" />}
+                     @Html.DisplayNameFor(model => model.UserViewer)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    @if (@Model.FacilityEditor)
+                    {
+                    <input class="form-check-input" asp-for="FacilityEditor" value="@Model.FacilityEditor"/>
+                    }else{<input class="form-check-input" asp-for="FacilityEditor" />}
+                     @Html.DisplayNameFor(model => model.FacilityEditor)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    @if (@Model.FacilityViewer)
+                    {
+                    <input class="form-check-input" asp-for="FacilityViewer" value="@Model.FacilityViewer"/>
+                    }else{<input class="form-check-input" asp-for="FacilityViewer" />}
+                     @Html.DisplayNameFor(model => model.FacilityViewer)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    @if (@Model.Announcer)
+                    {
+                    <input class="form-check-input" asp-for="Announcer" value="@Model.Announcer"/>
+                    }else{<input class="form-check-input" asp-for="Announcer" />}
+                     @Html.DisplayNameFor(model => model.Announcer)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    @if (@Model.PersonalViewer)
+                    {
+                    <input class="form-check-input" asp-for="PersonalViewer" value="@Model.PersonalViewer"/>
+                    }else{<input class="form-check-input" asp-for="PersonalViewer" />}
+                     @Html.DisplayNameFor(model => model.PersonalViewer)
+                </label>
+            </div>
+            
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    @if (@Model.PartnerViewer)
+                    {
+                        <input class="form-check-input" asp-for="PartnerViewer" value="@Model.PartnerViewer"/>
+                    }else{<input class="form-check-input" asp-for="PartnerViewer" />}
+                    @Html.DisplayNameFor(model => model.PartnerViewer)
+                </label>
+           </div>
+        </div>
+    </div>
+    <div class="form-group btn-group float-end">
+                <input type="submit" value="Utwórz" class="btn btn-primary" />
+                <a type="button" class="btn btn-secondary text-decoration-none" asp-controller="UserViewer" asp-action="UserViewerIndex">Wstecz</a>
+    </div>
+</form>

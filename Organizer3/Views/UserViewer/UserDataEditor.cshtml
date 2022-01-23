@@ -1,0 +1,60 @@
+﻿@using Organizer3.Models.EmployeeEditor
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model UserDataEditModel
+
+<h4>Dane osobowe</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="UserDataEditor">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <!------>
+            <input type="hidden" asp-for="UserId" value="@Model.UserId"/>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" value="@Model.FirstName"/>
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SecondaryName" class="control-label"></label>
+                <input asp-for="SecondaryName" class="form-control" value="@Model.SecondaryName"/>
+                <span asp-validation-for="SecondaryName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" value="@Model.LastName"/>
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div><div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" value="@Model.Email"/>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div><div class="form-group">
+                <label asp-for="City" class="control-label"></label>
+                <input asp-for="City" class="form-control" value="@Model.City"/>
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div><div class="form-group">
+                <label asp-for="PostalCode" class="control-label"></label>
+                <input asp-for="PostalCode" class="form-control" value="@Model.PostalCode"/>
+                <span asp-validation-for="PostalCode" class="text-danger"></span>
+            </div><div class="form-group">
+                <label asp-for="Street" class="control-label"></label>
+                <input asp-for="Street" class="form-control" value="@Model.Street"/>
+                <span asp-validation-for="Street" class="text-danger"></span>
+            </div><div class="form-group">
+                <label asp-for="ApartmentNumber" class="control-label"></label>
+                <input asp-for="ApartmentNumber" class="form-control" value="@Model.ApartmentNumber"/>
+                <span asp-validation-for="ApartmentNumber" class="text-danger"></span>
+            </div>
+            <!------>
+            
+            <div class="form-group btn-group float-end mt-1">
+                <input type="submit" value="Zapisz zmiany" class="btn btn-primary"/>            
+                <a type="button" class="btn btn-secondary float-end" asp-controller="UserViewer" asp-action="UserViewerIndex">Wstecz</a>
+            </div>
+        </form>
+    </div>
+</div>

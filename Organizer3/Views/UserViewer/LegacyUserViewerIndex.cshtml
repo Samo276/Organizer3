@@ -53,9 +53,20 @@
                 @Html.DisplayFor(modelItem => item.FacilityName)
             </td>
             <td>
-                <a type="button" class="  btn btn-sm btn-light text-dark" asp-controller="" asp-action="" asp-route-id="@item.UserId">
-                    więcej
+                <div class="button-grp float-end">
+                <a type="button" class="  btn btn-sm btn-light text-dark" asp-controller="UserViewer" asp-action="UserAccessDataEditor" asp-route-id="@item.UserId">
+                    Uprawnienia
                 </a>
+                <a type="button" class="  btn btn-sm btn-light text-dark" asp-controller="UserViewer" asp-action="UserDataEditor" asp-route-id="@item.UserId">
+                    Dane
+                </a>
+                <a type="button" class="  btn btn-sm btn-light text-dark" asp-controller="UserViewer" asp-action="EmploymentStatusEditor" asp-route-id="@item.UserId">
+                    Status zatrudnienia
+                </a>
+                <a type="button" class="  btn btn-sm btn-light text-dark" asp-controller="UserViewer" asp-action="UserPhotoEditor" asp-route-id="@item.UserId">
+                    Zdjęcie
+                </a>
+                </div>
             </td>
         </tr>
 }

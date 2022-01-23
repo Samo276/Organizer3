@@ -1,0 +1,38 @@
+﻿@using Organizer3.Models.EmployeeEditor
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model EditUrserPhotoModel
+<h4>@Model.Name</h4>
+<div class="col-md-5"  >
+@if (!(@Model.PhotoLocation == string.Empty || @Model.PhotoLocation == null))
+{
+    <img src="@Model.PhotoLocation"/>
+}else
+{
+    <div class="card">
+        <p>Użytkownik nie posiada zdjęcia</p>
+    </div>
+}
+
+    <!--form method="post" enctype="multipart/form-data" asp-controller="UserViewer" asp-action="EditUserPhotoApply">
+    <div>
+        <input asp-for="Photo" name="p" class="drop-zone__input">        
+        <input type="hidden" value="Model.Id" asp-for="Id"/>
+        <input type="submit" value="Zaktualizuj Zdjęcie" />
+    </div>
+    </!--form--->
+    <form method="post" enctype="multipart/form-data">
+            <div class="mt-1">
+                <div>
+                    <input asp-for="Photo" class="text">
+                </div>
+                <div class="btn-group mt-2">
+                    <input type="submit" value="Zaktualizuj zdjęcie" class="btn btn-primary" asp-controller="UserViewer" asp-action="EditUserPhoto"/>
+                    <a type="button" class="btn btn-secondary float-end" asp-controller="UserViewer" asp-action="UserViewerIndex">Wstecz</a>
+                </div>
+            </div>
+        </form>
+</div>
