@@ -1,0 +1,285 @@
+﻿@using Organizer3.Areas.Identity.Data
+@using Organizer3.Models.Enums
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model List<Recruitment>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+ <!--</>
+if(Model.Where(x=>x.AppliedAt<DateTime.Now.AddDays(-7)).Any())
+{
+    <h4>Najnowsze podania</h4>
+    <hr/>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Nazwisko
+                </th>
+                <th>
+                    Imię
+                </th>
+                <th>
+                    Stanowisko
+                </th>
+                <th>
+                    Data złożenia
+                </th>   
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            foreach (var item in Model.Where(x=>x.AppliedAt<DateTime.Now.AddDays(-7)))
+            {
+                <tr>
+                    <td>
+                        item.LastName
+                    </td>
+                    <td>
+                        item.FirstName
+                    </td>
+                    <td>
+                        item.Position
+                    </td>
+                    <td>
+                        item.AppliedAt
+                    </td>
+                    <td>
+                        <a type="button" class="btn btn-sm btn-light text-dark" asp-controller="UserViewer" asp-action="EditUserPhoto" asp-route-id="item.id">
+                        Więcej
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+<div class="btn-group col float-end">
+
+    <button type="button" class="btn btn-primary">
+        <a class="text-decoration-none text-white" asp-controller="UserViewer" asp-action="UserViewerIndex">
+        W rekrutacji
+        </a>
+    </button>
+    <button type="button" class="btn btn-primary">        
+        <a class="text-decoration-none text-white" asp-controller="UserViewer" asp-action="UserViewerIndex">
+            Zaakceptowane
+        </a>
+    </button>
+    
+</div>
+-->
+
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <button class="nav-link active" id="nav-podania-tab" data-bs-toggle="tab" data-bs-target="#nav-podania" type="button" role="tab" aria-controls="nav-podania" aria-selected="true">Podania o pracę</button>
+    <button class="nav-link" id="nav-wTrakcie-tab" data-bs-toggle="tab" data-bs-target="#nav-wTrakcie" type="button" role="tab" aria-controls="nav-wTrakcie" aria-selected="false">W trakcie rekrutacji</button>
+    <button class="nav-link" id="nav-zaakceptowane-tab" data-bs-toggle="tab" data-bs-target="#nav-zaakceptowane" type="button" role="tab" aria-controls="nav-zaakceptowane" aria-selected="false">Zaakceptowane</button>
+    <button class="nav-link" id="nav-odrzucone-tab" data-bs-toggle="tab" data-bs-target="#nav-odrzucone" type="button" role="tab" aria-controls="nav-odrzucone" aria-selected="false">Odrzucone</button>  
+</div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+
+  <div class="tab-pane fade show active" id="nav-podania" role="tabpanel" aria-labelledby="nav-podania-tab">        
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Nazwisko
+                        </th>
+                        <th>
+                            Imię
+                        </th>
+                        <th>
+                            Stanowisko
+                        </th>
+                        <th>
+                            Data złożenia
+                        </th>   
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Where(x=>x.Status==RecruterEnum.RecruterEnumData.Applied.ToString()))
+                    {
+                        <tr>
+                            <td>
+                                @item.LastName
+                            </td>
+                            <td>
+                                @item.FirstName
+                            </td>
+                            <td>
+                                @item.Position
+                            </td>
+                            <td>
+                                @item.AppliedAt
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-sm btn-light ">        
+                                    <a class="text-decoration-none text-dark" asp-controller="Recruiter" asp-action="DisplayFistStage" asp-route-id="@item.id">
+                                        Więcej
+                                    </a>
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>   
+  </div>
+  <!--------------------------->
+  <div class="tab-pane fade" id="nav-wTrakcie" role="tabpanel" aria-labelledby="nav-wTrakcie-tab">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Nazwisko
+                    </th>
+                    <th>
+                        Imię
+                    </th>
+                    <th>
+                        Stanowisko
+                    </th>
+                    <th>
+                        Data złożenia
+                    </th>   
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Where(x=>x.Status==RecruterEnum.RecruterEnumData.InRecruitment.ToString()))
+                {
+                    <tr>
+                        <td>
+                            @item.LastName
+                        </td>
+                        <td>
+                            @item.FirstName
+                        </td>
+                        <td>
+                            @item.Position
+                        </td>
+                        <td>
+                            @item.AppliedAt
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-light ">        
+                                    <a class="text-decoration-none text-dark" asp-controller="Recruiter" asp-action="DisplayInRecruitment" asp-route-Id="@item.id">
+                                        Więcej
+                                    </a>
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+  </div>
+  <!--------------------------->
+  <div class="tab-pane fade" id="nav-zaakceptowane" role="tabpanel" aria-labelledby="nav-zaakceptowane-tab">
+      <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Nazwisko
+                    </th>
+                    <th>
+                        Imię
+                    </th>
+                    <th>
+                        Stanowisko
+                    </th>
+                    <th>
+                        Data złożenia
+                    </th>   
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Where(x=>x.Status==RecruterEnum.RecruterEnumData.Accepted.ToString()))
+                {
+                    <tr>
+                        <td>
+                            @item.LastName
+                        </td>
+                        <td>
+                            @item.FirstName
+                        </td>
+                        <td>
+                            @item.Position
+                        </td>
+                        <td>
+                            @item.AppliedAt
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-light ">        
+                                    <a class="text-decoration-none text-dark" asp-controller="UserViewer" asp-action="UserViewerIndex">
+                                        Więcej
+                                    </a>
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+  </div>
+  <!--------------------------->
+  <div class="tab-pane fade" id="nav-odrzucone" role="tabpanel" aria-labelledby="nav-odrzucone-tab">
+      <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Nazwisko
+                    </th>
+                    <th>
+                        Imię
+                    </th>
+                    <th>
+                        Stanowisko
+                    </th>
+                    <th>
+                        Data złożenia
+                    </th>   
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Where(x=>x.Status==RecruterEnum.RecruterEnumData.Rejected.ToString()))
+                {
+                    <tr>
+                        <td>
+                            @item.LastName
+                        </td>
+                        <td>
+                            @item.FirstName
+                        </td>
+                        <td>
+                            @item.Position
+                        </td>
+                        <td>
+                            @item.AppliedAt
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-light ">        
+                                    <a class="text-decoration-none text-dark" asp-controller="UserViewer" asp-action="UserViewerIndex">
+                                        Więcej
+                                    </a>
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+    

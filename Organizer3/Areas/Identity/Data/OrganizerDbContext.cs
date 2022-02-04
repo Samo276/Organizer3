@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Organizer3.Areas.Identity.Data;
+using Organizer3.Models;
 
 namespace Organizer3.Data;
 
@@ -16,6 +17,7 @@ public class OrganizerDbContext : IdentityDbContext<AppUser>
     public DbSet<AnnouncerModel> Announcements { get; set; }
     public DbSet<EmploymentStatus> EmploymentStatuses { get; set; }
     public DbSet<Facility> Facilities { get; set;}
+    public DbSet<Recruitment> Recruitments { get; set; }
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
@@ -36,4 +38,5 @@ public class OrganizerDbContext : IdentityDbContext<AppUser>
         // For example, you can rename the ASP.NET Identity table names and more.
         // Add your customizations after calling base.OnModelCreating(builder);
     }
+    public DbSet<Organizer3.Models.JobAplicationModel> JobAplicationModel { get; set; }
 }
