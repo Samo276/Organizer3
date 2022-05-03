@@ -162,7 +162,7 @@ namespace Organizer3.Controllers
         public async Task<IActionResult> AddToAccepted(int Id)
         {
             var tmp = _context.Recruitments.First(x => x.id == Id);
-            tmp.Status = RecruterEnum.RecruterEnumData.InRecruitment.ToString();
+            tmp.Status = RecruterEnum.RecruterEnumData.Accepted.ToString();
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(RecruiterIndex));
         }
