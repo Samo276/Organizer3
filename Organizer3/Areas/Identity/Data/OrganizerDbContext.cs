@@ -18,6 +18,7 @@ public class OrganizerDbContext : IdentityDbContext<AppUser>
     public DbSet<EmploymentStatus> EmploymentStatuses { get; set; }
     public DbSet<Facility> Facilities { get; set;}
     public DbSet<Recruitment> Recruitments { get; set; }
+    public DbSet<RecruitmentNotes> recruitmentNotes { get; set; }
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
