@@ -12,6 +12,6 @@
         public string Status { get; set; }
         public DateTime AppliedAt { get; set; }
         public string ? Notes { get;set; }
-
+        public List<RecruitmentNotes> ? Recruit_Notes { get; set; }
     }
 }

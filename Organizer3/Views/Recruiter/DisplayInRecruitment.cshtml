@@ -5,8 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h4>Podanie o Pracę</h4>
-<h1>@(Model.LastName+" "+Model.FirstName)</h1>
+<h4>Podanie o Pracę: @(Model.LastName+" "+Model.FirstName)</h4>
 
 <nav>
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -15,6 +14,7 @@
 </div>
 </nav>
 <div class="tab-content" id="nav-tabContent">
+    <!------------------------------------>
     <div class="tab-pane fade show active" id="nav-dane" role="tabpanel" aria-labelledby="nav-dane-tab">
         <div class="mt-4">    
             <dl class="row">
@@ -44,6 +44,15 @@
                 </dd>
             </dl>
             <div>
+               @if(@Model.Notes != String.Empty){
+                   <div>
+                        <p class="card-text">@Model.Notes</p>
+                    </div>
+               }
+
+            </div>
+            <p></p>
+            <div>
                 <button type="button" class="btn btn-warning ">        
                     <a class="text-decoration-none text-white" asp-controller="Recruiter" asp-action="Reject" asp-route-Id="@Model.id">
                         Odrzuć
@@ -66,11 +75,15 @@
                 </button>
             </div>
             <div>
-                @foreach(var note in @ViewBag.notes)
+                <p></p>
+                @if(@Model.Recruit_Notes.Any()){
+                @foreach(var nt in @Model.Recruit_Notes)
                 {
-                    <div class="card-body">
-                        <p class="card-text">@note</p>
+                    <div style="background-color:white;border-radius:15px;">
+                        <h5>@(@nt.NoteAuthor+" "+nt.CreatedDate)</h5>
+                        <p>@nt.NoteContent</p>
                     </div>
+                }
                 }
             </div>
         </div>

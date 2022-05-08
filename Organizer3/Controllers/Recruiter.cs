@@ -169,26 +169,17 @@ namespace Organizer3.Controllers
 
         public async Task<IActionResult> DisplayInRecruitment(int Id)
         {
-            /*var x = new List<string>();
-            x.Add("notatka 1");
-            x.Add("notatka 2");
-            var jj = JsonSerializer.Serialize(x);
 
-            foreach (var item in _context.Recruitments.ToList())
-            {
-                item.Notes = jj;
-            }*/
             await _context.SaveChangesAsync();
             var tmp = _context.Recruitments.First(x => x.id == Id);
-            if (!(tmp.Notes == null || tmp.Notes == string.Empty))
-            {
-                List<string> notes = JsonSerializer.Deserialize<List<string>>(tmp.Notes);
-                ViewBag.notes = notes;
-            }
-            else
-            {
-                ViewBag.notes = new List<string> { "Na razie brak notatek" };
-            }
+            tmp.Recruit_Notes = _context.recruitmentNotes.Where(x=>x.RecruitmentId == Id).OrderByDescending(y => y.CreatedDate).ToList();
+            
+            if(tmp.Recruit_Notes ==null)
+                tmp.Recruit_Notes = new List<RecruitmentNotes>();
+            
+            if (tmp.Notes==null)
+                tmp.Notes = String.Empty;
+
             return View(tmp);
         }
 
