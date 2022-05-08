@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Organizer3.Areas.Identity.Data;
 using Organizer3.Models;
+using Organizer3.Models.Recriter;
 
 namespace Organizer3.Data;
 
@@ -40,4 +41,5 @@ public class OrganizerDbContext : IdentityDbContext<AppUser>
         // Add your customizations after calling base.OnModelCreating(builder);
     }
     public DbSet<Organizer3.Models.JobAplicationModel> JobAplicationModel { get; set; }
+    public DbSet<Organizer3.Models.Recriter.AddRecruitmentNoteModel> AddRecruitmentNoteModel { get; set; }
 }

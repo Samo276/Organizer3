@@ -185,10 +185,34 @@ namespace Organizer3.Controllers
 
         public async Task<IActionResult> AddNote(int Id)
         {
-            return View();
+            var tmp = new Models.Recriter.AddRecruitmentNoteModel();
+            var entityTmp = _context.Recruitments.First(x=>x.id == Id);
+            tmp.Aplicant = entityTmp.LastName+" "+entityTmp.FirstName;
+            tmp.Id = Id; 
+            return View(tmp);
+        }
+        public async Task<IActionResult> AddNoteToDatabase(Models.Recriter.AddRecruitmentNoteModel model)
+        {
+            var tmp_id = model.Id;
+            if (ModelState.IsValid)
+            {
+                if (_context.Recruitments.Any(x => x.id == model.Id)){
+                    var tmp = new RecruitmentNotes();
+                    tmp.RecruitmentId = model.Id;
+                    tmp.CreatedDate = DateTime.Now;
+                    tmp.NoteContent = model.NoteContent;
+
+                    var user_tmp = _context.Users.First(x=>x.Id == _userManager.GetUserId(User));
+                    tmp.NoteAuthor = user_tmp.LastName+" "+user_tmp.FirstName;
+                    _context.recruitmentNotes.Add(tmp);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction("DisplayInRecruitment", new { Id = tmp_id });
+                }
+            }
+            return RedirectToAction("AddNote",new { Id = tmp_id });
         }
         
-        public async Task<IActionResult> AddNoteToDatabase(int Id)
+        /*public async Task<IActionResult> AddNoteToDatabase(int Id)
         {
             if (ModelState.IsValid)
             {
@@ -204,6 +228,6 @@ namespace Organizer3.Controllers
                 //TODO - finish this view
             }
             return RedirectToAction(nameof(AddNote),Id);
-        }
+        }*/
     }
 }
