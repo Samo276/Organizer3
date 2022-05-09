@@ -7,7 +7,8 @@
             Applied,
             InRecruitment,
             Accepted,
-            Rejected
+            Rejected,
+            Archived
         }
     }
 }

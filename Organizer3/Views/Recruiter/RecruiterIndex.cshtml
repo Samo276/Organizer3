@@ -77,7 +77,7 @@ if(Model.Where(x=>x.AppliedAt<DateTime.Now.AddDays(-7)).Any())
     <button class="nav-link active" id="nav-podania-tab" data-bs-toggle="tab" data-bs-target="#nav-podania" type="button" role="tab" aria-controls="nav-podania" aria-selected="true">Podania o pracę</button>
     <button class="nav-link" id="nav-wTrakcie-tab" data-bs-toggle="tab" data-bs-target="#nav-wTrakcie" type="button" role="tab" aria-controls="nav-wTrakcie" aria-selected="false">W trakcie rekrutacji</button>
     <button class="nav-link" id="nav-zaakceptowane-tab" data-bs-toggle="tab" data-bs-target="#nav-zaakceptowane" type="button" role="tab" aria-controls="nav-zaakceptowane" aria-selected="false">Zaakceptowane</button>
-    <button class="nav-link" id="nav-odrzucone-tab" data-bs-toggle="tab" data-bs-target="#nav-odrzucone" type="button" role="tab" aria-controls="nav-odrzucone" aria-selected="false">Odrzucone</button>  
+    <button class="nav-link" id="nav-odrzucone-tab" data-bs-toggle="tab" data-bs-target="#nav-odrzucone" type="button" role="tab" aria-controls="nav-odrzucone" aria-selected="false">Archiwum</button>  
 </div>
 </nav>
 <div class="tab-content" id="nav-tabContent">
@@ -215,7 +215,7 @@ if(Model.Where(x=>x.AppliedAt<DateTime.Now.AddDays(-7)).Any())
                         </td>
                         <td>
                             <button type="button" class="btn btn-sm btn-light ">        
-                                    <a class="text-decoration-none text-dark" asp-controller="UserViewer" asp-action="UserViewerIndex">
+                                    <a class="text-decoration-none text-dark" asp-controller="Recruiter" asp-action="DisplayInRecruitment" asp-route-Id="@item.id">
                                         Więcej
                                     </a>
                             </button>
@@ -241,12 +241,15 @@ if(Model.Where(x=>x.AppliedAt<DateTime.Now.AddDays(-7)).Any())
                     </th>
                     <th>
                         Data złożenia
-                    </th>   
+                    </th>
+                    <th>
+                        Status
+                    </th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model.Where(x=>x.Status==RecruterEnum.RecruterEnumData.Rejected.ToString()))
+                @foreach (var item in Model.Where(x=>x.Status==RecruterEnum.RecruterEnumData.Rejected.ToString() || x.Status==RecruterEnum.RecruterEnumData.Archived.ToString()))
                 {
                     <tr>
                         <td>
@@ -261,9 +264,22 @@ if(Model.Where(x=>x.AppliedAt<DateTime.Now.AddDays(-7)).Any())
                         <td>
                             @item.AppliedAt
                         </td>
+                        
+                        @if (@item.Status == RecruterEnum.RecruterEnumData.Archived.ToString())
+                        {
+                            <td>
+                                Zaakceptowano
+                            </td>
+                        }
+                        @if (@item.Status != RecruterEnum.RecruterEnumData.Archived.ToString())
+                        {
+                            <td>
+                                Odrzucono
+                            </td>
+                        }
                         <td>
                             <button type="button" class="btn btn-sm btn-light ">        
-                                    <a class="text-decoration-none text-dark" asp-controller="UserViewer" asp-action="UserViewerIndex">
+                                    <a class="text-decoration-none text-dark" asp-controller="Recruiter" asp-action="DisplayInRecruitment" asp-route-Id="@item.id">
                                         Więcej
                                     </a>
                             </button>

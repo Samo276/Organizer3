@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Organizer3.Areas.Identity.Data;
 using Organizer3.Data;
 using Organizer3.Models.Enums;
+using Organizer3.Models.Recriter;
 using System.Text.Json;
 namespace Organizer3.Controllers
 {
@@ -136,7 +137,7 @@ namespace Organizer3.Controllers
             await _context.SaveChangesAsync();*/
             #endregion
 
-            return View(_context.Recruitments.OrderBy(x => x.AppliedAt).ToList());
+            return View(_context.Recruitments.OrderByDescending(x => x.AppliedAt).ToList());
         }
         public async Task<IActionResult> DisplayFistStage(int Id)
         {
@@ -149,6 +150,9 @@ namespace Organizer3.Controllers
         {
             var tmp = _context.Recruitments.First(x => x.id == Id);
             tmp.Status = RecruterEnum.RecruterEnumData.Rejected.ToString();
+
+            _context.recruitmentNotes.Add(Create_System_RecruitmentNote(Id, "Odrzuca Podanie o pracę i  archiwizuje."));
+            
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(RecruiterIndex));
         }
@@ -156,6 +160,9 @@ namespace Organizer3.Controllers
         {
             var tmp = _context.Recruitments.First(x => x.id == Id);
             tmp.Status = RecruterEnum.RecruterEnumData.InRecruitment.ToString();
+
+            _context.recruitmentNotes.Add(Create_System_RecruitmentNote(Id, "Dopuszcza do rekrutacji"));
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(RecruiterIndex));
         }
@@ -163,6 +170,20 @@ namespace Organizer3.Controllers
         {
             var tmp = _context.Recruitments.First(x => x.id == Id);
             tmp.Status = RecruterEnum.RecruterEnumData.Accepted.ToString();
+
+            _context.recruitmentNotes.Add(Create_System_RecruitmentNote(Id, "Wstępnie zaakceptowano jako pracownika"));
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(RecruiterIndex));
+        }
+        
+        public async Task<IActionResult> AddToArchived(int Id)
+        {
+            var tmp = _context.Recruitments.First(x => x.id == Id);
+            tmp.Status = RecruterEnum.RecruterEnumData.Archived.ToString();
+
+            _context.recruitmentNotes.Add(Create_System_RecruitmentNote(Id, "Przeniesiono do Archiwum"));
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(RecruiterIndex));
         }
@@ -182,7 +203,22 @@ namespace Organizer3.Controllers
 
             return View(tmp);
         }
-
+        
+        public async Task<IActionResult> DeleteRecritmentFromArchiveConfirmation(int Id, string name)
+        {
+            return View(
+                new DeleteRecritmentFromArchiveConfirmationModel{
+                    Id = Id,
+                    Name = name
+                }
+            );
+        }
+        
+        public async Task<IActionResult> DeleteEntityFromRecruitementArchive(int Id, string name)
+        {
+            //TODO - napisać
+            return RedirectToAction(nameof(RecruiterIndex));
+        }
         public async Task<IActionResult> AddNote(int Id)
         {
             var tmp = new Models.Recriter.AddRecruitmentNoteModel();
@@ -210,24 +246,17 @@ namespace Organizer3.Controllers
                 }
             }
             return RedirectToAction("AddNote",new { Id = tmp_id });
+        }                
+        private RecruitmentNotes Create_System_RecruitmentNote(int id, string noteContent)
+        {            
+            var author_name_tmp = _context.Users.First(x => x.Id == _userManager.GetUserId(User));
+            return new RecruitmentNotes
+                {
+                    CreatedDate = DateTime.Now,
+                    RecruitmentId = id,
+                    NoteAuthor = author_name_tmp.LastName + " " + author_name_tmp.FirstName,
+                    NoteContent = noteContent
+                };           
         }
-        
-        /*public async Task<IActionResult> AddNoteToDatabase(int Id)
-        {
-            if (ModelState.IsValid)
-            {
-                var tmp = _context.Recruitments.First(x => x.id == Id);
-                if (!(tmp.Notes == null || tmp.Notes == string.Empty))
-                {
-                    List<string> notes = JsonSerializer.Deserialize<List<string>>(tmp.Notes);
-                }
-                else
-                {
-                    //tmp.Notes = JsonSerializer.Serialize<List<string>>(new List<string> { ModelState.Values["id"] });
-                }
-                //TODO - finish this view
-            }
-            return RedirectToAction(nameof(AddNote),Id);
-        }*/
     }
 }
