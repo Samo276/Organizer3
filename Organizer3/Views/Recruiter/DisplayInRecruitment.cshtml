@@ -110,7 +110,7 @@
                 @if (@Model.Status == RecruterEnum.RecruterEnumData.Archived.ToString() || @Model.Status == RecruterEnum.RecruterEnumData.Rejected.ToString())
                 {
                     <button type="button" class="btn btn-danger ">        
-                        <a class="text-decoration-none text-white" asp-controller="Recruiter" asp-action="DeleteRecruitmentFromArchiveConfirmation" asp-route-Id="@Model.id" asp-route-name="@(@Model.LastName+" "+@Model.FirstName)">
+                        <a class="text-decoration-none text-white" asp-controller="Recruiter" asp-action="DeleteRecritmentFromArchiveConfirmation" asp-route-Id="@Model.id" asp-route-c_name="@(@Model.LastName+" "+@Model.FirstName)">
                             Usuń z Archiwum
                         </a>
                     </button>

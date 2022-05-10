@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "UnwOoKa3Ue1MO185unZMtvV/4z4d7QXaZ017+BMJ6sk=",
+  "Hash": "N8OSkRtIZyTvzo3fwQH5zhDB9vkaVnVZ1zJgeX1f2qg=",
   "Source": "Organizer3",
   "BasePath": "_content/Organizer3",
   "Mode": "Default",
@@ -2837,6 +2837,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "D:\\Ath\\Organizer3\\Organizer3\\wwwroot\\uploads\\1451d801-dc86-4026-ab3d-b3e927c78981\\Dok_002425.pdf",
+      "SourceId": "Organizer3",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Ath\\Organizer3\\Organizer3\\wwwroot\\",
+      "BasePath": "_content/Organizer3",
+      "RelativePath": "uploads/1451d801-dc86-4026-ab3d-b3e927c78981/Dok_002425.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\1451d801-dc86-4026-ab3d-b3e927c78981\\Dok_002425.pdf"
     },
     {
       "Identity": "D:\\Ath\\Organizer3\\Organizer3\\wwwroot\\uploads\\6934c372-2a6c-4dfa-ae2a-bd287e1c187a\\cat.jpg",

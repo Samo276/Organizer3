@@ -8,7 +8,7 @@
 <div class="row">
     <div class="col-md-4"></div>
     <div class="col-md-4">
-        <form asp-action="JobAplicationIndex">
+        <form method="post" asp-action="SendJobAplication" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="FirstName" class="control-label">Imię</label>
@@ -31,9 +31,14 @@
                 <span asp-validation-for="PhoneNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Position" class="control-label">Stanowisko</label>
+                <input asp-for="Position" class="form-control" />
+                <span asp-validation-for="Position" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Resume" class="control-label">CV w formacie pdf</label>
                 <input asp-for="Resume" class="form-control" />
-                <span asp-validation-for="Position" class="text-danger"></span>
+                <span asp-validation-for="Resume" class="text-danger"></span>
             </div>
             <div class="form-group mt-3">
                 <input type="submit" value="Wyślij" class="btn btn-primary" />

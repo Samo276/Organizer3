@@ -204,12 +204,12 @@ namespace Organizer3.Controllers
             return View(tmp);
         }
         
-        public async Task<IActionResult> DeleteRecritmentFromArchiveConfirmation(int Id, string name)
+        public async Task<IActionResult> DeleteRecritmentFromArchiveConfirmation(int Id, string c_name)
         {
             return View(
                 new DeleteRecritmentFromArchiveConfirmationModel{
                     Id = Id,
-                    Name = name
+                    Name = c_name
                 }
             );
         }
