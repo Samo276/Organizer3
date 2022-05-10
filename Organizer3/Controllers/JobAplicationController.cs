@@ -46,7 +46,7 @@ namespace Organizer3.Controllers
                     LastName = p.LastName,
                     Email = p.Email,
                     PhoneNumber = p.PhoneNumber,
-                    ResumeLocation = OriginalFilePath,
+                    ResumeLocation = string.Concat("/uploads/", guid.ToString(), "/" + fileName),
                     Position = p.Position,
                     Status = RecruterEnum.RecruterEnumData.Applied.ToString(),
                     AppliedAt = DateTime.Now

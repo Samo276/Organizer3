@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "N8OSkRtIZyTvzo3fwQH5zhDB9vkaVnVZ1zJgeX1f2qg=",
+  "Hash": "3iCo1zElRQdDWeEslppBzqJXeN45v+5EPao9WvkMeWU=",
   "Source": "Organizer3",
   "BasePath": "_content/Organizer3",
   "Mode": "Default",
@@ -2854,6 +2854,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\1451d801-dc86-4026-ab3d-b3e927c78981\\Dok_002425.pdf"
+    },
+    {
+      "Identity": "D:\\Ath\\Organizer3\\Organizer3\\wwwroot\\uploads\\64c9bc5b-bd79-479f-836c-a70d42d7b7aa\\Human - Diabolist - 01 - Free - v01.pdf",
+      "SourceId": "Organizer3",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Ath\\Organizer3\\Organizer3\\wwwroot\\",
+      "BasePath": "_content/Organizer3",
+      "RelativePath": "uploads/64c9bc5b-bd79-479f-836c-a70d42d7b7aa/Human - Diabolist - 01 - Free - v01.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\64c9bc5b-bd79-479f-836c-a70d42d7b7aa\\Human - Diabolist - 01 - Free - v01.pdf"
     },
     {
       "Identity": "D:\\Ath\\Organizer3\\Organizer3\\wwwroot\\uploads\\6934c372-2a6c-4dfa-ae2a-bd287e1c187a\\cat.jpg",

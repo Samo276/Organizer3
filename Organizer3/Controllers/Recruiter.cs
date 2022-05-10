@@ -19,7 +19,11 @@ namespace Organizer3.Controllers
             _userManager = userManager;
             _environment = environment;
         }
-
+        public FileStreamResult CV_pdf(string path)
+        {
+            FileStream fs = new FileStream(_environment.WebRootPath+path, FileMode.Open, FileAccess.Read);
+            return File(fs, "application/pdf");
+        }
         public async Task<IActionResult> RecruiterIndex()
         {
             #region FillDatabseWithSampleEntities
@@ -216,6 +220,7 @@ namespace Organizer3.Controllers
         
         public async Task<IActionResult> DeleteEntityFromRecruitementArchive(int Id, string name)
         {
+
             //TODO - napisać
             return RedirectToAction(nameof(RecruiterIndex));
         }
