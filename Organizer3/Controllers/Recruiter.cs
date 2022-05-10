@@ -218,10 +218,27 @@ namespace Organizer3.Controllers
             );
         }
         
-        public async Task<IActionResult> DeleteEntityFromRecruitementArchive(int Id, string name)
+        public async Task<IActionResult> DeleteEntityFromRecruitementArchive(int Id)
         {
 
             //TODO - napisać
+            var tmp = _context.Recruitments.First(x => x.id == Id);
+                var oldphoto = new FileInfo(_environment.WebRootPath + tmp.ResumeLocation);
+                if (oldphoto.Exists)
+                {
+                    oldphoto.Delete();
+                    oldphoto.Directory.Delete();
+
+                }
+                
+            _context.Recruitments.Remove(tmp);
+            var toRemove =  _context.recruitmentNotes.Where(x => x.RecruitmentId == Id).ToList();
+            foreach (var item in toRemove)
+            {
+                _context.recruitmentNotes.Remove(item);
+            }
+            await _context.SaveChangesAsync();
+
             return RedirectToAction(nameof(RecruiterIndex));
         }
         public async Task<IActionResult> AddNote(int Id)
