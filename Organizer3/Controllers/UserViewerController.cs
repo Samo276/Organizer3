@@ -372,7 +372,7 @@ namespace Organizer3.Controllers
             return View(toView);
         }
         /// <summary>
-        /// Checks if user is logged in and is alowed to access the content of the view, 
+        /// Checks if user is logged in and is alowed to access the content of the UserViewer section, 
         /// returns FALSE if user is alowed in, and TRUE when access is forbidden
         /// </summary>
         /// <returns></returns>
