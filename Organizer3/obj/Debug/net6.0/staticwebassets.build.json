@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "3iCo1zElRQdDWeEslppBzqJXeN45v+5EPao9WvkMeWU=",
+  "Hash": "H0smCZOzQyY7CKgxIeiP0b2JTe649UnzXRSZTA/l77s=",
   "Source": "Organizer3",
   "BasePath": "_content/Organizer3",
   "Mode": "Default",
@@ -2856,23 +2856,6 @@
       "OriginalItemSpec": "wwwroot\\uploads\\1451d801-dc86-4026-ab3d-b3e927c78981\\Dok_002425.pdf"
     },
     {
-      "Identity": "D:\\Ath\\Organizer3\\Organizer3\\wwwroot\\uploads\\64c9bc5b-bd79-479f-836c-a70d42d7b7aa\\Human - Diabolist - 01 - Free - v01.pdf",
-      "SourceId": "Organizer3",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Ath\\Organizer3\\Organizer3\\wwwroot\\",
-      "BasePath": "_content/Organizer3",
-      "RelativePath": "uploads/64c9bc5b-bd79-479f-836c-a70d42d7b7aa/Human - Diabolist - 01 - Free - v01.pdf",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\uploads\\64c9bc5b-bd79-479f-836c-a70d42d7b7aa\\Human - Diabolist - 01 - Free - v01.pdf"
-    },
-    {
       "Identity": "D:\\Ath\\Organizer3\\Organizer3\\wwwroot\\uploads\\6934c372-2a6c-4dfa-ae2a-bd287e1c187a\\cat.jpg",
       "SourceId": "Organizer3",
       "SourceType": "Discovered",
@@ -2888,6 +2871,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\6934c372-2a6c-4dfa-ae2a-bd287e1c187a\\cat.jpg"
+    },
+    {
+      "Identity": "D:\\Ath\\Organizer3\\Organizer3\\wwwroot\\uploads\\NoPhoto.jpg",
+      "SourceId": "Organizer3",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Ath\\Organizer3\\Organizer3\\wwwroot\\",
+      "BasePath": "_content/Organizer3",
+      "RelativePath": "uploads/NoPhoto.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\NoPhoto.jpg"
     },
     {
       "Identity": "D:\\Ath\\Organizer3\\Organizer3\\wwwroot\\uploads\\podanie.pdf",

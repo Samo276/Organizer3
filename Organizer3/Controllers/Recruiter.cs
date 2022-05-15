@@ -220,8 +220,7 @@ namespace Organizer3.Controllers
         
         public async Task<IActionResult> DeleteEntityFromRecruitementArchive(int Id)
         {
-
-            //TODO - napisać
+           
             var tmp = _context.Recruitments.First(x => x.id == Id);
                 var oldphoto = new FileInfo(_environment.WebRootPath + tmp.ResumeLocation);
                 if (oldphoto.Exists)

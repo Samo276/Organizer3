@@ -287,8 +287,9 @@ namespace Organizer3.Controllers
                     PostalCode = fromView.PostalCode,
                     Street = fromView.Street,
                     ApartmentNumber = fromView.ApartmentNumber,
+                    PhotoLocation = @"\uploads\NoPhoto.jpg", //dodalem ta linijke trzeba sprawdzic czy wszystko sie nie wywali
                 };
-                var _password = Guid.NewGuid().ToString().Substring(0, 8);
+                var _password = Guid.NewGuid().ToString().Substring(0, 8); //TODO - doadać randomowe nowe haslo
 
                 var result = await _userManager.CreateAsync(nUser, "Qwerty`1");
                 if (result.Succeeded)
@@ -330,15 +331,15 @@ namespace Organizer3.Controllers
                     //tmp.Accesses = newUserAccessPemissions;
                     //tmp.EmploymentStatus = newEmploymentstatus;
                     await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(AfterUserCreation));
+                    return RedirectToAction("AfterUserCreation",new AfterUserCreationModel {password=_password,login=nUser.Email,Id=nUser.Id,name=nUser.LastName+" "+nUser.FirstName });
                 }
                 //var tmp = result.Errors;
             }
             return RedirectToAction(nameof(CreateNewUser), fromView);
         }
-        public async Task<ActionResult> AfterUserCreation()
+        public async Task<ActionResult> AfterUserCreation(AfterUserCreationModel toView)
         {
-            return View();
+            return View(toView);
         }
     }
 }

@@ -3,18 +3,26 @@
 *@
 @{
 }
-<h4>Utworzono użytkownika</h4>
+@model Organizer3.Models.EmployeeEditor.AfterUserCreationModel
+<h4>@("Utworzono użytkownika: "+@Model.name)</h4>
 <hr/>
-<div class="card col-md-5 row">
-    <p>Przekaż pracownikowi:</p>
-    <p class="col-md-3">Login</p>
-    <p class="col-md-9">@ViewBag.Email</p>
-    <p class="col-md-3">Hasło</p>
-    <p class="col-md-9">@ViewBag.Password</p>
-    <div class="btn-group">
-        <a class="btn btn-primary text-decoration-none float-end" value="Dodaj zdjęcie" asp-controller="UserViewer" asp-action="EditUserPhoto" asp-for-id="@ViewBag.Id"/>
-        <a class="btn btn-bg-secondary text-decoration-none float-end" value="Zakończ" asp-controller="UserViewer" asp-action="UserViewerIndex"/>
-    </div>
+<h5>Przekaż pracownikowi:</h5>
+<div class="col-md-5 row">
+    <p>@("Login: "+@Model.login)</p>
+    <p>@("Hasło: "+@Model.password)</p>   
+</div>
+<div class="col-md-5 mt-3">
+    <button type="button" class="btn btn-primary">
+        <a class="text-decoration-none text-white" asp-controller="UserViewer" asp-action="EditUserPhoto" asp-route-id="@Model.Id">
+            Dodaj zdjęcie
+        </a>
+    </button>
+
+    <button type="button" class="btn btn-secondary">
+        <a class="text-decoration-none text-white" value="Zakończ" asp-controller="UserViewer" asp-action="UserViewerIndex">
+            Zakończ
+        </a>
+    </button>
 </div>
 
 <label></label>
