@@ -27,14 +27,14 @@ namespace Organizer3.Controllers
         // GET: UserViewerController
         public async Task<ActionResult> UserViewerIndex()
         {
-            if(await IsUserBlockedFromAccesingThisContent())              
+            if(await IsUserBlockedFromAccesingUserViewer())              
                 return  RedirectToAction(nameof(HomeController.Index));
 
             return View(await GetEmployees(true));
         }
         public async Task<ActionResult> LegacyUserViewerIndex()
         {
-            if (await IsUserBlockedFromAccesingThisContent())
+            if (await IsUserBlockedFromAccesingUserViewer())
                 return RedirectToAction(nameof(HomeController.Index));
 
             return View(await GetEmployees(false));
@@ -65,7 +65,7 @@ namespace Organizer3.Controllers
         // GET: UserViewerController/Details/5
         public async Task<ActionResult> Details(string id)
         {
-            if (await IsUserBlockedFromAccesingThisContent())
+            if (await IsUserBlockedFromAccesingUserViewer())
                 return RedirectToAction(nameof(HomeController.Index));
 
             var getUser = await _context.Users.FirstAsync(x => x.Id == id);
@@ -78,7 +78,7 @@ namespace Organizer3.Controllers
         }
         public async Task<ActionResult> EmploymentStatusEditor(string id)
         {
-            if (await IsUserBlockedFromAccesingThisContent())
+            if (await IsUserBlockedFromAccesingUserViewer())
                 return RedirectToAction(nameof(HomeController.Index));
 
             var userName = await _context.Users.FirstAsync(u => u.Id == id);
@@ -108,7 +108,7 @@ namespace Organizer3.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> EmploymentStatusEditor(string id, EmploymentStatusModel es)
         {
-            if (await IsUserBlockedFromAccesingThisContent())
+            if (await IsUserBlockedFromAccesingUserViewer())
                 return RedirectToAction(nameof(HomeController.Index));
             //TODO - check model validation nie działa
             if (ModelState.IsValid)
@@ -137,7 +137,7 @@ namespace Organizer3.Controllers
 
         public async Task<ActionResult> UserDataEditor(string id)
         {
-            if (await IsUserBlockedFromAccesingThisContent())
+            if (await IsUserBlockedFromAccesingUserViewer())
                 return RedirectToAction(nameof(HomeController.Index));
 
             var tmp = await _context.Users.FirstAsync(x => x.Id == id);
@@ -149,7 +149,7 @@ namespace Organizer3.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> UserDataEditor(string id, UserDataEditModel fromView)
         {
-            if (await IsUserBlockedFromAccesingThisContent())
+            if (await IsUserBlockedFromAccesingUserViewer())
                 return RedirectToAction(nameof(HomeController.Index));
 
             if (ModelState.IsValid)
@@ -175,7 +175,7 @@ namespace Organizer3.Controllers
         }
         public async Task<ActionResult> UserAccessDataEditor(string id)
         {
-            if (await IsUserBlockedFromAccesingThisContent())
+            if (await IsUserBlockedFromAccesingUserViewer())
                 return RedirectToAction(nameof(HomeController.Index));
 
             var tmp = await _context.AccessPermisions.FirstAsync(x => x.UserId == id);
@@ -203,7 +203,7 @@ namespace Organizer3.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> UserAccessDataEditorApply(string id, UserAccessDataEditModel fromView)
         {
-            if (await IsUserBlockedFromAccesingThisContent())
+            if (await IsUserBlockedFromAccesingUserViewer())
                 return RedirectToAction(nameof(HomeController.Index));
 
             if (ModelState.IsValid)
@@ -231,7 +231,7 @@ namespace Organizer3.Controllers
         }
         public async Task<ActionResult> EditUserPhoto(string id)
         {
-            if (await IsUserBlockedFromAccesingThisContent())
+            if (await IsUserBlockedFromAccesingUserViewer())
                 return RedirectToAction(nameof(HomeController.Index));
 
             var tmp = await _context.Users.FirstAsync(x => x.Id == id);
@@ -247,7 +247,7 @@ namespace Organizer3.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> EditUserPhoto(EditUrserPhotoModel p)
         {
-            if (await IsUserBlockedFromAccesingThisContent())
+            if (await IsUserBlockedFromAccesingUserViewer())
                 return RedirectToAction(nameof(HomeController.Index));
 
             if (ModelState.IsValid)
@@ -286,7 +286,7 @@ namespace Organizer3.Controllers
         // GET: UserViewerController/Create
         public async Task<ActionResult> CreateNewUser(CreateUserModel fromView)
         {
-            if (await IsUserBlockedFromAccesingThisContent())
+            if (await IsUserBlockedFromAccesingUserViewer())
                 return RedirectToAction(nameof(HomeController.Index));
 
             if (fromView == null)
@@ -299,7 +299,7 @@ namespace Organizer3.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(CreateUserModel fromView)
         {
-            if (await IsUserBlockedFromAccesingThisContent())
+            if (await IsUserBlockedFromAccesingUserViewer())
                 return RedirectToAction(nameof(HomeController.Index));
 
             if (ModelState.IsValid)
@@ -366,7 +366,7 @@ namespace Organizer3.Controllers
         }
         public async Task<ActionResult> AfterUserCreation(AfterUserCreationModel toView)
         {
-            if (await IsUserBlockedFromAccesingThisContent())
+            if (await IsUserBlockedFromAccesingUserViewer())
                 return RedirectToAction(nameof(HomeController.Index));
 
             return View(toView);
@@ -376,7 +376,7 @@ namespace Organizer3.Controllers
         /// returns FALSE if user is alowed in, and TRUE when access is forbidden
         /// </summary>
         /// <returns></returns>
-        private async Task<bool> IsUserBlockedFromAccesingThisContent()
+        private async Task<bool> IsUserBlockedFromAccesingUserViewer()
         {
             if (User.Identity.IsAuthenticated)
             {
