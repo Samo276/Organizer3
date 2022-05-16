@@ -381,8 +381,9 @@ namespace Organizer3.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 var tmp = await _context.AccessPermisions.FirstAsync(u=>u.UserId==_userManager.GetUserId(User));
-                if (tmp.UserViewer)
-                    return false;               
+                if(tmp.UserViewer != null)
+                    if (tmp.UserViewer)
+                        return false;               
             }
             return true;
         }
