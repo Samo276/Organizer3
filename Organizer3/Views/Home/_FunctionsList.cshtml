@@ -10,13 +10,13 @@
     
     @if (@Model.Access.Recruter)
     {
-        <a type="button" class="w-100 mb-1 btn btn-outline-info text-dark" asp-controller="Recruiter" asp-action="RecruiterIndex">Recruter</a>      
-    }
-    @if (@Model.Access.Scheduler)
-    {   
-        <a type="button" class="w-100 mb-1 btn btn-outline-info text-dark" asp-controller="Home" asp-action="Index">Scheduler</a>        
+        <a type="button" class="w-100 mb-1 btn btn-outline-info text-dark" asp-controller="Recruiter" asp-action="RecruiterIndex">Rekrutacja</a>      
     }
     <!--
+    if (Model.Access.Scheduler)
+    {   
+        <a type="button" class="w-100 mb-1 btn btn-outline-info text-dark" asp-controller="Home" asp-action="Index">Scheduler</a>        
+    }    
     if (Model.Access.LeaveEditor)
     {
         <a type="button" class="w-100 mb-1 btn btn-outline-info text-dark" asp-controller="Home" asp-action="Index">LeaveEditor</a>
@@ -24,11 +24,11 @@
     -->
     @if (@Model.Access.UserViewer)
     {
-        <a type="button" class="w-100 mb-1 btn btn-outline-info text-dark" asp-controller="UserViewer" asp-action="UserViewerIndex">Edytor Pracowników</a>
+        <a type="button" class="w-100 mb-1 btn btn-outline-info text-dark" asp-controller="UserViewer" asp-action="UserViewerIndex">Pracownicy</a>
     }
     @if (@Model.Access.FacilityEditor)
     {
-        <a type="button" class="w-100 mb-1 btn btn-outline-info text-dark" asp-controller="Home" asp-action="Index">FacilityEditor</a>
+        <a type="button" class="w-100 mb-1 btn btn-outline-info text-dark" asp-controller="Home" asp-action="Index">Sklepy</a>
     }
     @if (@Model.Access.Announcer)
     {
