@@ -27,12 +27,18 @@ namespace Organizer3.Controllers
         // GET: Announcements
         public async Task<IActionResult> AnnouncerIndex()
         {
+            if(await IsUserBlockedFromAccesingAnnouncer())
+                return RedirectToAction(nameof(Index),"Home");
+
             return View(await _context.Announcements.OrderByDescending(x=>x.CreationTime).ToListAsync());
         }
 
         // GET: Announcements/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            if (await IsUserBlockedFromAccesingAnnouncer())
+                return RedirectToAction(nameof(Index), "Home");
+
             if (id == null)
             {
                 return NotFound();
@@ -49,8 +55,11 @@ namespace Organizer3.Controllers
         }
 
         // GET: Announcements/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            if (await IsUserBlockedFromAccesingAnnouncer())
+                return RedirectToAction(nameof(Index), "Home");
+
             return View();
         }
 
@@ -61,6 +70,9 @@ namespace Organizer3.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Title,MessageContent")] AnnouncerCreateModel fromView)
         {
+            if (await IsUserBlockedFromAccesingAnnouncer())
+                return RedirectToAction(nameof(Index), "Home");
+
             if (ModelState.IsValid)
             {
                 var cu = await _context.Users.FirstAsync(x => x.Id == _userManager.GetUserId(User));
@@ -80,6 +92,9 @@ namespace Organizer3.Controllers
         // GET: Announcements/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            if (await IsUserBlockedFromAccesingAnnouncer())
+                return RedirectToAction(nameof(Index), "Home");
+
             if (id == null)
             {
                 return NotFound();
@@ -105,6 +120,9 @@ namespace Organizer3.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Title,MessageContent")] AnnouncerCreateModel fromView)
         {
+            if (await IsUserBlockedFromAccesingAnnouncer())
+                return RedirectToAction(nameof(Index), "Home");
+
             if (id != fromView.Id)
             {
                 return NotFound();
@@ -143,6 +161,9 @@ namespace Organizer3.Controllers
         // GET: Announcements/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            if (await IsUserBlockedFromAccesingAnnouncer())
+                return RedirectToAction(nameof(Index), "Home");
+
             if (id == null)
             {
                 return NotFound();
@@ -163,6 +184,9 @@ namespace Organizer3.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            if (await IsUserBlockedFromAccesingAnnouncer())
+                return RedirectToAction(nameof(Index), "Home");
+
             var announcement = await _context.Announcements.FindAsync(id);
             _context.Announcements.Remove(announcement);
             await _context.SaveChangesAsync();
@@ -172,6 +196,22 @@ namespace Organizer3.Controllers
         private bool AnnouncementExists(int id)
         {
             return _context.Announcements.Any(e => e.Id == id);
+        }
+        /// <summary>
+        /// Checks if user is logged in and is alowed to access the content of the Announcer section, 
+        /// returns FALSE if user is alowed in, and TRUE when access is forbidden
+        /// </summary>
+        /// <returns></returns>
+        private async Task<bool> IsUserBlockedFromAccesingAnnouncer()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var tmp = await _context.AccessPermisions.FirstAsync(u => u.UserId == _userManager.GetUserId(User));
+                if(tmp.Announcer!=null)
+                    if (tmp.Announcer)
+                        return false;
+            }
+            return true;
         }
     }
 }

@@ -25,7 +25,7 @@ namespace Organizer3.Controllers
 
         public async Task<IActionResult> Index()
         {
-            if (User.Identity.IsAuthenticated)
+            if (User.Identity.IsAuthenticated) // TODO - dodać blokadę dla pracowników niezatrudniuonych
             {
                 var cuid = _userManager.GetUserId(User);
                 var getPermissions = new UserAccess();

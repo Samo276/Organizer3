@@ -28,14 +28,14 @@ namespace Organizer3.Controllers
         public async Task<ActionResult> UserViewerIndex()
         {
             if(await IsUserBlockedFromAccesingUserViewer())              
-                return  RedirectToAction(nameof(HomeController.Index));
+                return  RedirectToAction(nameof(Index), "Home");
 
             return View(await GetEmployees(true));
         }
         public async Task<ActionResult> LegacyUserViewerIndex()
         {
             if (await IsUserBlockedFromAccesingUserViewer())
-                return RedirectToAction(nameof(HomeController.Index));
+                return RedirectToAction(nameof(Index), "Home");
 
             return View(await GetEmployees(false));
 
@@ -66,7 +66,7 @@ namespace Organizer3.Controllers
         public async Task<ActionResult> Details(string id)
         {
             if (await IsUserBlockedFromAccesingUserViewer())
-                return RedirectToAction(nameof(HomeController.Index));
+                return RedirectToAction(nameof(Index), "Home");
 
             var getUser = await _context.Users.FirstAsync(x => x.Id == id);
             var getEmploymentInfo = await _context.EmploymentStatuses.FirstAsync(x => x.UserId == id);
@@ -79,7 +79,7 @@ namespace Organizer3.Controllers
         public async Task<ActionResult> EmploymentStatusEditor(string id)
         {
             if (await IsUserBlockedFromAccesingUserViewer())
-                return RedirectToAction(nameof(HomeController.Index));
+                return RedirectToAction(nameof(Index), "Home");
 
             var userName = await _context.Users.FirstAsync(u => u.Id == id);
             ViewBag.name = userName.LastName + " " + userName.FirstName;
@@ -109,7 +109,8 @@ namespace Organizer3.Controllers
         public async Task<ActionResult> EmploymentStatusEditor(string id, EmploymentStatusModel es)
         {
             if (await IsUserBlockedFromAccesingUserViewer())
-                return RedirectToAction(nameof(HomeController.Index));
+                return RedirectToAction(nameof(Index), "Home");
+
             //TODO - check model validation nie działa
             if (ModelState.IsValid)
                 try
@@ -138,7 +139,7 @@ namespace Organizer3.Controllers
         public async Task<ActionResult> UserDataEditor(string id)
         {
             if (await IsUserBlockedFromAccesingUserViewer())
-                return RedirectToAction(nameof(HomeController.Index));
+                return RedirectToAction(nameof(Index), "Home");
 
             var tmp = await _context.Users.FirstAsync(x => x.Id == id);
             var toView = new UserDataEditModel(tmp);
@@ -150,7 +151,7 @@ namespace Organizer3.Controllers
         public async Task<ActionResult> UserDataEditor(string id, UserDataEditModel fromView)
         {
             if (await IsUserBlockedFromAccesingUserViewer())
-                return RedirectToAction(nameof(HomeController.Index));
+                return RedirectToAction(nameof(Index), "Home");
 
             if (ModelState.IsValid)
             {
@@ -176,7 +177,7 @@ namespace Organizer3.Controllers
         public async Task<ActionResult> UserAccessDataEditor(string id)
         {
             if (await IsUserBlockedFromAccesingUserViewer())
-                return RedirectToAction(nameof(HomeController.Index));
+                return RedirectToAction(nameof(Index), "Home");
 
             var tmp = await _context.AccessPermisions.FirstAsync(x => x.UserId == id);
             var getUserName = await _context.Users.Where(x => x.Id == id).FirstAsync();
@@ -204,7 +205,7 @@ namespace Organizer3.Controllers
         public async Task<ActionResult> UserAccessDataEditorApply(string id, UserAccessDataEditModel fromView)
         {
             if (await IsUserBlockedFromAccesingUserViewer())
-                return RedirectToAction(nameof(HomeController.Index));
+                return RedirectToAction(nameof(Index), "Home");
 
             if (ModelState.IsValid)
             {
@@ -232,7 +233,7 @@ namespace Organizer3.Controllers
         public async Task<ActionResult> EditUserPhoto(string id)
         {
             if (await IsUserBlockedFromAccesingUserViewer())
-                return RedirectToAction(nameof(HomeController.Index));
+                return RedirectToAction(nameof(Index), "Home");
 
             var tmp = await _context.Users.FirstAsync(x => x.Id == id);
             var toView = new EditUrserPhotoModel
@@ -248,7 +249,7 @@ namespace Organizer3.Controllers
         public async Task<ActionResult> EditUserPhoto(EditUrserPhotoModel p)
         {
             if (await IsUserBlockedFromAccesingUserViewer())
-                return RedirectToAction(nameof(HomeController.Index));
+                return RedirectToAction(nameof(Index), "Home");
 
             if (ModelState.IsValid)
             {
@@ -287,7 +288,7 @@ namespace Organizer3.Controllers
         public async Task<ActionResult> CreateNewUser(CreateUserModel fromView)
         {
             if (await IsUserBlockedFromAccesingUserViewer())
-                return RedirectToAction(nameof(HomeController.Index));
+                return RedirectToAction(nameof(Index), "Home");
 
             if (fromView == null)
                 return View(new CreateUserModel());
@@ -300,7 +301,7 @@ namespace Organizer3.Controllers
         public async Task<ActionResult> Create(CreateUserModel fromView)
         {
             if (await IsUserBlockedFromAccesingUserViewer())
-                return RedirectToAction(nameof(HomeController.Index));
+                return RedirectToAction(nameof(Index), "Home");
 
             if (ModelState.IsValid)
             {
@@ -367,7 +368,7 @@ namespace Organizer3.Controllers
         public async Task<ActionResult> AfterUserCreation(AfterUserCreationModel toView)
         {
             if (await IsUserBlockedFromAccesingUserViewer())
-                return RedirectToAction(nameof(HomeController.Index));
+                return RedirectToAction(nameof(Index), "Home");
 
             return View(toView);
         }
