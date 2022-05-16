@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Organizer3.Areas.Identity.Data;
 using Organizer3.Data;
 using Organizer3.Models.Enums;
@@ -141,10 +142,16 @@ namespace Organizer3.Controllers
             await _context.SaveChangesAsync();*/
             #endregion
 
+            if(await IsUserBlockedFromAccesingRecruiter())
+                return RedirectToAction(nameof(Index), "Home");
+
             return View(_context.Recruitments.OrderByDescending(x => x.AppliedAt).ToList());
         }
         public async Task<IActionResult> DisplayFistStage(int Id)
         {
+            if (await IsUserBlockedFromAccesingRecruiter())
+                return RedirectToAction(nameof(Index), "Home");
+
             ViewBag.tmp = File(@"D:\Ath\Organizer3\Organizer3\wwwroot\uploads\podanie.pdf", "application/pdf");
 
             Recruitment toView = _context.Recruitments.First(x => x.id == Id);
@@ -152,6 +159,9 @@ namespace Organizer3.Controllers
         }
         public async Task<IActionResult> Reject(int Id)
         {
+            if (await IsUserBlockedFromAccesingRecruiter())
+                return RedirectToAction(nameof(Index), "Home");
+
             var tmp = _context.Recruitments.First(x => x.id == Id);
             tmp.Status = RecruterEnum.RecruterEnumData.Rejected.ToString();
 
@@ -162,6 +172,9 @@ namespace Organizer3.Controllers
         }
         public async Task<IActionResult> AddToRecruitmentInProcess(int Id)
         {
+            if (await IsUserBlockedFromAccesingRecruiter())
+                return RedirectToAction(nameof(Index), "Home");
+
             var tmp = _context.Recruitments.First(x => x.id == Id);
             tmp.Status = RecruterEnum.RecruterEnumData.InRecruitment.ToString();
 
@@ -172,6 +185,9 @@ namespace Organizer3.Controllers
         }
         public async Task<IActionResult> AddToAccepted(int Id)
         {
+            if (await IsUserBlockedFromAccesingRecruiter())
+                return RedirectToAction(nameof(Index), "Home");
+
             var tmp = _context.Recruitments.First(x => x.id == Id);
             tmp.Status = RecruterEnum.RecruterEnumData.Accepted.ToString();
 
@@ -183,6 +199,9 @@ namespace Organizer3.Controllers
         
         public async Task<IActionResult> AddToArchived(int Id)
         {
+            if (await IsUserBlockedFromAccesingRecruiter())
+                return RedirectToAction(nameof(Index), "Home");
+
             var tmp = _context.Recruitments.First(x => x.id == Id);
             tmp.Status = RecruterEnum.RecruterEnumData.Archived.ToString();
 
@@ -194,6 +213,8 @@ namespace Organizer3.Controllers
 
         public async Task<IActionResult> DisplayInRecruitment(int Id)
         {
+            if (await IsUserBlockedFromAccesingRecruiter())
+                return RedirectToAction(nameof(Index), "Home");
 
             await _context.SaveChangesAsync();
             var tmp = _context.Recruitments.First(x => x.id == Id);
@@ -210,6 +231,9 @@ namespace Organizer3.Controllers
         
         public async Task<IActionResult> DeleteRecritmentFromArchiveConfirmation(int Id, string c_name)
         {
+            if (await IsUserBlockedFromAccesingRecruiter())
+                return RedirectToAction(nameof(Index), "Home");
+
             return View(
                 new DeleteRecritmentFromArchiveConfirmationModel{
                     Id = Id,
@@ -220,7 +244,9 @@ namespace Organizer3.Controllers
         
         public async Task<IActionResult> DeleteEntityFromRecruitementArchive(int Id)
         {
-           
+            if (await IsUserBlockedFromAccesingRecruiter())
+                return RedirectToAction(nameof(Index), "Home");
+
             var tmp = _context.Recruitments.First(x => x.id == Id);
                 var oldphoto = new FileInfo(_environment.WebRootPath + tmp.ResumeLocation);
                 if (oldphoto.Exists)
@@ -242,6 +268,9 @@ namespace Organizer3.Controllers
         }
         public async Task<IActionResult> AddNote(int Id)
         {
+            if (await IsUserBlockedFromAccesingRecruiter())
+                return RedirectToAction(nameof(Index), "Home");
+
             var tmp = new Models.Recriter.AddRecruitmentNoteModel();
             var entityTmp = _context.Recruitments.First(x=>x.id == Id);
             tmp.Aplicant = entityTmp.LastName+" "+entityTmp.FirstName;
@@ -250,6 +279,9 @@ namespace Organizer3.Controllers
         }
         public async Task<IActionResult> AddNoteToDatabase(Models.Recriter.AddRecruitmentNoteModel model)
         {
+            if (await IsUserBlockedFromAccesingRecruiter())
+                return RedirectToAction(nameof(Index), "Home");
+
             var tmp_id = model.Id;
             if (ModelState.IsValid)
             {
@@ -278,6 +310,22 @@ namespace Organizer3.Controllers
                     NoteAuthor = author_name_tmp.LastName + " " + author_name_tmp.FirstName,
                     NoteContent = noteContent
                 };           
+        }
+        /// <summary>
+        /// Checks if user is logged in and is alowed to access the content of the Recruiter section, 
+        /// returns FALSE if user is alowed in, and TRUE when access is forbidden
+        /// </summary>
+        /// <returns></returns>
+        private async Task<bool> IsUserBlockedFromAccesingRecruiter()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var tmp = await _context.AccessPermisions.FirstAsync(u => u.UserId == _userManager.GetUserId(User));
+                if (tmp.Recruter != null)
+                    if (tmp.Recruter)
+                        return false;
+            }
+            return true;
         }
     }
 }
