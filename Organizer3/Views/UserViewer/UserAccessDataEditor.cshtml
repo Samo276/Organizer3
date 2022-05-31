@@ -108,9 +108,9 @@
                     @Html.DisplayNameFor(model => model.PartnerViewer)
                 </label>
                 </div>
-            <div class="form-group btn-group float-end">
+            <div class="form-group btn-group">
                 <input type="submit" value="Zapisz zmiany" class="btn btn-primary" />
-                <a type="button" class="btn btn-secondary text-decoration-none" asp-controller="UserViewer" asp-action="UserViewerIndex">Wstecz</a>
+                <a type="button" class="btn btn-secondary text-decoration-none" asp-controller="EmployeeProfile" asp-action="EmployeeProfileIndex" asp-route-employeeId="@Model.UserId">Wstecz</a>
             </div>
         </form>
     </div>

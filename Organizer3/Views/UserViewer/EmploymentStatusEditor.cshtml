@@ -27,23 +27,22 @@
                 </label>
             </div>
             <div class="form-group">
-                <label asp-for="Ocupation" class="control-label"></label>
+                <label value="Stanowisko" class="control-label"></label>
                 <input asp-for="Ocupation" class="form-control" />
                 <span asp-validation-for="Ocupation" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EmployedSince" class="control-label"></label>
+                <label value="Zatrudniony od" class="control-label"></label>
                 <input asp-for="EmployedSince" class="form-control" />
                 <span asp-validation-for="EmployedSince" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ContractType" class="control-label"></label>
+                <label value="Rodzaj umowy" class="control-label"></label>
                 <input asp-for="ContractType" class="form-control"/>
                 <span asp-validation-for="ContractType" class="text-danger"></span>
             </div>          
             <div class="form-group">
-                <label asp-for="ContractExpiration" class="control-label"></label>
-              
+                <label value="Data wygaśnięcia umowy" class="control-label"></label>              
                 <input asp-for="ContractExpiration" class="form-control"/>
                 <span asp-validation-for="ContractExpiration" class="text-danger"></span>
             </div>
@@ -52,13 +51,13 @@
                 <span asp-validation-for="SupervisorId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="otherInfo" class="control-label"></label>
+                <label value="Dodatkowe informacje" class="control-label"></label>
                 @Html.TextAreaFor(m => m.otherInfo, new { @class = "form-control", @style="min-height:10em;"})
                 <span asp-validation-for="otherInfo" class="text-danger"></span>
             </div>
             <div class="form-group btn-group float-end mt-1">
                 <input type="submit" value="Zapisz Zmiany" class="btn btn-primary" />
-                <a type="button" class="btn btn-secondary float-end" asp-controller="UserViewer" asp-action="UserViewerIndex">Wstecz</a>
+                <a type="button" class="btn btn-secondary float-end" asp-controller="EmployeeProfile" asp-action="EmployeeProfileIndex" asp-route-employeeId="@Model.UserId">Wstecz</a>
             </div>
         </form>
     </div>

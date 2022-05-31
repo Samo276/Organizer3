@@ -10,6 +10,7 @@ namespace Organizer3.Models.EmployeeEditor
         public string? FirstName { get; set; }
         public string? SecondaryName { get; set; }
         public string? LastName { get; set; }
+        public string ? PhoneNo { get; set; }
         public string? Email { get; set; }
         public string? City { get; set; }
         public string? PostalCode { get; set; }
@@ -24,6 +25,7 @@ namespace Organizer3.Models.EmployeeEditor
             LastName = appUserData.LastName;
             Email = appUserData.Email;
             City = appUserData.City;
+            PhoneNo = appUserData.PhoneNumber;
             PostalCode = appUserData.PostalCode;
             Street = appUserData.Street;
             ApartmentNumber = appUserData.ApartmentNumber;            

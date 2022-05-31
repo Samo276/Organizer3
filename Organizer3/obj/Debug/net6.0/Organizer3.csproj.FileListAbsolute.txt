@@ -272,3 +272,4 @@ D:\Ath\Organizer3\Organizer3\bin\Debug\net6.0\Microsoft.OpenApi.dll
 D:\Ath\Organizer3\Organizer3\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
 D:\Ath\Organizer3\Organizer3\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 D:\Ath\Organizer3\Organizer3\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\Ath\Organizer3\Organizer3\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll

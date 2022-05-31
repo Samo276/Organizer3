@@ -15,37 +15,42 @@
             <!------>
             <input type="hidden" asp-for="UserId" value="@Model.UserId"/>
             <div class="form-group">
-                <label asp-for="FirstName" class="control-label"></label>
+                <label value="Imie" class="control-label"></label>
                 <input asp-for="FirstName" class="form-control" value="@Model.FirstName"/>
                 <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SecondaryName" class="control-label"></label>
+                <label value="Drugie Imie" class="control-label"></label>
                 <input asp-for="SecondaryName" class="form-control" value="@Model.SecondaryName"/>
                 <span asp-validation-for="SecondaryName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LastName" class="control-label"></label>
+                <label value="Nazwisko" class="control-label"></label>
                 <input asp-for="LastName" class="form-control" value="@Model.LastName"/>
                 <span asp-validation-for="LastName" class="text-danger"></span>
             </div><div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
+                <label value="Email" class="control-label"></label>
                 <input asp-for="Email" class="form-control" value="@Model.Email"/>
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div><div class="form-group">
-                <label asp-for="City" class="control-label"></label>
+                <label value="Telefon" class="control-label"></label>
+                <input asp-for="PhoneNo" class="form-control" value="@Model.PhoneNo"/>
+                <span asp-validation-for="PhoneNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label value="Miasto" class="control-label"></label>
                 <input asp-for="City" class="form-control" value="@Model.City"/>
                 <span asp-validation-for="City" class="text-danger"></span>
             </div><div class="form-group">
-                <label asp-for="PostalCode" class="control-label"></label>
+                <label value="Kod pocztowy" class="control-label"></label>
                 <input asp-for="PostalCode" class="form-control" value="@Model.PostalCode"/>
                 <span asp-validation-for="PostalCode" class="text-danger"></span>
             </div><div class="form-group">
-                <label asp-for="Street" class="control-label"></label>
+                <label value="Adress" class="control-label"></label>
                 <input asp-for="Street" class="form-control" value="@Model.Street"/>
                 <span asp-validation-for="Street" class="text-danger"></span>
             </div><div class="form-group">
-                <label asp-for="ApartmentNumber" class="control-label"></label>
+                <label value="Numer Lokalu" class="control-label"></label>
                 <input asp-for="ApartmentNumber" class="form-control" value="@Model.ApartmentNumber"/>
                 <span asp-validation-for="ApartmentNumber" class="text-danger"></span>
             </div>
@@ -53,7 +58,7 @@
             
             <div class="form-group btn-group float-end mt-1">
                 <input type="submit" value="Zapisz zmiany" class="btn btn-primary"/>            
-                <a type="button" class="btn btn-secondary float-end" asp-controller="UserViewer" asp-action="UserViewerIndex">Wstecz</a>
+                <a type="button" class="btn btn-secondary float-end" asp-controller="EmployeeProfile" asp-action="EmployeeProfileIndex" asp-route-employeeId="@Model.UserId">Wstecz</a>
             </div>
         </form>
     </div>

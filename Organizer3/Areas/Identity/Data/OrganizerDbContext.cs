@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Organizer3.Areas.Identity.Data;
 using Organizer3.Models;
 using Organizer3.Models.Recriter;
+using Organizer3.Models.FacilitiesEditor;
 
 namespace Organizer3.Data;
 
@@ -42,4 +43,5 @@ public class OrganizerDbContext : IdentityDbContext<AppUser>
     }
     public DbSet<Organizer3.Models.JobAplicationModel> JobAplicationModel { get; set; }
     public DbSet<Organizer3.Models.Recriter.AddRecruitmentNoteModel> AddRecruitmentNoteModel { get; set; }
+    public DbSet<Organizer3.Models.FacilitiesEditor.FacilitiesListModel>? FacilitiesListModel { get; set; }
 }

@@ -1,0 +1,63 @@
+﻿@model EmployeeProfileDataModel
+            
+
+<dl class="row">
+    <dt class = "col-sm-4">
+        Obecnie zatrudniony
+    </dt>
+    @{
+        @if (@Model.EmploymentData.IsEmployed)
+        {
+            <dd class = "col-sm-8">
+                    Tak
+            </dd>
+        }
+        else{
+             <dd class = "col-sm-8">
+                    Nie
+             </dd>
+        }
+     }
+     <dt class = "col-sm-4">
+           Stanowisko
+     </dt>
+    <dd class = "col-sm-8">
+        @Model.EmploymentData.Ocupation
+    </dd>
+    <dt class = "col-sm-4">
+           Miejsce pracy
+     </dt>
+    <dd class = "col-sm-8">
+        @Model.employmentFacility
+    </dd>
+    <dt class = "col-sm-4">
+           Typ umowy
+     </dt>
+    <dd class = "col-sm-8">
+        @Model.EmploymentData.ContractType
+    </dd>
+    <dt class = "col-sm-4">
+           Zatrudniony od
+     </dt>
+    <dd class = "col-sm-8">
+        @Model.EmploymentData.EmployedSince
+    </dd>
+    <dt class = "col-sm-4">
+           Wygaśnięcie umowy
+     </dt>
+    <dd class = "col-sm-8">
+        @Model.EmploymentData.ContractExpiration
+    </dd>
+    <dt class = "col-sm-4">
+           Dodatkowe informacje
+     </dt>
+    <dd class = "col-sm-8">
+        @Model.EmploymentData.otherInfo
+    </dd>
+</dl>
+<hr/>
+<button type="button" class="btn btn-primary float-end">        
+    <a class="text-decoration-none text-white" asp-controller="UserViewer" asp-action="EmploymentStatusEditor" asp-route-id="@Model.UserData.UserId">
+        Edytuj Dane
+    </a>
+</button>

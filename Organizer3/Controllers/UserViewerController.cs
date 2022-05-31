@@ -111,11 +111,12 @@ namespace Organizer3.Controllers
             if (await IsUserBlockedFromAccesingUserViewer())
                 return RedirectToAction(nameof(Index), "Home");
 
-            //TODO - check model validation nie działa
+            //TODO - dodac edycje placowki
             if (ModelState.IsValid)
                 try
                 {
                     var tmp = await _context.EmploymentStatuses.FirstAsync(x => x.Id == es.Id);
+                    tmp.Ocupation = es.Ocupation;
                     tmp.IsEmployed = es.IsEmployed;
                     tmp.EmployedSince = es.EmployedSince;
                     tmp.ContractType = es.ContractType;
@@ -124,7 +125,7 @@ namespace Organizer3.Controllers
                     _context.Update(tmp);
                     await _context.SaveChangesAsync();
 
-                    return RedirectToAction(nameof(UserViewerIndex));
+                    return RedirectToAction("EmployeeProfileIndex", "EmployeeProfile",new { employeeId = es.UserId });
                 }
                 catch
                 {
@@ -162,6 +163,7 @@ namespace Organizer3.Controllers
                 tmp.SecondaryName = fromView.SecondaryName;
                 tmp.LastName = fromView.LastName;
                 tmp.Email = fromView.Email;
+                tmp.PhoneNumber = fromView.PhoneNo;
                 tmp.City = fromView.City;
                 tmp.PostalCode = fromView.PostalCode;
                 tmp.Street = fromView.Street;

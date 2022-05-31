@@ -31,7 +31,7 @@
                 </div>
                 <div class="btn-group mt-2">
                     <input type="submit" value="Zaktualizuj zdjęcie" class="btn btn-primary" asp-controller="UserViewer" asp-action="EditUserPhoto"/>
-                    <a type="button" class="btn btn-secondary float-end" asp-controller="UserViewer" asp-action="UserViewerIndex">Wstecz</a>
+                    <a type="button" class="btn btn-secondary float-end" asp-controller="EmployeeProfile" asp-action="EmployeeProfileIndex" asp-route-employeeId="@Model.Id">Wstecz</a>
                 </div>
             </div>
         </form>

@@ -1,0 +1,87 @@
+﻿@model EmployeeProfileDataModel
+
+<div class="row">          
+          <dl class="row col-md-8">
+            <dt class = "col-sm-4">
+                Imię
+            </dt>
+            <dd class = "col-sm-8">
+                @Model.UserData.FirstName
+            </dd>
+            @if(@Model.UserData.SecondaryName != null){
+            <dt class = "col-sm-4">
+                Drugie Imię
+            </dt>
+            <dd class = "col-sm-8">
+                @Model.UserData.SecondaryName
+            </dd>
+            }
+            <dt class = "col-sm-4">
+                Nazwisko
+            </dt>
+            <dd class = "col-sm-8">
+                @Model.UserData.LastName
+            </dd>
+            <dt class = "col-sm-4">
+                Email
+            </dt>
+            <dd class = "col-sm-8">
+                @Model.UserData.Email
+            </dd>
+            <dt class = "col-sm-4">
+                Telefon
+            </dt>
+            <dd class = "col-sm-8">
+                @Model.UserData.PhoneNo
+            </dd>
+            <dt class = "col-sm-4">
+                Miasto
+            </dt>
+            <dd class = "col-sm-8">
+                @Model.UserData.City
+            </dd>
+            <dt class = "col-sm-4">
+                Kod pocztowy
+            </dt>
+            <dd class = "col-sm-8">
+                @Model.UserData.PostalCode
+            </dd>
+            <dt class = "col-sm-4">
+                Adres
+            </dt>
+            <dd class = "col-sm-8">
+                @Model.UserData.Street
+            </dd>
+            <dt class = "col-sm-4">
+                Numer lokalu
+            </dt>
+            <dd class = "col-sm-8">
+                @Model.UserData.ApartmentNumber
+            </dd>
+            
+          </dl>
+          <div class="col-md-4">               
+              @{
+                  @if(@Model.PhotoLocation == string.Empty){
+                      <img style="max-height:400px;display: block;margin-left: auto;margin-right: auto;"src="~/uploads/NoPhoto.jpg"/>                    
+                    }else{
+                        <img style="display: block;margin-left: auto;margin-right: auto;object-fit: cover;"src="@Model.PhotoLocation"/>
+                    }             
+              }         
+          </div>
+          <hr/>
+          <div class="col-md-8">
+              <button type="button" class="btn btn-primary float-end">        
+                    <a class="text-decoration-none text-white" asp-controller="UserViewer" asp-action="UserDataEditor" asp-route-Id="@Model.UserData.UserId">
+                        Edytuj Dane
+                    </a>
+                </button>
+          </div>
+          <div class="col-md-4">
+              <button type="button" class="btn btn-primary float-end">        
+                    <a class="text-decoration-none text-white" asp-controller="UserViewer" asp-action="EditUserPhoto" asp-route-Id="@Model.UserData.UserId">
+                        Edytuj Zdjęcie
+                    </a>
+              </button>
+          </div>
+      </div>

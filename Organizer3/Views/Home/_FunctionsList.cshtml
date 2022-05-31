@@ -28,7 +28,7 @@
     }
     @if (@Model.Access.FacilityEditor)
     {
-        <a type="button" class="w-100 mb-1 btn btn-outline-info text-dark" asp-controller="Home" asp-action="Index">Sklepy</a>
+        <a type="button" class="w-100 mb-1 btn btn-outline-info text-dark" asp-controller="Facilities" asp-action="FacilitiesIndex">Sklepy</a>
     }
     @if (@Model.Access.Announcer)
     {
@@ -45,4 +45,5 @@
     }
     -->
     <a type="button" class="w-100 mb-1 btn btn-outline-info text-dark" asp-controller="JobAplication" asp-action="JobAplicationIndex">aplikacje</a>
+    <a type="button" class="w-100 mb-1 btn btn-outline-info text-dark" asp-controller="EmployeeProfile" asp-action="EmployeeProfileIndex">Profil Pracownika</a>
 }
