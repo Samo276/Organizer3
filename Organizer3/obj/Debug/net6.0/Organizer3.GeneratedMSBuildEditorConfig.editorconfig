@@ -71,6 +71,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW5ub3VuY2VtZW50c1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Ath/Organizer3/Organizer3/Views/EmployeeProfile/AddNewLeave.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVQcm9maWxlXEFkZE5ld0xlYXZlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Ath/Organizer3/Organizer3/Views/EmployeeProfile/EmployeeProfileIndex.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVQcm9maWxlXEVtcGxveWVlUHJvZmlsZUluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -85,6 +89,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Ath/Organizer3/Organizer3/Views/EmployeeProfile/_EmployeeProfileEmploymentTab.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVQcm9maWxlXF9FbXBsb3llZVByb2ZpbGVFbXBsb3ltZW50VGFiLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Ath/Organizer3/Organizer3/Views/EmployeeProfile/_EmployeeProfileLeaveTab.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVQcm9maWxlXF9FbXBsb3llZVByb2ZpbGVMZWF2ZVRhYi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Ath/Organizer3/Organizer3/Views/Facilities/Create.cshtml]

@@ -5,6 +5,8 @@ using Organizer3.Areas.Identity.Data;
 using Organizer3.Data;
 using Organizer3.Models;
 using Organizer3.Models.EmployeeEditor;
+using Organizer3.Models.EmployeeProfile;
+using Organizer3.Models.Enums;
 
 namespace Organizer3.Controllers
 {
@@ -38,16 +40,127 @@ namespace Organizer3.Controllers
                             )
                     );
             
+            var tmpLeaveList = _context.Leaves.Where(y=>y.UserId == employeeId).ToList();
+        
+
             var toView = new EmployeeProfileDataModel(
                 new UserDataEditModel(tmpEmployee),
                 ConvertEmploymentStatusToModel(employeeId),
                 GetUserAccessPrivilegesList(employeeId),
                 photo,
-                tmpFacilityName.Name+" "+tmpFacilityName.Adress+ " " + tmpFacilityName.City
+                tmpFacilityName.Name + " " + tmpFacilityName.Adress + " " + tmpFacilityName.City,
+                await ConvertLeavesDataToModel(tmpLeaveList),
+                await CountLeaveDays(tmpLeaveList)
                 ); 
 
             return View(toView);
         }
+
+        public async Task<IActionResult> AddNewLeave(string eId)
+        {
+            if (await IsUserBlockedFromAccesingEmployeeProfile())
+                return RedirectToAction(nameof(Index), "Home");
+
+            var tmpUsername = _context.Users.First(y => y.Id == eId);
+            var toView = new AddNewLeaveModel
+            {
+                UserId=eId,
+                UserName = tmpUsername.LastName+" "+ tmpUsername.FirstName,
+            };
+
+
+            return View(toView);
+        }
+        public async Task<IActionResult> AddCreatedLeave(AddNewLeaveModel fromView)
+        {
+            if (await IsUserBlockedFromAccesingEmployeeProfile())
+                return RedirectToAction(nameof(Index), "Home");
+
+            if (ModelState.IsValid)
+            {
+                var tmp = ConvertModelToLeaveDatabaseEntity(fromView);
+                
+                await _context.Leaves.AddAsync(tmp);
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction("EmployeeProfileIndex", new { employeeId = fromView.UserId });
+            }
+            return RedirectToAction("AddNewLeave", new { employeeId = fromView.UserId });
+        }
+        public async Task<IActionResult>  DeleteLeaveEntity(int leaveId, string uId)
+        {
+            if (await IsUserBlockedFromAccesingEmployeeProfile())
+                return RedirectToAction(nameof(Index), "Home");
+            
+            var tmp = _context.Leaves.First(y => y.Id == leaveId);
+            
+            _context.Leaves.Remove(tmp);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("EmployeeProfileIndex", new { employeeId = tmp.UserId });
+        }
+        private Leave  ConvertModelToLeaveDatabaseEntity(AddNewLeaveModel fromView)
+        {
+            Enum.TryParse(fromView.LeaveType, out LeaveTypeEnum.LeaveTypeData value);
+            var tmp = new Leave
+            {
+                UserId = fromView.UserId,
+                LeaveType = value.ToString(),
+                LeaveStart = fromView.LeaveStart,
+                LeaveDuration = fromView.LeaveDuration,
+                AuthorizerId = _userManager.GetUserId(User),
+            };
+            if (fromView.Note == null) 
+                tmp.Note = String.Empty;
+            else 
+                tmp.Note = fromView.Note;
+
+            return tmp;
+        }
+
+        private async Task<LeaveCounter> CountLeaveDays(List<Leave> tmpLeaveList)
+        {
+            var result = new LeaveCounter();
+            foreach (var leave in tmpLeaveList.Where(y=>y.LeaveStart.Year==DateTime.Now.Year).ToList())
+            {
+                if (leave.LeaveType == LeaveTypeEnum.LeaveTypeData.Wypoczynkowy.ToString())
+                    result.Wypoczynkowy += leave.LeaveDuration;
+                if (leave.LeaveType == LeaveTypeEnum.LeaveTypeData.Okolicznościowy.ToString())
+                    result.Okolicznosciowy += leave.LeaveDuration;
+                if (leave.LeaveType == LeaveTypeEnum.LeaveTypeData.Opieka.ToString())
+                    result.Opieka += leave.LeaveDuration;
+                if (leave.LeaveType == LeaveTypeEnum.LeaveTypeData.Szkoleniowy.ToString())
+                    result.Szkoleniowy += leave.LeaveDuration;
+                if (leave.LeaveType == LeaveTypeEnum.LeaveTypeData.Szkoleniowy.ToString())
+                    result.Szkoleniowy += leave.LeaveDuration;
+                if (leave.LeaveType == LeaveTypeEnum.LeaveTypeData.Żądanie.ToString())
+                    result.Zadanie += leave.LeaveDuration;
+                if (leave.LeaveType == LeaveTypeEnum.LeaveTypeData.Bezpłatny.ToString())
+                    result.Bezplatny += leave.LeaveDuration;
+            }
+            return result;
+        }
+
+        private async Task<List<LeaveDisplayModel>> ConvertLeavesDataToModel(List<Leave> tmpLeaveList)
+        {
+            var result = new List<LeaveDisplayModel>();
+            if (tmpLeaveList.Any())
+                foreach (var item in tmpLeaveList.OrderByDescending(y=>y.LeaveStart).ToList())
+                {
+                    var authorizer = await _context.Users.FirstAsync(y => y.Id == item.AuthorizerId);
+                    result.Add(new LeaveDisplayModel
+                    {
+                        Id = item.Id,
+                        LeaveType = item.LeaveType,
+                        LeaveStart = item.LeaveStart,
+                        LeaveEnd = item.LeaveStart.AddDays(item.LeaveDuration),
+                        AuthorizerId = item.AuthorizerId,
+                        AuthorizerName = authorizer.FirstName + " " + authorizer.LastName,
+                        Note = item.Note,
+                    });
+                }
+            return result;
+        }
+
         public  List<string> GetUserAccessPrivilegesList(string employeeId)
         {
             var tmp = _context.AccessPermisions.First(y=>y.UserId==employeeId);

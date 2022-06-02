@@ -1,0 +1,164 @@
+﻿@model EmployeeProfileDataModel
+
+@{
+    var currentYear = @Model.LeaveHistory.Where(x => x.LeaveStart.Year == DateTime.Now.Year).ToList();
+    var pastYears = @Model.LeaveHistory.Except(currentYear).ToList();
+}
+<div class="row pt-3">
+    <div class="col-md-10">
+    <h4>Wykorzystane w tym roku dni urlopów:</h4>
+    </div>
+    <div class="col-md-2">
+    <button type="button" class="btn btn-primary float-end ">        
+        <a class="text-decoration-none text-white" asp-controller="EmployeeProfile" asp-action="AddNewLeave" asp-route-eId="@Model.UserData.UserId">
+            Nowy
+        </a>
+    </button>
+    </div>
+</div>
+
+<hr/>
+<dl class="row">
+    <dt class = "col-sm-4">
+        Wypoczynkowy
+    </dt>
+    <dd class = "col-sm-8">
+            @Model.LeaveUsed.Wypoczynkowy
+    </dd>
+    <dt class = "col-sm-4">
+        Okolicznościowy
+    </dt>
+    <dd class = "col-sm-8">
+           @Model.LeaveUsed.Okolicznosciowy
+    </dd>
+    <dt class = "col-sm-4">
+        Opieka na dziecko
+    </dt>
+    <dd class = "col-sm-8">
+           @Model.LeaveUsed.Opieka
+    </dd>
+    <dt class = "col-sm-4">
+        Szkoleniowy
+    </dt>
+    <dd class = "col-sm-8">
+            @Model.LeaveUsed.Szkoleniowy
+    </dd>
+    <dt class = "col-sm-4">
+        Na żądanie
+    </dt>
+    <dd class = "col-sm-8">
+            @Model.LeaveUsed.Zadanie
+    </dd>
+    <dt class = "col-sm-4">
+        Bezpłatny
+    </dt>
+    <dd class = "col-sm-8">
+            @Model.LeaveUsed.Bezplatny
+    </dd>
+</dl>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Początek
+            </th>
+            <th>
+                Koniec
+            </th>
+            <th>
+                Rodzaj
+            </th>
+            <th>
+                Osoba Zatwierdzająca
+            </th>          
+            <th>
+                Notatka
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in currentYear) {
+    
+        <tr>
+            <td>
+                @item.LeaveStart.Date.ToString("dd/MM/yyyy")
+            </td>
+            <td>
+                @item.LeaveEnd.Date.ToString("dd/MM/yyyy")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LeaveType)
+            </td>
+            
+            <td>
+                <a type="button" class="btn btn-sm btn-secondary text-white" asp-controller="EmployeeProfile" asp-action="EmployeeProfileIndex" asp-route-employeeId="@item.AuthorizerId">
+                    @item.AuthorizerName
+                </a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Note)
+            </td>
+            <td>
+                <a type="button" class="btn btn-sm btn-danger text-white" asp-controller="EmployeeProfile" asp-action="DeleteLeaveEntity" asp-route-leaveId="@item.Id">
+                    Usuń
+                </a>
+            </td>
+        </tr>
+        
+    }
+    </tbody>
+</table>
+
+<h4>Urlopy w poprzednich latach:</h4>
+<hr/>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Poczatek
+            </th>
+            <th>
+                Koniec
+            </th>
+            <th>
+                Rodzaj
+            </th>      
+            <th>
+                Osoba Zatwierdzająca
+            </th>
+            <th>
+                Notatka
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in pastYears) {
+    
+        <tr>
+            <td>
+                @item.LeaveStart.Date.ToString("dd/MM/yyyy")
+            </td>
+            <td>
+                @item.LeaveEnd.Date.ToString("dd/MM/yyyy")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LeaveType)
+            </td>            
+            <td>
+                <a type="button" class="btn btn-sm btn-secondary text-white" asp-controller="EmployeeProfile" asp-action="EmployeeProfileIndex" asp-route-employeeId="@item.AuthorizerId">
+                    @item.AuthorizerName
+                </a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Note)
+            </td>
+        </tr>
+        
+    }
+    </tbody>
+</table>

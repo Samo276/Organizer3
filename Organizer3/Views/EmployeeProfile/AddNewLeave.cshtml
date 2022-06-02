@@ -1,0 +1,56 @@
+﻿@using Organizer3.Models.Enums
+@model Organizer3.Models.EmployeeProfile.AddNewLeaveModel
+
+@{
+    ViewData["Title"] = "AddNewLeave";
+}
+
+<h4>@("Nowy urlop: " + @Model.UserName)</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddCreatedLeave">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group ">
+               
+                <input asp-for="UserId" type="hidden" value="@Model.UserId" class="form-control hidden" />
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LeaveType"  class="control-label">Typ Urlopu</label>
+                <select asp-for="LeaveType" class="form-control" asp-items="@Html.GetEnumSelectList<LeaveTypeEnum.LeaveTypeData>()">
+                    <option selected="selected" value=""></option>
+                </select>
+                <span asp-validation-for="LeaveType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LeaveStart" class="control-label">Od</label>
+                <input asp-for="LeaveStart" value="@(@DateTime.Now)" class="form-control" />
+                <span asp-validation-for="LeaveStart" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LeaveDuration" class="control-label">Ilość dni</label>
+                <input asp-for="LeaveDuration" class="form-control" />
+                <span asp-validation-for="LeaveDuration" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Note" class="control-label">Notatka</label>
+                <input asp-for="Note" class="form-control" />
+                <span asp-validation-for="Note" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                
+            </div>
+            <div class="form-group btn-group float-end mt-1">
+                <input type="submit" value="Zapisz" class="btn btn-primary" />         
+                <a type="button" class="btn btn-secondary float-end" asp-controller="EmployeeProfile" asp-action="EmployeeProfileIndex" asp-route-employeeId="@Model.UserId">Wstecz</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

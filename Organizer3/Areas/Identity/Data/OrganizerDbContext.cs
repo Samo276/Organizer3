@@ -5,6 +5,7 @@ using Organizer3.Areas.Identity.Data;
 using Organizer3.Models;
 using Organizer3.Models.Recriter;
 using Organizer3.Models.FacilitiesEditor;
+using Organizer3.Models.EmployeeProfile;
 
 namespace Organizer3.Data;
 
@@ -21,6 +22,7 @@ public class OrganizerDbContext : IdentityDbContext<AppUser>
     public DbSet<Facility> Facilities { get; set;}
     public DbSet<Recruitment> Recruitments { get; set; }
     public DbSet<RecruitmentNotes> recruitmentNotes { get; set; }
+    public DbSet<Leave> Leaves { get; set; }
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
@@ -44,4 +46,5 @@ public class OrganizerDbContext : IdentityDbContext<AppUser>
     public DbSet<Organizer3.Models.JobAplicationModel> JobAplicationModel { get; set; }
     public DbSet<Organizer3.Models.Recriter.AddRecruitmentNoteModel> AddRecruitmentNoteModel { get; set; }
     public DbSet<Organizer3.Models.FacilitiesEditor.FacilitiesListModel>? FacilitiesListModel { get; set; }
+    public DbSet<Organizer3.Models.EmployeeProfile.AddNewLeaveModel>? AddNewLeaveModel { get; set; }
 }
