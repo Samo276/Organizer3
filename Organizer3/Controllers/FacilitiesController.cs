@@ -37,10 +37,51 @@ namespace Organizer3.Controllers
                 );
         }
 
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int sId)
         {
+            if (await IsUserBlockedFromAccesingFacilityEditor())
+                return RedirectToAction(nameof(Index), "Home");
+
+            var getEmployeesIds = await _context.EmploymentStatuses.Where(y => y.FacilityId == sId).ToListAsync();
+            if (!getEmployeesIds.Any() || getEmployeesIds == null)
+                getEmployeesIds = new List<EmploymentStatus>();
+
             
-            return View();
+
+            var toView = new FacilityProfileModel{
+                FacilityData= await ConvertSingleFacilityDatabaseEntitiesToModel(  _context.Facilities.First(y => y.Id == sId) ),
+                ShopEmployeeList = await _ConvertToUsercontactInfo(getEmployeesIds),
+                HasEmployeeEditorAccess = _context.AccessPermisions.First(y => y.UserId == _userManager.GetUserId(User)).FacilityEditor,
+            };
+            return View(toView);
+        }
+
+        private async Task<List<UserContactInfo>> _ConvertToUsercontactInfo(List<EmploymentStatus> _data)
+        {
+            var result = new List<UserContactInfo>();
+
+            foreach (var item in _data.Where(y=>y.IsEmployed==true).ToList())
+            {
+                result.Add(new UserContactInfo
+                {
+                    UserId = item.UserId,
+                    Name = String.Empty,
+                    PhoneNo = String.Empty,
+                    Position = item.Ocupation
+                });
+            }
+            var tmpUsers = await _context.Users.ToListAsync();
+
+            foreach (var item in result)
+            {
+                var tmp = tmpUsers.First(y => y.Id == item.UserId);
+                if(tmp.SecondaryName != null)
+                    item.Name = tmp.LastName + " " + tmp.FirstName+" "+tmp.SecondaryName;
+                else
+                    item.Name = tmp.LastName+" "+tmp.FirstName;
+                item.PhoneNo = tmp.PhoneNumber;
+            }
+            return result;
         }
 
         public IActionResult Create()
@@ -62,19 +103,16 @@ namespace Organizer3.Controllers
         }
 
         // GET: Facilities/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int id)
         {
-            if (id == null || _context.FacilitiesListModel == null)
-            {
-                return NotFound();
-            }
+            if (await IsUserBlockedFromAccesingFacilityEditor())
+                return RedirectToAction(nameof(Index), "Home");
 
-            var facilitiesListModel = await _context.FacilitiesListModel.FindAsync(id);
-            if (facilitiesListModel == null)
-            {
-                return NotFound();
-            }
-            return View(facilitiesListModel);
+            return View(
+                await ConvertSingleFacilityDatabaseEntitiesToModel(
+                    await _context.Facilities.FindAsync(id)
+                    )
+                );
         }
 
         // POST: Facilities/Edit/5
@@ -82,34 +120,30 @@ namespace Organizer3.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Region,City,Adress")] FacilitiesListModel facilitiesListModel)
+        public async Task<IActionResult> SaveEdit(int? id, FacilitiesListModel fromView)
         {
-            if (id != facilitiesListModel.Id)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
+            if (await IsUserBlockedFromAccesingFacilityEditor())
+                return RedirectToAction(nameof(Index), "Home");
 
             if (ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(facilitiesListModel);
+
+                    var tmp = await _context.Facilities.FirstAsync(y=>y.Id== fromView.Id);
+                    tmp.Name = fromView.Name;
+                    tmp.Region = fromView.Region;
+                    tmp.City = fromView.City;
+                    tmp.PostalCode = fromView.PostalCode;
+                    tmp.Adress = fromView.Adress;
+                    tmp.AdditionalInfo = fromView.Info;
+                    tmp.PhoneNo = fromView.PhoneNo;
+                    
+                    _context.Facilities.Update(tmp);
                     await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!FacilitiesListModelExists(facilitiesListModel.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(FacilitiesIndex));
+                
+                return RedirectToAction(nameof(Details), new { sId = fromView.Id});
             }
-            return View(facilitiesListModel);
+            return View(fromView);
         }
 
         // GET: Facilities/Delete/5
@@ -169,6 +203,11 @@ namespace Organizer3.Controllers
             }
             return true;
         }
+        private async Task<FacilitiesListModel> ConvertSingleFacilityDatabaseEntitiesToModel(Facility _data)
+        {
+            var result = await ConvertDatabaseEntitiesToModel(new List<Facility> { _data });
+            return result.FirstOrDefault();
+        }
         private async Task<List<FacilitiesListModel>> ConvertDatabaseEntitiesToModel(List<Facility> _data)
         {
             var tmp = new List<FacilitiesListModel>();
@@ -180,6 +219,9 @@ namespace Organizer3.Controllers
                     Region = item.Region,
                     City = item.City,
                     Adress = item.Adress,
+                    PostalCode = item.PostalCode,
+                    PhoneNo = item.PhoneNo,
+                    Info=item.AdditionalInfo,
                     }
                 );
             }

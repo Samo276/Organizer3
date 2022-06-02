@@ -4,25 +4,33 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<div class="row">
+<h4 class="col-md-11">Sklepy</h4>
+<button type="button" class="btn btn-primary col-md-1">        
+        <a class="text-decoration-none text-white" asp-controller="Facilities" asp-action="Create">
+            Nowy
+        </a>
+      </button>
+</div>
+<hr/>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                Nazwa
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Region)
+                Region
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.City)
+                Miasto
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Adress)
+                Kod Pocztowy
+            </th>
+            <th>
+                Adress
             </th>
             <th></th>
         </tr>
@@ -40,12 +48,15 @@
                 @Html.DisplayFor(modelItem => item.City)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.PostalCode)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Adress)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a type="button" class="btn btn-sm btn-secondary text-white" asp-controller="Facilities" asp-action="Details" asp-route-sId="@item.Id">
+                    Więcej
+                </a>                               
             </td>
         </tr>
 }

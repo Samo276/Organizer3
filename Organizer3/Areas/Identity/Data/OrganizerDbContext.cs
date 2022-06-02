@@ -23,6 +23,7 @@ public class OrganizerDbContext : IdentityDbContext<AppUser>
     public DbSet<Recruitment> Recruitments { get; set; }
     public DbSet<RecruitmentNotes> recruitmentNotes { get; set; }
     public DbSet<Leave> Leaves { get; set; }
+    public DbSet<SiteFunction> SiteFunctions { get; set; }
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);

@@ -1,0 +1,49 @@
+﻿@model Organizer3.Models.FacilitiesEditor.FacilityProfileModel
+<div>
+    <dl class="row">        
+        <dt class = "col-sm-2">
+            Region
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FacilityData.Region)
+        </dd>
+        <dt class = "col-sm-2">
+            Miasto
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FacilityData.City)
+        </dd>
+        <dt class = "col-sm-2">
+            Kod pocztowy
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FacilityData.PostalCode)
+        </dd>
+        <dt class = "col-sm-2">
+            Adress
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FacilityData.Adress)
+        </dd>
+        <dt class = "col-sm-2">
+            Telefon
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FacilityData.PhoneNo)
+        </dd>
+        <dt class = "col-sm-2">
+            Informacje
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FacilityData.Info)
+        </dd>
+    </dl>
+</div>
+<div>
+    <button type="button" class="btn btn-primary float-end end">        
+        <a class="text-decoration-none text-white" asp-controller="Facilities" asp-action="Edit" asp-route-id="@Model.FacilityData.Id">
+            Edytuj
+        </a>
+      </button>  
+    <a asp-action="Delete" asp-route-id="@Model.FacilityData.Id">Delete</a>
+</div>

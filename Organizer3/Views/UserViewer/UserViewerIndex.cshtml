@@ -35,9 +35,6 @@
             <th>
                 Placówka
             </th>          
-            <th>
-                Numer Przepustki
-            </th>
         </tr>
     </thead>
     <tbody>
@@ -58,25 +55,10 @@
                 @Html.DisplayFor(modelItem => item.FacilityName)
             </td>
             <td>
-                dodac funkcje
-            </td>
-            <td>
-                <div class="button-grp float-end">
-                <!--a type="button" class="  btn btn-sm btn-light text-dark" asp-controller="UserViewer" asp-action="UserAccessDataEditor" asp-route-id="item.UserId">
-                    Uprawnienia
-                </!--a-->
-                <!--a type="button" class="  btn btn-sm btn-light text-dark" asp-controller="UserViewer" asp-action="UserDataEditor" asp-route-id="item.UserId">
-                    Dane
-                </!--a-->
-                <!--a type="button" class="  btn btn-sm btn-light text-dark" asp-controller="UserViewer" asp-action="EmploymentStatusEditor" asp-route-id="item.UserId">
-                    Status zatrudnienia
-                </!--a-->
-                <!--a type="button" class="  btn btn-sm btn-light text-dark" asp-controller="UserViewer" asp-action="EditUserPhoto" asp-route-id="item.UserId">
-                    Zdjęcie
-                </!--a-->
-                <a type="button" class="  btn btn-sm btn-light text-dark" asp-controller="EmployeeProfile" asp-action="EmployeeProfileIndex" asp-route-employeeId="@item.UserId">
-                    Więcej
-                </a>
+                <div class="button-grp float-end">                
+                    <a type="button" class="  btn btn-sm btn-light text-dark" asp-controller="EmployeeProfile" asp-action="EmployeeProfileIndex" asp-route-employeeId="@item.UserId">
+                        Więcej
+                    </a>
                 </div>
             </td>
         </tr>

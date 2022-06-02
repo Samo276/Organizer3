@@ -44,6 +44,10 @@
         <a type="button" class="w-100 mb-1 btn btn-outline-info text-dark" asp-controller="Home" asp-action="Index">PartnerViewer</a> 
     }
     -->
+    @if (@Model.Access.PartnerViewer)
+    {
+        <a type="button" class="w-100 mb-1 btn btn-outline-info text-dark" asp-controller="SiteFunctions" asp-action="SiteFunctionsIndex">Funckje Strony</a>        
+    }
     <a type="button" class="w-100 mb-1 btn btn-outline-info text-dark" asp-controller="JobAplication" asp-action="JobAplicationIndex">aplikacje</a>
-    <a type="button" class="w-100 mb-1 btn btn-outline-info text-dark" asp-controller="EmployeeProfile" asp-action="EmployeeProfileIndex">Profil Pracownika</a>
+    
 }

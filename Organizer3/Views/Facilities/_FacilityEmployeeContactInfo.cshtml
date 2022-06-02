@@ -1,0 +1,44 @@
+﻿@model Organizer3.Models.FacilitiesEditor.FacilityProfileModel
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Imię
+            </th>
+            <th>
+                Stanowisko
+            </th>
+            <th>
+                Telefon
+            </th>     
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in @Model.ShopEmployeeList) {
+    
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Position)
+            </td>           
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNo)
+            </td>
+                @if (@Model.HasEmployeeEditorAccess)
+                {
+                    <td>
+                        <div class="button-grp float-end">                
+                            <a type="button" class="  btn btn-sm btn-secondary text-white" asp-controller="EmployeeProfile" asp-action="EmployeeProfileIndex" asp-route-employeeId="@item.UserId">
+                                Przejdź do sekcji Pracownicy
+                            </a>
+                        </div>
+                    </td>
+                 }
+        </tr>
+}
+    </tbody>
+
+</table>
