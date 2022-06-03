@@ -2,30 +2,41 @@
 
 
 <div class="row">
-<h4 class="col-md-11">@(@Model.UserData.LastName+" "+@Model.UserData.FirstName) </h4>
-<button type="button" class="btn btn-secondary col-md-1">        
-        <a class="text-decoration-none text-white" asp-controller="UserViewer" asp-action="UserViewerIndex">
-            Wstecz
-        </a>
-      </button>
+    <h4 class="col-md-11">@(@Model.UserData.LastName+" "+@Model.UserData.FirstName) </h4>
+
+    <button type="button" class="btn btn-secondary col-md-1">     
+        @if (@Model.AllowToEdit)
+        {
+            <a class="text-decoration-none text-white" asp-controller="UserViewer" asp-action="UserViewerIndex">
+                Wstecz
+            </a>
+        }else
+        {
+            <a class="text-decoration-none text-white" asp-controller="MyShop" asp-action="MyShopIndex">
+                Wstecz
+            </a>
+        }
+    </button>
 </div>
+
 <!-------->
 <nav>
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
     <button class="nav-link active" id="nav-A-tab" data-bs-toggle="tab" data-bs-target="#nav-A" type="button" role="tab" aria-controls="nav-A" aria-selected="true">
         Dane
     </button>
+    
     <button class="nav-link" id="nav-B-tab" data-bs-toggle="tab" data-bs-target="#nav-B" type="button" role="tab" aria-controls="nav-B" aria-selected="false">
         Status Zatrudnienia
     </button>
-    <button class="nav-link" id="nav-C-tab" data-bs-toggle="tab" data-bs-target="#nav-C" type="button" role="tab" aria-controls="nav-C" aria-selected="false">
-        Uprawnienia
-    </button>
+    @if (@Model.AllowToEdit)
+    {
+        <button class="nav-link" id="nav-C-tab" data-bs-toggle="tab" data-bs-target="#nav-C" type="button" role="tab" aria-controls="nav-C" aria-selected="false">
+                Uprawnienia
+        </button>
+    }
     <button class="nav-link" id="nav-D-tab" data-bs-toggle="tab" data-bs-target="#nav-D" type="button" role="tab" aria-controls="nav-D" aria-selected="false">
         Urlopy
-    </button>
-    <button class="nav-link" id="nav-E-tab" data-bs-toggle="tab" data-bs-target="#nav-E" type="button" role="tab" aria-controls="nav-E" aria-selected="false">
-        Notatki
     </button>
   </div>
 </nav>
@@ -34,24 +45,21 @@
   <div class="tab-pane fade show active" id="nav-A" role="tabpanel" aria-labelledby="nav-A-tab">
       <partial name="_EmployeeProfileDataTab.cshtml" />
   </div>
-
+  
   <div class="tab-pane fade" id="nav-B" role="tabpanel" aria-labelledby="nav-B-tab">
       <partial name="_EmployeeProfileEmploymentTab.cshtml" />
        
   </div>
+  @if (@Model.AllowToEdit)
+    {
+        <div class="tab-pane fade" id="nav-C" role="tabpanel" aria-labelledby="nav-C-tab">
+            <partial name="_EmployeeProfileAccessTab.cshtml" />
 
-  <div class="tab-pane fade" id="nav-C" role="tabpanel" aria-labelledby="nav-C-tab">
-      <partial name="_EmployeeProfileAccessTab.cshtml" />
-      
-  </div>
-
-  <div class="tab-pane fade" id="nav-D" role="tabpanel" aria-labelledby="nav-D-tab">
+        </div>
+    }
+    <div class="tab-pane fade" id="nav-D" role="tabpanel" aria-labelledby="nav-D-tab">
       <partial name="_EmployeeProfileLeaveTab.cshtml" />
       
-  </div>
-  
-  <div class="tab-pane fade" id="nav-E" role="tabpanel" aria-labelledby="nav-E-tab">
-      tabe
   </div>
   
 </div>

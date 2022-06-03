@@ -12,8 +12,9 @@ namespace Organizer3.Models
         public string employmentFacility { get; set; }
         public List<LeaveDisplayModel> LeaveHistory { get; set; }
         public LeaveCounter LeaveUsed { get; set; }
+        public bool AllowToEdit { get; set; }
 
-        public EmployeeProfileDataModel(UserDataEditModel userData, EmploymentStatusModel employmentData, List<string>? accessPrivileges, string photoLocation, string employmentFacility, List<LeaveDisplayModel> leaveHistory, LeaveCounter leaveUsed)
+        public EmployeeProfileDataModel(UserDataEditModel userData, EmploymentStatusModel employmentData, List<string>? accessPrivileges, string photoLocation, string employmentFacility, List<LeaveDisplayModel> leaveHistory, LeaveCounter leaveUsed, bool underprivelagedAccess)
         {
             UserData = userData;
             EmploymentData = employmentData;
@@ -22,6 +23,7 @@ namespace Organizer3.Models
             this.employmentFacility = employmentFacility;
             LeaveHistory = leaveHistory;
             LeaveUsed = leaveUsed;
+            AllowToEdit = underprivelagedAccess;
         }
     }
 

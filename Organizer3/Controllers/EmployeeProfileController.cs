@@ -23,10 +23,16 @@ namespace Organizer3.Controllers
             _environment = environment;
         }
 
-        public async Task<IActionResult> EmployeeProfileIndex(string employeeId)
+        public async Task<IActionResult> EmployeeProfileIndex(string employeeId, string? underprivelagedAccess)
         {
-            if (await IsUserBlockedFromAccesingEmployeeProfile())
-                return RedirectToAction(nameof(Index), "Home");
+            if(underprivelagedAccess==null)
+                if (await IsUserBlockedFromAccesingEmployeeProfile())
+                    return RedirectToAction(nameof(Index), "Home");
+
+            bool alowToEdit = false;
+            if (underprivelagedAccess == null)
+                alowToEdit = true;
+
 
             var tmpEmployee =  _context.Users.First(y => y.Id == employeeId);
             
@@ -50,7 +56,8 @@ namespace Organizer3.Controllers
                 photo,
                 tmpFacilityName.Name + " " + tmpFacilityName.Adress + " " + tmpFacilityName.City,
                 await ConvertLeavesDataToModel(tmpLeaveList),
-                await CountLeaveDays(tmpLeaveList)
+                await CountLeaveDays(tmpLeaveList),
+                alowToEdit
                 ); 
 
             return View(toView);

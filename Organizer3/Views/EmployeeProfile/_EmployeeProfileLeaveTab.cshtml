@@ -94,24 +94,36 @@
             </td>
             
             <td>
-                <a type="button" class="btn btn-sm btn-secondary text-white" asp-controller="EmployeeProfile" asp-action="EmployeeProfileIndex" asp-route-employeeId="@item.AuthorizerId">
+                @if (@Model.AllowToEdit)
+                {
+                    <a type="button" class="btn btn-sm btn-secondary text-white" asp-controller="EmployeeProfile" asp-action="EmployeeProfileIndex" asp-route-employeeId="@item.AuthorizerId">
+                        @item.AuthorizerName
+                    </a>
+                }
+                else
+                {
                     @item.AuthorizerName
-                </a>
+                }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Note)
             </td>
-            <td>
-                <a type="button" class="btn btn-sm btn-danger text-white" asp-controller="EmployeeProfile" asp-action="DeleteLeaveEntity" asp-route-leaveId="@item.Id">
-                    Usuń
-                </a>
-            </td>
+            @if (@Model.AllowToEdit)
+            {
+                <td>
+                    <a type="button" class="btn btn-sm btn-danger text-white" asp-controller="EmployeeProfile" asp-action="DeleteLeaveEntity" asp-route-leaveId="@item.Id">
+                        Usuń
+                    </a>
+                </td>
+            }
         </tr>
         
     }
     </tbody>
 </table>
 
+@if (@Model.AllowToEdit)
+{
 <h4>Urlopy w poprzednich latach:</h4>
 <hr/>
 
@@ -162,3 +174,4 @@
     }
     </tbody>
 </table>
+}

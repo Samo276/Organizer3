@@ -1,0 +1,22 @@
+﻿@model Organizer3.Models.MyShop.MyShopProfileModel
+
+
+<div class="row">
+    @foreach(var item in @Model.MyShopEmployeeModel)
+    {
+        <div class="col-md-2 mt-3">
+            <a  style="text-decoration:none;" class="text-black" asp-controller="EmployeeProfile" asp-action="EmployeeProfileIndex" asp-route-employeeId="@item.UserId" asp-route-underprivelagedAccess="True">
+                <div class="card" >
+                    @if(@item.PhotoLocation==null){
+                        <img class="card-img-top" style="height:12rem;object-fit:cover;" src="~/uploads/NoPhoto.jpg">
+                    }else{
+                        <img class="card-img-top" style="height:12rem;object-fit:cover;" src="@item.PhotoLocation">
+                    }               
+                    <div class="card-body" style="height:5rem">
+                        <p class="card-title">@item.Name</p>                                
+                    </div>
+                </div>
+            </a>
+        </div>
+    }
+</div>

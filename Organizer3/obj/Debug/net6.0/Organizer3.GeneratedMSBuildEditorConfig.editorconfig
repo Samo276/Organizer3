@@ -143,6 +143,18 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9iQXBsaWNhdGlvblxKb2JBcGxpY2F0aW9uSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Ath/Organizer3/Organizer3/Views/MyShop/MyShopIndex.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXlTaG9wXE15U2hvcEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Ath/Organizer3/Organizer3/Views/MyShop/_MyShopData.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXlTaG9wXF9NeVNob3BEYXRhLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Ath/Organizer3/Organizer3/Views/MyShop/_MyShopEmployeeDisplay.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXlTaG9wXF9NeVNob3BFbXBsb3llZURpc3BsYXkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Ath/Organizer3/Organizer3/Views/ReadSingleAnnouncement/ReadSingleAnnouncement.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVhZFNpbmdsZUFubm91bmNlbWVudFxSZWFkU2luZ2xlQW5ub3VuY2VtZW50LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

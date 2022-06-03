@@ -19,11 +19,17 @@ namespace Organizer3.Controllers
 
         public async Task<IActionResult> JobAplicationIndex()
         {
-            return View();
+            if(_context.SiteFunctions.First(y => y.FunctionName == SiteFunctionsEnum.SiteFunctionsData.Recruitment.ToString()).IsActive)
+                return View();
+
+            return RedirectToAction("JobAplicationConfirmation", new {message = "Obecnie rekrutacja jest zamknięta"});
         }
-        public async Task<IActionResult> JobAplicationConfirmation()
+        public async Task<IActionResult> JobAplicationConfirmation(string message)
         {
-            return View();
+            List<string> messages = new List<string>();
+            messages.Add(message);
+
+            return View(messages);
         }
         public async Task<IActionResult> SendJobAplication(JobAplicationModel p)
         {
@@ -67,7 +73,7 @@ namespace Organizer3.Controllers
                 //tmp.PhotoLocation = string.Concat("/uploads/", + fileName);
                 _context.Users.Update(tmp);*/
 
-                return RedirectToAction(nameof(JobAplicationConfirmation));
+                return RedirectToAction(nameof(JobAplicationConfirmation),new { message = "Pomyślnie przesłano formularz" });
             }
             return RedirectToAction(nameof(JobAplicationIndex));
         }

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "H0smCZOzQyY7CKgxIeiP0b2JTe649UnzXRSZTA/l77s=",
+  "Hash": "BFUmpA54IxRfNzpUdpAO5ksDtrC+nhsKOiRzSKx1cxY=",
   "Source": "Organizer3",
   "BasePath": "_content/Organizer3",
   "Mode": "Default",
@@ -2856,6 +2856,23 @@
       "OriginalItemSpec": "wwwroot\\uploads\\1451d801-dc86-4026-ab3d-b3e927c78981\\Dok_002425.pdf"
     },
     {
+      "Identity": "D:\\Ath\\Organizer3\\Organizer3\\wwwroot\\uploads\\222d1603-fafc-4cd9-a234-d37278068240\\Dok_002425.pdf",
+      "SourceId": "Organizer3",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Ath\\Organizer3\\Organizer3\\wwwroot\\",
+      "BasePath": "_content/Organizer3",
+      "RelativePath": "uploads/222d1603-fafc-4cd9-a234-d37278068240/Dok_002425.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\222d1603-fafc-4cd9-a234-d37278068240\\Dok_002425.pdf"
+    },
+    {
       "Identity": "D:\\Ath\\Organizer3\\Organizer3\\wwwroot\\uploads\\6934c372-2a6c-4dfa-ae2a-bd287e1c187a\\cat.jpg",
       "SourceId": "Organizer3",
       "SourceType": "Discovered",
@@ -2871,6 +2888,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\6934c372-2a6c-4dfa-ae2a-bd287e1c187a\\cat.jpg"
+    },
+    {
+      "Identity": "D:\\Ath\\Organizer3\\Organizer3\\wwwroot\\uploads\\f40c7fea-489a-40c1-b9d1-b57c562f7be5\\Dok_002425.pdf",
+      "SourceId": "Organizer3",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Ath\\Organizer3\\Organizer3\\wwwroot\\",
+      "BasePath": "_content/Organizer3",
+      "RelativePath": "uploads/f40c7fea-489a-40c1-b9d1-b57c562f7be5/Dok_002425.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\f40c7fea-489a-40c1-b9d1-b57c562f7be5\\Dok_002425.pdf"
     },
     {
       "Identity": "D:\\Ath\\Organizer3\\Organizer3\\wwwroot\\uploads\\NoPhoto.jpg",

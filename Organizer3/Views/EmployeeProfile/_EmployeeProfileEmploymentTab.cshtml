@@ -1,7 +1,7 @@
 ﻿@model EmployeeProfileDataModel
             
 
-<dl class="row">
+<dl class="row mt-3">
     <dt class = "col-sm-4">
         Obecnie zatrudniony
     </dt>
@@ -55,9 +55,12 @@
         @Model.EmploymentData.otherInfo
     </dd>
 </dl>
+@if (@Model.AllowToEdit)
+{
 <hr/>
 <button type="button" class="btn btn-primary float-end">        
     <a class="text-decoration-none text-white" asp-controller="UserViewer" asp-action="EmploymentStatusEditor" asp-route-id="@Model.UserData.UserId">
         Edytuj Dane
     </a>
 </button>
+}

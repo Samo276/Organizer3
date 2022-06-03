@@ -5,7 +5,7 @@
 <div class="row">
 
        
-        <div class="col-md-11">
+        <div class="col-md-8">
             <h4>Rekrutacja:</h4>
             @{
                 @if(@Model.First(y=>y.FunctionName == SiteFunctionsEnum.SiteFunctionsData.Recruitment.ToString()).IsActive){ 
@@ -13,14 +13,22 @@
                 }else{
                 <p>Obecnie możliwośc składania podań o pracę jest zablokowana.</p>
                 }
-            }
+            }            
         </div>
-        <button type="button" class="btn btn-danger float-end col-md-1">        
-                    <a class="text-decoration-none text-white" asp-controller="SiteFunctions" asp-action="ChangeSiteFunctionsStatus" asp-route-cId="@Model.First(y=>y.FunctionName == SiteFunctionsEnum.SiteFunctionsData.Recruitment.ToString()).Id">
-                        Zmień
-                    </a>
-        </button>
+        <div class="co-md-4">
+            <button type="button" class="btn btn-secondary float-end ">        
+                        <a  class="text-decoration-none text-white" asp-controller="JobAplication" asp-action="JobAplicationIndex">
+                            Podgląd formularza
+                            </a>
+            </button>
+            <button type="button" class="btn btn-danger float-end ">        
+                        <a class="text-decoration-none text-white" asp-controller="SiteFunctions" asp-action="ChangeSiteFunctionsStatus" asp-route-cId="@Model.First(y=>y.FunctionName == SiteFunctionsEnum.SiteFunctionsData.Recruitment.ToString()).Id">
+                            Zmień
+                        </a>
+            </button>
+        </div>
 </div>
+
 <hr/>
 <div class="row">
     <div class="col-md-11">
@@ -39,6 +47,7 @@
                 </a>
     </button>
 </div>
+
 <hr/>
 <button type="button" class="btn btn-secondary float-end">        
     <a class="text-decoration-none text-white" asp-controller="Home" asp-action="Index">

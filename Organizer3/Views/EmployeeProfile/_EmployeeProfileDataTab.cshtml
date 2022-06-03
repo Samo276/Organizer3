@@ -1,6 +1,6 @@
 ﻿@model EmployeeProfileDataModel
 
-<div class="row">          
+<div class="row mt-3">          
           <dl class="row col-md-8">
             <dt class = "col-sm-4">
                 Imię
@@ -68,21 +68,24 @@
                     }else{
                         <img style="display: block;margin-left: auto;margin-right: auto;object-fit: cover;"src="@Model.PhotoLocation"/>
                     }             
-              }         
-          </div>
-          <hr/>
-          <div class="col-md-8">
-              <button type="button" class="btn btn-primary float-end">        
-                    <a class="text-decoration-none text-white" asp-controller="UserViewer" asp-action="UserDataEditor" asp-route-Id="@Model.UserData.UserId">
-                        Edytuj Dane
-                    </a>
-                </button>
-          </div>
-          <div class="col-md-4">
-              <button type="button" class="btn btn-primary float-end">        
-                    <a class="text-decoration-none text-white" asp-controller="UserViewer" asp-action="EditUserPhoto" asp-route-Id="@Model.UserData.UserId">
-                        Edytuj Zdjęcie
-                    </a>
-              </button>
-          </div>
-      </div>
+        }         
+    </div>
+    @if (@Model.AllowToEdit)
+    {
+        <hr/>
+        <div class="col-md-8">
+            <button type="button" class="btn btn-primary float-end">        
+                <a class="text-decoration-none text-white" asp-controller="UserViewer" asp-action="UserDataEditor" asp-route-Id="@Model.UserData.UserId">
+                    Edytuj Dane
+                </a>
+            </button>
+        </div>
+        <div class="col-md-4">
+            <button type="button" class="btn btn-primary float-end">        
+                <a class="text-decoration-none text-white" asp-controller="UserViewer" asp-action="EditUserPhoto" asp-route-Id="@Model.UserData.UserId">
+                    Edytuj Zdjęcie
+                </a>
+            </button>
+        </div>
+    }
+</div>
