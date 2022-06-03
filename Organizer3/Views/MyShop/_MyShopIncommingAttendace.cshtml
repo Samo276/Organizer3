@@ -1,0 +1,46 @@
+﻿@model Organizer3.Models.MyShop.MyShopProfileModel
+
+<div class="row">
+    <h4 class=col-md-10>Nadchodzacy grafik</h4>
+
+    <div class=" col-md-2 float-end">    
+    <button type="button" class="btn btn-primary float-end">            
+            <a class="text-decoration-none text-white" asp-controller="" asp-action="">
+                Nowe
+            </a>
+    </button>
+    </div>   
+</div>
+<hr/>
+
+@foreach(var shiftDates in @Model.MyShopSchedule.OrderByDescending(o=>o.ShiftDate).Select(o => o.ShiftDate).Distinct())
+{
+
+            foreach(var shitfType in @Model.MyShopShiftInfo)
+            {
+            <div class="row">
+                <div class="col-md-3">
+                    @shiftDates
+                </div>
+                <div class="col-md-3">
+                    @shitfType.ShiftName
+                </div>
+                <div class="col-md-3">
+                    Godziny
+                    @shitfType.StartingTime.ToString("H:mm");
+                    @shitfType.StartingTime.AddHours(@shitfType.Duration).ToString(("H:mm"));
+                </div>
+                <div class="col-md-3">
+                    
+                    @foreach(var selectedShift in @Model.MyShopSchedule.Where(o=>o.ShiftDate==shiftDates && o.ShiftId == shitfType.Id))
+                    {
+                        @Model.MyShopEmployeeModel.First(o=>o.UserId == selectedShift.UserId).Name;
+                    }                    
+                </div>
+
+            </div>
+            }
+}
+    
+
+

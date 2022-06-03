@@ -33,12 +33,40 @@ namespace Organizer3.Controllers
                 if (!getEmployeesIds.Any() || getEmployeesIds == null)
                     getEmployeesIds = new List<EmploymentStatus>();
 
+                var schedule = new List<Atendance>();
 
+                try
+                {
+                    foreach (var item in getEmployeesIds)
+                    {
+                        schedule.AddRange(_context.Atendances.Where(y => y.UserId == item.UserId).ToList());
+                    }
+                    schedule = schedule.Where(y => y.ShiftDate >= DateTime.Now).ToList();
+                }
+                catch
+                {
+                    schedule = new List<Atendance>();
+                }
 
+                var tmpShiftInfo = new List<ShiftInfo>();
+                try
+                {
+                    tmpShiftInfo = await _context.ShiftInfos.Where(y => y.FacilityId == shopId.FacilityId && y.Archived == false).ToListAsync();
+                }
+                catch
+                {
+                    tmpShiftInfo = new List<ShiftInfo>();
+                }
+
+                
+
+                
                 var toView = new MyShopProfileModel
                 {
                     FacilityData = await ConvertSingleFacilityDatabaseEntitiesToModel(_context.Facilities.First(y => y.Id == shopId.FacilityId)),
                     MyShopEmployeeModel = await _ConvertToMyShopEmployeeModel(getEmployeesIds),
+                    MyShopShiftInfo= tmpShiftInfo,
+                    MyShopSchedule = schedule,
                 };
                 return View(toView);
             }

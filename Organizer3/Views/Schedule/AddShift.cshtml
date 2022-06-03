@@ -1,0 +1,44 @@
+﻿@using Organizer3.Models.MyShop
+@model AddShiftModel
+
+<div class="row">
+    <h4 class="col-md-11">Definiowanie nowej zmiany:</h4>
+
+    <button type="button" class="btn btn-secondary float-end col-md-1">            
+                <a class="text-decoration-none text-white" asp-controller="MyShop" asp-action="MyShopIndex">
+                    Wstecz
+                </a>
+        </button>
+</div>
+    <hr />
+    <div class="row">
+    <div class="col-md-4">
+        <form method="post" asp-action="SaveAddedShift" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <!--label asp-for="Id" class="control-label">Imię</!--label-->
+                <input asp-for="Id" type="hidden" value="0" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">Nazwa zmiany</label>
+                <input asp-for="Name"  class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartingHour" class="control-label">Godzina rozpoczęcia</label>
+                <input asp-for="StartingHour"  class="form-control" />
+                <span asp-validation-for="StartingHour" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Duration" class="control-label">Długość trwania</label>
+                <input asp-for="Duration"  class="form-control" />
+                <span asp-validation-for="Duration" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group mt-3">
+                <input type="submit" value="Zapisz" class="btn btn-primary float-end" />
+            </div>
+        </form>
+    </div>
+</div>

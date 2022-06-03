@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Organizer3.Data;
 
@@ -11,9 +12,10 @@ using Organizer3.Data;
 namespace Organizer3.Migrations
 {
     [DbContext(typeof(OrganizerDbContext))]
-    partial class OrganizerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220603095246_m03")]
+    partial class m03
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -285,35 +287,6 @@ namespace Organizer3.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("Organizer3.Areas.Identity.Data.Atendance", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<DateTime>("EnetrTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("ExitTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("ShiftDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("ShiftId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Atendances");
-                });
-
             modelBuilder.Entity("Organizer3.Areas.Identity.Data.EmploymentStatus", b =>
                 {
                     b.Property<int>("Id")
@@ -509,35 +482,6 @@ namespace Organizer3.Migrations
                     b.HasIndex("RecruitmentId");
 
                     b.ToTable("recruitmentNotes");
-                });
-
-            modelBuilder.Entity("Organizer3.Areas.Identity.Data.ShiftInfo", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<bool>("Archived")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("Duration")
-                        .HasColumnType("int");
-
-                    b.Property<int>("FacilityId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ShiftName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("StartingTime")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ShiftInfos");
                 });
 
             modelBuilder.Entity("Organizer3.Areas.Identity.Data.SiteFunction", b =>

@@ -159,6 +159,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXlTaG9wXF9NeVNob3BFbXBsb3llZURpc3BsYXkuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Ath/Organizer3/Organizer3/Views/MyShop/_MyShopIncommingAttendace.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXlTaG9wXF9NeVNob3BJbmNvbW1pbmdBdHRlbmRhY2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Ath/Organizer3/Organizer3/Views/MyShop/_MyShopShiftsDisplay.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXlTaG9wXF9NeVNob3BTaGlmdHNEaXNwbGF5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Ath/Organizer3/Organizer3/Views/ReadSingleAnnouncement/ReadSingleAnnouncement.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVhZFNpbmdsZUFubm91bmNlbWVudFxSZWFkU2luZ2xlQW5ub3VuY2VtZW50LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -181,6 +189,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Ath/Organizer3/Organizer3/Views/Recruiter/RecruiterIndex.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjcnVpdGVyXFJlY3J1aXRlckluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Ath/Organizer3/Organizer3/Views/Schedule/AddShift.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2NoZWR1bGVcQWRkU2hpZnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Ath/Organizer3/Organizer3/Views/Shared/Error.cshtml]

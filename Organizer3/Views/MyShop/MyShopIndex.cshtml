@@ -16,7 +16,10 @@
     </button>
     <button class="nav-link" id="nav-B-tab" data-bs-toggle="tab" data-bs-target="#nav-B" type="button" role="tab" aria-controls="nav-B" aria-selected="false">
         Pracownicy
-    </button>    
+    </button>
+    <button class="nav-link" id="nav-C-tab" data-bs-toggle="tab" data-bs-target="#nav-C" type="button" role="tab" aria-controls="nav-C" aria-selected="false">
+        Grafik
+    </button> 
 
   </div>
 </nav>
@@ -31,5 +34,10 @@
        
   </div>
 
+  <div class="tab-pane fade " id="nav-C" role="tabpanel" aria-labelledby="nav-C-tab">
+      <partial name="_MyShopShiftsDisplay" />
+
+      <partial name="_MyShopIncommingAttendace"/>
+  </div>
 </div>
 

@@ -24,6 +24,8 @@ public class OrganizerDbContext : IdentityDbContext<AppUser>
     public DbSet<RecruitmentNotes> recruitmentNotes { get; set; }
     public DbSet<Leave> Leaves { get; set; }
     public DbSet<SiteFunction> SiteFunctions { get; set; }
+    public DbSet<ShiftInfo> ShiftInfos { get; set; }
+    public DbSet<Atendance> Atendances { get; set; }
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
@@ -44,6 +46,7 @@ public class OrganizerDbContext : IdentityDbContext<AppUser>
         // For example, you can rename the ASP.NET Identity table names and more.
         // Add your customizations after calling base.OnModelCreating(builder);
     }
+
     public DbSet<Organizer3.Models.JobAplicationModel> JobAplicationModel { get; set; }
     public DbSet<Organizer3.Models.Recriter.AddRecruitmentNoteModel> AddRecruitmentNoteModel { get; set; }
     public DbSet<Organizer3.Models.FacilitiesEditor.FacilitiesListModel>? FacilitiesListModel { get; set; }
