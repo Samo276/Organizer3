@@ -5,12 +5,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="row">
-    <h1 class=col-md-4>Ogłoszenia</h1>
+    <h4 class=col-md-4>Ogłoszenia</h4>
     <!-- a  class=" col-md-3 float-lg-end" asp-action="Create">
         <button role="button" class="btn-lg button-primary"></button>
     <a-->
 <div class="col-md-6 float-end"></div>
-    <a type="button" class="col-md-2  btn-lg btn btn-primary" asp-controller="Announcements" asp-action="Create">Dodaj Nowe</a>
+    <button class="col-md-1 btn btn-primary">
+        <a class="text-decoration-none text-white" asp-controller="Announcements" asp-action="Create">
+            Nowe
+        </a>
+    </button>
 </div>
 
 <table class="table">
@@ -49,9 +53,7 @@
                 @Html.DisplayFor(modelItem => item.EditedBy)
             </td>
             <td>
-                <!--a asp-action="Edit" asp-route-id="item.Id">Edit</a-->
-                <a type="button" class="  btn btn-sm btn-light text-dark" asp-controller="Announcements" asp-action="Details" asp-route-id="@item.Id">więcej</a>
-                <!--a asp-action="Delete" asp-route-id="item.Id">Delete<a-->
+                <a type="button" class="  btn btn-sm btn-secondary text-white" asp-controller="Announcements" asp-action="Details" asp-route-id="@item.Id">Więcej</a>
             </td>
         </tr>
 }
