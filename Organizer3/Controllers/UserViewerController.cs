@@ -319,15 +319,38 @@ namespace Organizer3.Controllers
                     Street = fromView.Street,
                     ApartmentNumber = fromView.ApartmentNumber                   
                 };
+                
                 var _password = Guid.NewGuid().ToString().Substring(0, 8); //TODO - ulepszyc generowanie hasel
+                string[] randomChars = new[] {
+                    "ABCDEFGHJKLMNOPQRSTUVWXYZ",   
+                    "!@$?_-" };
+                Random rng = new Random();
+                _password += "!F";
 
-                var result = await _userManager.CreateAsync(nUser, "Qwerty`1");
+                //var result = await _userManager.CreateAsync(nUser, "Qwerty`1");
+                var result = await _userManager.CreateAsync(nUser, _password);
                 if (result.Succeeded)
                 {
 
                     ViewBag.Password = _password;
                     ViewBag.Id = nUser.Id;
                     ViewBag.Email = nUser.Email;
+
+                    try {
+                        var tmp = _context.Facilities.First(x => x.Name == "nieprzypisani").Id;
+                    } catch {
+                        _context.Facilities.Add(new Facility
+                        {
+                            Name = "nieprzypisani",
+                            Region = String.Empty,
+                            City = String.Empty,
+                            PostalCode = String.Empty,
+                            Adress = String.Empty,
+                            PhoneNo = String.Empty,
+                            AdditionalInfo = String.Empty,
+                        });
+                        await _context.SaveChangesAsync();
+                    }
 
                     var newEmploymentstatus = new EmploymentStatus
                     {
@@ -338,7 +361,7 @@ namespace Organizer3.Controllers
                         ContractType = fromView.ContractType,
                         ContractExpiration = fromView.ContractExpiration,
                         otherInfo = fromView.otherInfo,
-                        FacilityId = (_context.Facilities.FirstOrDefault(x => x.Name == "nieprzypisani").Id)
+                        FacilityId = (_context.Facilities.First(x => x.Name == "nieprzypisani").Id)
                     };
 
                     var newUserAccessPemissions = new UserAccess
@@ -358,8 +381,11 @@ namespace Organizer3.Controllers
 
                     nUser.Accesses=newUserAccessPemissions;
                     nUser.EmploymentStatus = newEmploymentstatus;
+                    
                     //tmp.Accesses = newUserAccessPemissions;
                     //tmp.EmploymentStatus = newEmploymentstatus;
+                    await _context.SaveChangesAsync();
+                    _context.Users.First(y=>y.Id==nUser.Id).EmailConfirmed = true;
                     await _context.SaveChangesAsync();
                     return RedirectToAction("AfterUserCreation",new AfterUserCreationModel {password=_password,login=nUser.Email,Id=nUser.Id,name=nUser.LastName+" "+nUser.FirstName });
                 }

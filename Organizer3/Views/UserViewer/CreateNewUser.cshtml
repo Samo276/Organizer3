@@ -96,47 +96,11 @@
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    @if (@Model.Scheduler)
-                    {
-                    <input class="form-check-input" asp-for="Scheduler" value="@Model.Scheduler"/>
-                    }else{<input class="form-check-input" asp-for="Scheduler" />}
-                     @Html.DisplayNameFor(model => model.Scheduler)
-                </label>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    @if (@Model.LeaveEditor)
-                    {
-                    <input class="form-check-input" asp-for="LeaveEditor" value="@Model.LeaveEditor"/>
-                    }else{<input class="form-check-input" asp-for="LeaveEditor" />}
-                     @Html.DisplayNameFor(model => model.LeaveEditor)
-                </label>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    @if (@Model.UserEditor)
-                    {
-                    <input class="form-check-input" asp-for="UserEditor" value="@Model.UserEditor"/>
-                    }else{<input class="form-check-input" asp-for="UserEditor" />}
-                     @Html.DisplayNameFor(model => model.UserEditor)
-                </label>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
                     @if (@Model.UserViewer)
                     {
                     <input class="form-check-input" asp-for="UserViewer" value="@Model.UserViewer"/>
                     }else{<input class="form-check-input" asp-for="UserViewer" />}
                      @Html.DisplayNameFor(model => model.UserViewer)
-                </label>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    @if (@Model.FacilityEditor)
-                    {
-                    <input class="form-check-input" asp-for="FacilityEditor" value="@Model.FacilityEditor"/>
-                    }else{<input class="form-check-input" asp-for="FacilityEditor" />}
-                     @Html.DisplayNameFor(model => model.FacilityEditor)
                 </label>
             </div>
             <div class="form-group form-check">
@@ -176,10 +140,45 @@
                     @Html.DisplayNameFor(model => model.PartnerViewer)
                 </label>
            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    @if (@Model.Scheduler)
+                    {
+                    <input class="form-check-input" type="hidden" asp-for="Scheduler" value="@Model.Scheduler"/>
+                    }else{<input class="form-check-input" type="hidden" asp-for="Scheduler" />}
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    @if (@Model.LeaveEditor)
+                    {
+                    <input class="form-check-input" type="hidden" asp-for="LeaveEditor" value="@Model.LeaveEditor"/>
+                    }else{<input class="form-check-input" type="hidden" asp-for="LeaveEditor" />}
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    @if (@Model.UserEditor)
+                    {
+                    <input class="form-check-input" type="hidden" asp-for="UserEditor" value="@Model.UserEditor"/>
+                    }else{<input class="form-check-input" type="hidden" asp-for="UserEditor" />}
+                </label>
+            </div>            
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    @if (@Model.FacilityEditor)
+                    {
+                    <input class="form-check-input" type="hidden" asp-for="FacilityEditor" value="@Model.FacilityEditor"/>
+                    }else{<input class="form-check-input" type="hidden" asp-for="FacilityEditor" />}
+                </label>
+            </div>            
         </div>
     </div>
-    <div class="form-group btn-group float-end">
+    <div class="row">
+        <div class="col-md-9"></div>
+    <div class="form-group btn-group col-md-3 float-end">
                 <input type="submit" value="Utwórz" class="btn btn-primary" />
                 <a type="button" class="btn btn-secondary text-decoration-none" asp-controller="UserViewer" asp-action="UserViewerIndex">Wstecz</a>
+    </div>
     </div>
 </form>

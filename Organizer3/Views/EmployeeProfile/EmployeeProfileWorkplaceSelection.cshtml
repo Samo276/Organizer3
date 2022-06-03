@@ -1,0 +1,38 @@
+﻿@using Organizer3.Models.EmployeeProfile
+@model List<FacilitySelectModel>
+
+    <div class="button-grp float-end">                
+                    <a type="button" class="  btn btn-sm btn-secondary text-white" asp-controller="EmployeeProfile" asp-action="EmployeeProfileIndex" asp-route-employeeId="@Model.FirstOrDefault().UserId">
+                        Wstecz
+                    </a>
+                </div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Placówka
+            </th>
+            <th>
+                
+            </th>                 
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in @Model) {
+    
+        <tr>
+            <td>
+                @item.Name
+            </td>            
+            <td>
+                <div class="button-grp float-end">                
+                    <a type="button" class="  btn btn-sm btn-primary text-white" asp-controller="EmployeeProfile" asp-action="ApplyWrokplaceChange" asp-route-uId="@item.UserId" asp-route-fId="@item.FacilityId">
+                        Wybierz
+                    </a>
+                </div>
+            </td>
+        </tr>
+}
+    </tbody>
+
+</table>

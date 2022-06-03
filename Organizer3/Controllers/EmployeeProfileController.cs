@@ -62,7 +62,35 @@ namespace Organizer3.Controllers
 
             return View(toView);
         }
+        public async Task<IActionResult> EmployeeProfileWorkplaceSelection(string id)
+        {
+            if (await IsUserBlockedFromAccesingEmployeeProfile())
+                return RedirectToAction(nameof(Index), "Home");
 
+            var toView = new List<FacilitySelectModel>();            
+            foreach(var item in _context.Facilities.ToList())
+            {
+                toView.Add(new FacilitySelectModel
+                {
+                    FacilityId = item.Id,
+                    Name = item.Name + ": " + item.Region + " " + item.City + " " + item.PostalCode + " " + item.Adress,
+                    UserId = id,
+                });
+            }
+
+            return View(toView);
+        }
+        public async Task<IActionResult> ApplyWrokplaceChange(string uId, int fId)
+        {
+            if (await IsUserBlockedFromAccesingEmployeeProfile())
+                return RedirectToAction(nameof(Index), "Home");
+
+            _context.EmploymentStatuses.First(y=>y.UserId== uId).FacilityId = fId;
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(EmployeeProfileIndex), new { employeeId = uId });
+        }
+        
         public async Task<IActionResult> AddNewLeave(string eId)
         {
             if (await IsUserBlockedFromAccesingEmployeeProfile())

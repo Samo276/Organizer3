@@ -12,8 +12,9 @@
     <p>@("Hasło: "+@Model.password)</p>   
 </div>
 <div class="col-md-5 mt-3">
+    <!--
     <button type="button" class="btn btn-primary">
-        <a class="text-decoration-none text-white" asp-controller="UserViewer" asp-action="EditUserPhoto" asp-route-id="@Model.Id">
+        <a class="text-decoration-none text-white" asp-controller="UserViewer" asp-action="EditUserPhoto" asp-route-id="@@Model.Id">
             Dodaj zdjęcie
         </a>
     </button>
@@ -21,6 +22,12 @@
     <button type="button" class="btn btn-secondary">
         <a class="text-decoration-none text-white" value="Zakończ" asp-controller="UserViewer" asp-action="UserViewerIndex">
             Zakończ
+        </a>
+    </button>
+    -->
+    <button type="button" class="btn btn-secondary">
+        <a class="text-decoration-none text-white" value="Zakończ" asp-controller="EmployeeProfile" asp-action="EmployeeProfileIndex" asp-route-employeeId="@Model.Id">
+            Dalej
         </a>
     </button>
 </div>
