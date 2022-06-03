@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Organizer3.Areas.Identity.Data;
 using Organizer3.Data;
 using Organizer3.Models.MyShop;
+using Organizer3.Views.MyShop;
 
 namespace Organizer3.Controllers
 {
@@ -64,5 +65,30 @@ namespace Organizer3.Controllers
             return RedirectToAction("MyShopIndex", "MyShop");
 
         }
+        public async Task<IActionResult> GenerateSchedule()
+        {
+            var cuId= _userManager.GetUserId(User);
+            var cfId = _context.EmploymentStatuses.First(o => o.UserId == cuId).FacilityId;
+            var employees = _context.EmploymentStatuses.Where(o => o.FacilityId == cfId && o.IsEmployed == true).Select(o=>o.UserId).ToList();
+            GetUsernamesAndIds(employees);
+            //TODO - tutaj kontynuowac kodzenie
+            return View();
+        }
+
+        private List<EmployeeNameAndIdModel> GetUsernamesAndIds(List<string> employees)
+        {
+            var result = new List<EmployeeNameAndIdModel>();
+            var users = _context.Users.ToList();
+            foreach (var item in employees)
+            {
+                var tmp = users.First(o => o.Id == item);
+                result.Add(new EmployeeNameAndIdModel { Id = item, Name = tmp.LastName + " " + tmp.FirstName + "" });
+            }
+            return result;
+        }
+
+        
+
+
     }
 }
