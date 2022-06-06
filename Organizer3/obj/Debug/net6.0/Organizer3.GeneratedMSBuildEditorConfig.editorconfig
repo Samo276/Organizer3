@@ -191,12 +191,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjcnVpdGVyXFJlY3J1aXRlckluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Ath/Organizer3/Organizer3/Views/Schedule/AddHumanResources.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2NoZWR1bGVcQWRkSHVtYW5SZXNvdXJjZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Ath/Organizer3/Organizer3/Views/Schedule/AddShift.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2NoZWR1bGVcQWRkU2hpZnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Ath/Organizer3/Organizer3/Views/Schedule/GenerateSchedule.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2NoZWR1bGVcR2VuZXJhdGVTY2hlZHVsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Ath/Organizer3/Organizer3/Views/Schedule/_GenerateSheduleDisplayShiftInfo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2NoZWR1bGVcX0dlbmVyYXRlU2hlZHVsZURpc3BsYXlTaGlmdEluZm8uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Ath/Organizer3/Organizer3/Views/Shared/Error.cshtml]

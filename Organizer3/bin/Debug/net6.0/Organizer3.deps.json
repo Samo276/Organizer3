@@ -13,6 +13,7 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.5",
           "Microsoft.EntityFrameworkCore.Tools": "6.0.5",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "6.0.5",
+          "Newtonsoft.Json": "13.0.1",
           "Swashbuckle.AspNetCore": "6.3.1",
           "bootstrap": "5.1.3"
         },

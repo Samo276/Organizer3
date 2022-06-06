@@ -1,0 +1,40 @@
+﻿@using Newtonsoft.Json
+@using Organizer3.Models.MyShop
+@model GenerateScheduleModel
+
+@{
+
+}
+@foreach(var item in @Model.AvailableShifts.ToList())
+{
+    <div class="row mt-3">
+        <div class="col-md-2">
+            @item.ShiftName
+        </div>
+        <div class="col-md-2">
+            @item.StartingTime.ToString("HH:mm") -
+            @item.StartingTime.AddHours(@item.Duration).ToString("HH:mm")
+        </div>
+        <div class="col-md-4">
+            @foreach(var employeeInShift in @Model.ShiftWithAsignedEmployees.Where(o => o.ShiftId == item.Id).Select(o=>o.EmployeesInShift).ToList())
+            {
+                @foreach(var person in employeeInShift.Where(o=>o.Participation==true))
+                {
+                    <div>
+                        @person.Name
+                    </div>
+                }
+            }
+        </div>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-secondary float-end">            
+                <a class="text-decoration-none text-white" asp-controller="Schedule" asp-action="AddHumanResources" 
+                asp-route-fromView="@JsonConvert.SerializeObject(@Model)" 
+                asp-route-shiftId="@item.Id">
+                    Dodaj/Usuń
+                </a>
+            </button>
+        </div>
+    </div>
+    
+}

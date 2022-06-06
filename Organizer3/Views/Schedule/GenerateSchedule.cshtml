@@ -1,4 +1,5 @@
-﻿@Model GenerateScheduleModel
+﻿@using Organizer3.Models.MyShop
+@model GenerateScheduleModel
 
 <div class="row">
     <h4 class="col-md-11">Określ ramy czasowe</h4>
@@ -9,3 +10,31 @@
                 </a>
         </button>
 </div>
+
+<div class="row">
+    <div>
+        <form method="post" asp-action="" enctype="multipart/form-data"><!--dopisac odsylacz-->
+            <div class="col-md-4" asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group col-md-4">
+                <label asp-for="FromDay" class="control-label">Od dnia</label>
+                <input asp-for="FromDay" class="form-control" />
+                <span asp-validation-for="FromDay" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="TillDay" class="control-label">Do dnia</label>
+                <input asp-for="TillDay" class="form-control" />
+                <span asp-validation-for="TillDay" class="text-danger"></span>
+            </div>
+            <hr />
+            <partial name="_GenerateSheduleDisplayShiftInfo">
+
+            <div class="form-group mt-3 col-md-4">
+                <input type="submit" value="Wygeneruj grafik" class="btn btn-primary" />
+            </div>
+        </form>
+</div>
+
+
+
+
+

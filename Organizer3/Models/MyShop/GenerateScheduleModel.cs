@@ -8,8 +8,8 @@ namespace Organizer3.Models.MyShop
         public int Id { get; set; }
         public DateTime FromDay { get; set; }
         public DateTime TillDay { get; set; }
+        public int ShiftToEdit { get; set; }
         public List<ShiftInfo> AvailableShifts { get; set; }
-        public List<EmployeeNameAndIdModel> employeesNamesAndIds { get; set; }
         public List<EmployeesInShiftModel> ShiftWithAsignedEmployees { get; set; }
     }
 }

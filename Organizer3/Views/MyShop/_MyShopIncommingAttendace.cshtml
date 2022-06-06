@@ -3,12 +3,14 @@
 <div class="row">
     <h4 class=col-md-10>Nadchodzacy grafik</h4>
 
-    <div class=" col-md-2 float-end">    
-    <button type="button" class="btn btn-primary float-end">            
-            <a class="text-decoration-none text-white" asp-controller="Schedule" asp-action="GenerateSchedule">
-                Nowe
-            </a>
-    </button>
+    <div class=" col-md-2 float-end">
+        @if(@Model.MyShopShiftInfo.Any()){
+        <button type="button" class="btn btn-primary float-end">            
+                <a class="text-decoration-none text-white" asp-controller="Schedule" asp-action="GenerateSchedule">
+                    Nowy
+                </a>
+        </button>
+        }
     </div>   
 </div>
 <hr/>
