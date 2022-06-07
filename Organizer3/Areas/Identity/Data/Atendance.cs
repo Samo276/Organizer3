@@ -10,7 +10,7 @@ namespace Organizer3.Areas.Identity.Data
         [ForeignKey("AppUser")]
         public string UserId { get; set; }
         public DateTime ShiftDate { get; set;}
-        public DateTime EnetrTime { get; set;}
-        public DateTime ExitTime { get; set; }
+        public DateTime? EnetrTime { get; set;}
+        public DateTime? ExitTime { get; set; }
     }
 }

@@ -11,13 +11,13 @@
 <!----------------->
 <nav>
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
-    <button class="nav-link active" id="nav-A-tab" data-bs-toggle="tab" data-bs-target="#nav-A" type="button" role="tab" aria-controls="nav-A" aria-selected="true">
+    <button class="nav-link" id="nav-A-tab" data-bs-toggle="tab" data-bs-target="#nav-A" type="button" role="tab" aria-controls="nav-A" aria-selected="true">
         Dane
     </button>
     <button class="nav-link" id="nav-B-tab" data-bs-toggle="tab" data-bs-target="#nav-B" type="button" role="tab" aria-controls="nav-B" aria-selected="false">
         Pracownicy
     </button>
-    <button class="nav-link" id="nav-C-tab" data-bs-toggle="tab" data-bs-target="#nav-C" type="button" role="tab" aria-controls="nav-C" aria-selected="false">
+    <button class="nav-link active" id="nav-C-tab" data-bs-toggle="tab" data-bs-target="#nav-C" type="button" role="tab" aria-controls="nav-C" aria-selected="false">
         Grafik
     </button> 
 
@@ -25,7 +25,7 @@
 </nav>
 <!-------->
 <div class="tab-content" id="nav-tabContent">
-  <div class="tab-pane fade show active" id="nav-A" role="tabpanel" aria-labelledby="nav-A-tab">
+  <div class="tab-pane fade " id="nav-A" role="tabpanel" aria-labelledby="nav-A-tab">
       <partial name="_MyShopData.cshtml" />
   </div>
 
@@ -34,7 +34,7 @@
        
   </div>
 
-  <div class="tab-pane fade " id="nav-C" role="tabpanel" aria-labelledby="nav-C-tab">
+  <div class="tab-pane fade show active" id="nav-C" role="tabpanel" aria-labelledby="nav-C-tab">
       <partial name="_MyShopShiftsDisplay" />
 
       <partial name="_MyShopIncommingAttendace"/>

@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using Organizer3.Areas.Identity.Data;
 using Organizer3.Data;
 using Organizer3.Models.MyShop;
+using Organizer3.Models.Scheduler;
 using Organizer3.Views.MyShop;
 using Organizer3.Views.Schedule;
 
@@ -40,6 +41,20 @@ namespace Organizer3.Controllers
 
             return RedirectToAction("MyShopIndex", "MyShop");
 
+        }
+        public async Task<IActionResult> RemoveWorkerFromShift(int id)
+        {
+            try
+            {
+                var tmp = _context.Atendances.First(o => o.Id == id);
+                _context.Atendances.Remove(tmp);
+                await _context.SaveChangesAsync();
+            }
+            catch
+            {
+                return RedirectToAction("MyShopIndex", "MyShop");
+            }
+            return RedirectToAction("MyShopIndex", "MyShop");
         }
         public async Task<IActionResult> SaveAddedShift(AddShiftModel fromView)
         {
@@ -116,12 +131,92 @@ namespace Organizer3.Controllers
 
             return View(toView);
         }
+        public async Task<IActionResult> SaveSchedule(GenerateScheduleModel model, string modl)
+        {
+            var lmao = JsonConvert.DeserializeObject<GenerateScheduleModel>(modl);
+            List<Atendance> NewShifts = new();
+            var deltaTime = new int();
+            var beginingDate = new DateTime();
+            if (model.FromDay.Date == model.TillDay.Date)
+            {
+                deltaTime = 1;
+                beginingDate = model.FromDay.Date;
+            }
+            else if(model.FromDay.Date > model.TillDay.Date)
+            {
+                deltaTime = (model.FromDay.Date - model.TillDay.Date).Days;
+                beginingDate = model.TillDay.Date;
+            }
+            else
+            {
+                deltaTime = (model.TillDay.Date- model.FromDay.Date).Days;
+                beginingDate = model.FromDay.Date;
+            }
+            
+            
+            for (int i = 0; i < deltaTime; i++)
+            {
+                
+                foreach (var item in lmao.ShiftWithAsignedEmployees)
+                {
+                    foreach (var item2 in item.EmployeesInShift.Where(o=>o.Participation==true))
+                    {
+                        var shiftInformation = lmao.AvailableShifts.First(o => o.Id == item.ShiftId && o.Archived == false);
+                        NewShifts.Add(new Atendance { ShiftId = item.ShiftId, UserId = item2.Id, ShiftDate = beginingDate.AddDays(i), });
+                    }
+                }
+            }
+
+            _context.Atendances.AddRange(NewShifts);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("MyShopIndex","MyShop");
+        }
         public async Task<IActionResult> AddHumanResources(string fromView, int shiftId)
         {
             var toView= JsonConvert.DeserializeObject<GenerateScheduleModel>(fromView);
             toView.ShiftToEdit = shiftId;
             var tmp = toView.ShiftWithAsignedEmployees.First(o=>o.ShiftId == shiftId).EmployeesInShift;
             tmp.Add(new EmployeeNameAndIdModel { Id = "DataStorageForParsing", Name = JsonConvert.SerializeObject(toView), Participation=false });
+            return View(tmp);
+        }
+
+        public async Task<IActionResult> ShowMySchedule()
+        {
+            var cuID = _userManager.GetUserId(User);
+
+            var getShifts = _context.Atendances.Where(o => o.UserId == cuID).ToList();
+            var getLeaves = _context.Leaves.Where(o=>o.UserId == cuID).ToList();
+
+            var shiftInfos = _context.ShiftInfos.Where(o => o.FacilityId == _context.EmploymentStatuses.First(o => o.UserId == cuID).FacilityId);
+
+            var tmp = new List<ShowMyScheduleItemModel>();
+            foreach (var item in getShifts)
+            {
+                var tmpShifinfo = shiftInfos.First(o => o.Id == item.ShiftId);
+                tmp.Add(new ShowMyScheduleItemModel
+                {
+                    Id = item.Id,
+                    Name= shiftInfos.First(o=>o.Id==item.ShiftId).ShiftName,
+                    Day=item.ShiftDate,
+                    Time= tmpShifinfo.StartingTime.ToString("HH:mm")+" - "+ tmpShifinfo.StartingTime.AddHours(tmpShifinfo.Duration).ToString("HH:mm")
+                });
+            }
+
+            foreach (var item in getLeaves)
+            {
+                for (int i = 0; i < item.LeaveDuration; i++)
+                {
+                    tmp.Add(new ShowMyScheduleItemModel
+                    {
+                        Id = item.Id,
+                        Name = "Urlop: "+item.LeaveType,
+                        Day = item.LeaveStart.AddDays(i),
+                        Time = "",
+                    });
+                }           
+            }
+
             return View(tmp);
         }
         private List<EmployeesInShiftModel> GenerateBasic_EmployeesInShiftModel(List<EmployeeNameAndIdModel> tmp, List<ShiftInfo>? availableShifts)

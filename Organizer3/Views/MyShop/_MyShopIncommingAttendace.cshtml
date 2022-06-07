@@ -15,7 +15,7 @@
 </div>
 <hr/>
 
-@foreach(var shiftDates in @Model.MyShopSchedule.OrderByDescending(o=>o.ShiftDate).Select(o => o.ShiftDate).Distinct())
+@foreach(var shiftDates in @Model.MyShopSchedule.OrderBy(o=>o.ShiftDate).Select(o => o.ShiftDate).Distinct())
 {
 
             foreach(var shitfType in @Model.MyShopShiftInfo)
@@ -24,24 +24,39 @@
                 <div class="col-md-3">
                     @shiftDates
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                     @shitfType.ShiftName
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                     Godziny
-                    @shitfType.StartingTime.ToString("H:mm");
-                    @shitfType.StartingTime.AddHours(@shitfType.Duration).ToString(("H:mm"));
+                    @shitfType.StartingTime.ToString("H:mm") -
+                    @shitfType.StartingTime.AddHours(@shitfType.Duration).ToString(("H:mm"))
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-5">
                     
                     @foreach(var selectedShift in @Model.MyShopSchedule.Where(o=>o.ShiftDate==shiftDates && o.ShiftId == shitfType.Id))
                     {
-                        @Model.MyShopEmployeeModel.First(o=>o.UserId == selectedShift.UserId).Name;
-                    }                    
+                        <div class="row mt-1">
+                            <div class="col-md-8">
+                                @Model.MyShopEmployeeModel.First(o=>o.UserId == selectedShift.UserId).Name
+                            </div>
+                            
+                            <div class="col-md-4">
+                                       
+                                <a class="btn btn-secondary text-decoration-none text-white" asp-controller="Schedule" asp-action="RemoveWorkerFromShift" asp-route-id="@selectedShift.Id">
+                                    Usuń
+                                </a>
+                            
+                            </div>
+                            
+                        </div>
+                    }       
+                    <hr />
                 </div>
 
             </div>
             }
+            <hr />
 }
     
 

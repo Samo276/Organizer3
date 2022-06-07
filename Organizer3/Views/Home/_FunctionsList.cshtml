@@ -7,7 +7,7 @@
 
 @if (User.Identity.IsAuthenticated)
 {
-    
+    <a type="button" class="w-100 mb-1 btn btn-outline-info text-dark" asp-controller="Schedule" asp-action="ShowMySchedule">Grafik</a>      
     @if (@Model.Access.Recruter)
     {
         <a type="button" class="w-100 mb-1 btn btn-outline-info text-dark" asp-controller="Recruiter" asp-action="RecruiterIndex">Rekrutacja</a>      
