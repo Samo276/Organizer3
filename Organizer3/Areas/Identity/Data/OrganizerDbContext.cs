@@ -47,8 +47,8 @@ public class OrganizerDbContext : IdentityDbContext<AppUser>
         // Add your customizations after calling base.OnModelCreating(builder);
     }
 
-    public DbSet<Organizer3.Models.JobAplicationModel> JobAplicationModel { get; set; }
-    public DbSet<Organizer3.Models.Recriter.AddRecruitmentNoteModel> AddRecruitmentNoteModel { get; set; }
-    public DbSet<Organizer3.Models.FacilitiesEditor.FacilitiesListModel>? FacilitiesListModel { get; set; }
-    public DbSet<Organizer3.Models.EmployeeProfile.AddNewLeaveModel>? AddNewLeaveModel { get; set; }
+    //public DbSet<Organizer3.Models.JobAplicationModel> JobAplicationModel { get; set; }
+    //public DbSet<Organizer3.Models.Recriter.AddRecruitmentNoteModel> AddRecruitmentNoteModel { get; set; }
+    //public DbSet<Organizer3.Models.FacilitiesEditor.FacilitiesListModel>? FacilitiesListModel { get; set; }
+    //public DbSet<Organizer3.Models.EmployeeProfile.AddNewLeaveModel>? AddNewLeaveModel { get; set; }
 }

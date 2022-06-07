@@ -145,48 +145,8 @@ namespace Organizer3.Controllers
             }
             return View(fromView);
         }
-
-        // GET: Facilities/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null || _context.FacilitiesListModel == null)
-            {
-                return NotFound();
-            }
-
-            var facilitiesListModel = await _context.FacilitiesListModel
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (facilitiesListModel == null)
-            {
-                return NotFound();
-            }
-
-            return View(facilitiesListModel);
-        }
-
-        // POST: Facilities/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            if (_context.FacilitiesListModel == null)
-            {
-                return Problem("Entity set 'OrganizerDbContext.FacilitiesListModel'  is null.");
-            }
-            var facilitiesListModel = await _context.FacilitiesListModel.FindAsync(id);
-            if (facilitiesListModel != null)
-            {
-                _context.FacilitiesListModel.Remove(facilitiesListModel);
-            }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(FacilitiesIndex));
-        }
-
-        private bool FacilitiesListModelExists(int id)
-        {
-          return (_context.FacilitiesListModel?.Any(e => e.Id == id)).GetValueOrDefault();
-        }
+       
+        
         /// <summary>
         /// Checks if user is logged in and is alowed to access the content of the Recruiter section, 
         /// returns FALSE if user is alowed in, and TRUE when access is forbidden
