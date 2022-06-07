@@ -216,7 +216,6 @@ namespace Organizer3.Controllers
                     });
                 }           
             }
-
             return View(tmp);
         }
         private List<EmployeesInShiftModel> GenerateBasic_EmployeesInShiftModel(List<EmployeeNameAndIdModel> tmp, List<ShiftInfo>? availableShifts)
