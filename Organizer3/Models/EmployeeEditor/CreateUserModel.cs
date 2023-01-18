@@ -9,7 +9,7 @@ namespace Organizer3.Models.EmployeeEditor
         public bool Scheduler { get; set; }
         public bool LeaveEditor { get; set; }
         public bool UserEditor { get; set; }
-        [Display(Name = "Edytor pracownikami")]
+        [Display(Name = "Edytor pracowników")]
         public bool UserViewer { get; set; }
         public bool FacilityEditor { get; set; }
         [Display(Name = "Edytor sklepów")]
@@ -18,7 +18,7 @@ namespace Organizer3.Models.EmployeeEditor
         public bool Announcer { get; set; }
         [Display(Name = "Przegląd danych pracowników mojej placówki")]
         public bool PersonalViewer { get; set; }
-        [Display(Name = "Dodatkowe funkcje (nie zaleane)")]
+        [Display(Name = "Dodatkowe funkcje")]
         public bool PartnerViewer { get; set; }
         //-----------------------------------------------
         [Display(Name = "Imię")]

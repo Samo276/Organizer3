@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "BFUmpA54IxRfNzpUdpAO5ksDtrC+nhsKOiRzSKx1cxY=",
+  "Hash": "eIpgh2K6S29SPyqoNBB0Ljg8fjnCm9Pxsp+ZUjOuJ+A=",
   "Source": "Organizer3",
   "BasePath": "_content/Organizer3",
   "Mode": "Default",
@@ -2873,12 +2873,12 @@
       "OriginalItemSpec": "wwwroot\\uploads\\222d1603-fafc-4cd9-a234-d37278068240\\Dok_002425.pdf"
     },
     {
-      "Identity": "D:\\Ath\\Organizer3\\Organizer3\\wwwroot\\uploads\\6934c372-2a6c-4dfa-ae2a-bd287e1c187a\\cat.jpg",
+      "Identity": "D:\\Ath\\Organizer3\\Organizer3\\wwwroot\\uploads\\bff513fe-6da7-473c-ba66-b16fb7d42123\\sample foto.png",
       "SourceId": "Organizer3",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\Ath\\Organizer3\\Organizer3\\wwwroot\\",
       "BasePath": "_content/Organizer3",
-      "RelativePath": "uploads/6934c372-2a6c-4dfa-ae2a-bd287e1c187a/cat.jpg",
+      "RelativePath": "uploads/bff513fe-6da7-473c-ba66-b16fb7d42123/sample foto.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -2887,7 +2887,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\uploads\\6934c372-2a6c-4dfa-ae2a-bd287e1c187a\\cat.jpg"
+      "OriginalItemSpec": "wwwroot\\uploads\\bff513fe-6da7-473c-ba66-b16fb7d42123\\sample foto.png"
     },
     {
       "Identity": "D:\\Ath\\Organizer3\\Organizer3\\wwwroot\\uploads\\f40c7fea-489a-40c1-b9d1-b57c562f7be5\\Dok_002425.pdf",

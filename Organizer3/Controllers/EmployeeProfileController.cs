@@ -203,7 +203,7 @@ namespace Organizer3.Controllers
             if (tmp.Recruter) tmpList.Add("Rekrutacja");
             //if (tmp.Scheduler) tmpList.Add("Scheduler");
             //if (tmp.LeaveEditor) tmpList.Add("Urlopy");
-            if (tmp.UserEditor) tmpList.Add("UserEditor");
+            if (tmp.UserEditor) tmpList.Add("Edycja Użytkowników");
             if (tmp.UserViewer) tmpList.Add("Pracownicy");
             if (tmp.FacilityEditor) tmpList.Add("Sklepy");
             //if (tmp.FacilityViewer) tmpList.Add("");
