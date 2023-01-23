@@ -31,11 +31,11 @@
 </div>
 
 <hr/>
-<div class="row">
+<!--div class="row">
     <div class="col-md-11">
         <h4>Zapisywanie godzin pracy czytnikiem:</h4>
-        @{
-            @if(@Model.First(y=>y.FunctionName == SiteFunctionsEnum.SiteFunctionsData.CardReader.ToString()).IsActive){
+        {
+            if(Model.First(y=>y.FunctionName == SiteFunctionsEnum.SiteFunctionsData.CardReader.ToString()).IsActive){
                 <p>Obecnie czytniki kart pracownika zapisują aktywność w bazie danych.</p>
             }else{
                 <p>Obecnie zapisywanie aktywności pracowników przez czytniki kart jest zablokowana.</p>
@@ -44,10 +44,10 @@
     </div>
     <div class=" col-md-1">
         <button type="button" class="btn btn-danger float-end">        
-                    <a class="text-decoration-none text-white" asp-controller="SiteFunctions" asp-action="ChangeSiteFunctionsStatus" asp-route-cId="@Model.First(y=>y.FunctionName == SiteFunctionsEnum.SiteFunctionsData.CardReader.ToString()).Id">
+                    <a class="text-decoration-none text-white" asp-controller="SiteFunctions" asp-action="ChangeSiteFunctionsStatus" asp-route-cId="Model.First(y=>y.FunctionName == SiteFunctionsEnum.SiteFunctionsData.CardReader.ToString()).Id">
                         Zmień
                     </a>
         </button>
     </div>
-</div>
-<hr/>
+    <hr/>
+</!--div-->
