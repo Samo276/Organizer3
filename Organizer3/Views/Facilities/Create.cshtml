@@ -4,9 +4,7 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
-
-<h4>FacilitiesListModel</h4>
+<h1>Wprowadź dane nowego sklepu:</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -16,6 +14,21 @@
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Info"  class="control-label"></label>
+                <input asp-for="Info" type="hidden" value="nie podano" class="form-control" />
+                <span asp-validation-for="Info" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNo"  class="control-label"></label>
+                <input asp-for="PhoneNo" type="hidden" value="nie podano" class="form-control" />
+                <span asp-validation-for="PhoneNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PostalCode"  class="control-label"></label>
+                <input asp-for="PostalCode" type="hidden" value="nie podano" class="form-control" />
+                <span asp-validation-for="PostalCode" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Region" class="control-label"></label>
@@ -39,8 +52,8 @@
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+<div >
+    <a class="btn btn-secondary" asp-action="Index">Wstecz</a>
 </div>
 
 @section Scripts {

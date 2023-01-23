@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "iZkx7SJrPuvQOaRQWymUuj/Jq3nLoqTwKYtr0wQJ7Cw=",
+  "Hash": "9C2VjiEzRK/Oe9uMeOLGOh38nA4pAsDG+XRNngqAv2w=",
   "Source": "Organizer3",
   "BasePath": "_content/Organizer3",
   "Mode": "Default",
@@ -2922,6 +2922,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\9c792a86-1816-4322-9cfa-f367fd5a94f6\\sample foto.png"
+    },
+    {
+      "Identity": "D:\\Ath\\Organizer3\\Organizer3\\wwwroot\\uploads\\b4077043-2bf2-4e6a-bd07-a697765a6d7c\\sample foto.png",
+      "SourceId": "Organizer3",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Ath\\Organizer3\\Organizer3\\wwwroot\\",
+      "BasePath": "_content/Organizer3",
+      "RelativePath": "uploads/b4077043-2bf2-4e6a-bd07-a697765a6d7c/sample foto.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\b4077043-2bf2-4e6a-bd07-a697765a6d7c\\sample foto.png"
     },
     {
       "Identity": "D:\\Ath\\Organizer3\\Organizer3\\wwwroot\\uploads\\bff513fe-6da7-473c-ba66-b16fb7d42123\\sample foto.png",

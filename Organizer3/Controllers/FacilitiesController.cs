@@ -84,18 +84,35 @@ namespace Organizer3.Controllers
             return result;
         }
 
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            if (await IsUserBlockedFromAccesingFacilityEditor())
+                return RedirectToAction(nameof(Index), "Home");
+            
             return View();
+
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Region,City,Adress")] FacilitiesListModel facilitiesListModel)
+        public async Task<IActionResult> Create([Bind("Id,Name,Info,PhoneNo,PostalCode,Region,City,Adress")] FacilitiesListModel facilitiesListModel)
         {
+            if (await IsUserBlockedFromAccesingFacilityEditor())
+                return RedirectToAction(nameof(Index), "Home");
+
             if (ModelState.IsValid)
             {
-                _context.Add(facilitiesListModel);
+                var tmp = new Facility
+                {
+                    City = facilitiesListModel.City,
+                    Adress = facilitiesListModel.Adress,
+                    Region = facilitiesListModel.Region,
+                    PostalCode = facilitiesListModel.PostalCode,
+                    PhoneNo = facilitiesListModel.PhoneNo,
+                    AdditionalInfo = facilitiesListModel.Info,
+                    Name = facilitiesListModel.Name
+                };
+                _context.Facilities.Add(tmp);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(FacilitiesIndex));
             }
