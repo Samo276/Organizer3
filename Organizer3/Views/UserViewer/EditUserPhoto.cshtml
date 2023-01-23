@@ -5,7 +5,10 @@
 @{
 }
 @model EditUrserPhotoModel
-<h4>@Model.Name</h4>
+@if (@Model.Name != null)
+{
+    <h4>@Model.Name</h4>
+}
 <div class="col-md-5"  >
 @if (!(@Model.PhotoLocation == string.Empty || @Model.PhotoLocation == null))
 {
