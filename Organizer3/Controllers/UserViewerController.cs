@@ -238,6 +238,7 @@ namespace Organizer3.Controllers
                 return RedirectToAction(nameof(Index), "Home");
 
             var tmp = await _context.Users.FirstAsync(x => x.Id == id);
+
             var toView = new EditUrserPhotoModel
             {
                 Id = tmp.Id,
@@ -253,38 +254,39 @@ namespace Organizer3.Controllers
             if (await IsUserBlockedFromAccesingUserViewer())
                 return RedirectToAction(nameof(Index), "Home");
 
-            if (ModelState.IsValid)
-            {
-                string fileName = Path.GetFileName(p.Photo.FileName);
-                string path = Path.Combine(_environment.WebRootPath, "uploads");
-                Guid guid = Guid.NewGuid();
-                string FileDirectory = Path.Combine(path, guid.ToString());
-                string OriginalFilePath = Path.Combine(path, guid.ToString(), fileName);
-                Directory.CreateDirectory(FileDirectory);
-                using (FileStream stream = new(OriginalFilePath, FileMode.Create))
+                if (ModelState.IsValid)
                 {
-                    await p.Photo.CopyToAsync(stream);
-                }
+                    string fileName = Path.GetFileName(p.Photo.FileName);
+                    string path = Path.Combine(_environment.WebRootPath, "uploads");
+                    Guid guid = Guid.NewGuid();
+                    string FileDirectory = Path.Combine(path, guid.ToString());
+                    string OriginalFilePath = Path.Combine(path, guid.ToString(), fileName);
+                    Directory.CreateDirectory(FileDirectory);
+                    using (FileStream stream = new(OriginalFilePath, FileMode.Create))
+                    {
+                        await p.Photo.CopyToAsync(stream);
+                    }
 
-                var tmp = _context.Users.FirstOrDefault(x => x.Id == p.Id);
-                var oldphoto = new FileInfo(_environment.WebRootPath + "/" + tmp.PhotoLocation);
-                if (oldphoto.Exists)
-                {
-                    //System.IO.File.Exists((oldphoto.Name))
-                    //System.IO.File.Delete(oldphoto.FullName);
-                    oldphoto.Delete();
-                    //System.IO.File.Exists(oldphoto.DirectoryName);
-                    oldphoto.Directory.Delete();
+                    var tmp = _context.Users.FirstOrDefault(x => x.Id == p.Id);
+                    var oldphoto = new FileInfo(_environment.WebRootPath + "/" + tmp.PhotoLocation);
+                    if (oldphoto.Exists)
+                    {
+                        //System.IO.File.Exists((oldphoto.Name))
+                        //System.IO.File.Delete(oldphoto.FullName);
+                        oldphoto.Delete();
+                        //System.IO.File.Exists(oldphoto.DirectoryName);
+                        oldphoto.Directory.Delete();
 
-                }
-                tmp.PhotoLocation = string.Concat("/uploads/", guid.ToString(), "/" + fileName);
-                //tmp.PhotoLocation = string.Concat("/uploads/", + fileName);
-                _context.Users.Update(tmp);
-                await _context.SaveChangesAsync();
+                    }
+                    tmp.PhotoLocation = string.Concat("/uploads/", guid.ToString(), "/" + fileName);
+                    //tmp.PhotoLocation = string.Concat("/uploads/", + fileName);
+                    _context.Users.Update(tmp);
+                    await _context.SaveChangesAsync();
 
-                return RedirectToAction(nameof(UserViewerIndex));
-            }
-            return View();
+                    return RedirectToAction(nameof(UserViewerIndex));
+                } 
+            
+            return RedirectToAction("EditUserPhoto", new {id=p.Id});
         }
         // GET: UserViewerController/Create
         public async Task<ActionResult> CreateNewUser(CreateUserModel fromView)
