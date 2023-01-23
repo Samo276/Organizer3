@@ -61,17 +61,14 @@ namespace Organizer3.Controllers
                 _context.Recruitments.Add(tmp);
                 await _context.SaveChangesAsync();
 
-                /*var tmp = _context.Users.FirstOrDefault(x => x.Id == p.Id);
-                var oldphoto = new FileInfo(_environment.WebRootPath + "/" + tmp.PhotoLocation);
-                if (oldphoto.Exists)
-                {
-                    oldphoto.Delete();
-                    oldphoto.Directory.Delete();
 
-                }
-                tmp.PhotoLocation = string.Concat("/uploads/", guid.ToString(), "/" + fileName);
-                //tmp.PhotoLocation = string.Concat("/uploads/", + fileName);
-                _context.Users.Update(tmp);*/
+
+                //mail service will not work without smtp server, you can get dummy smtp server @ https://ethereal.email/create
+                //then configure data fields inside Organizer3.Areas.MailService.MailService();
+                //--------------------------------------------------------------------------------
+                //var MailMessage = new Organizer3.Areas.MailService.MailService();
+                //MailMessage.SendMail("Podanie o pracę", "Podanie o pracę zostało poprawnie przesłane i przyjęte.", p.Email);
+                //--------------------------------------------------------------------------------
 
                 return RedirectToAction(nameof(JobAplicationConfirmation),new { message = "Pomyślnie przesłano formularz" });
             }
