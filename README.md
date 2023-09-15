@@ -5,9 +5,9 @@ WebApp created using ASP.NET(MVC), Enetity Framework and Identity for user auth.
 <img src="https://github.com/Samo276/Organizer3/blob/main/ReadmePhotos/02.png?raw=true"/>
 
 <ul>
-  <li>- Stores users personal data, profile photos and alows uploads of profile pictures</li>
+  <li>- Stores users personal data, profile photos and alows uploads of profile pictures\n
   
-  <img src="https://github.com/Samo276/Organizer3/blob/main/ReadmePhotos/0.5.png?raw=true"/>
+  <img src="https://github.com/Samo276/Organizer3/blob/main/ReadmePhotos/0.5.png?raw=true"/></li>
   
   <li>- Alows creation of schedules for employees and registering their leaves</li>
   
