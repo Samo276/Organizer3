@@ -11,19 +11,19 @@ To create Admin account: run database migration, register using Identity form, a
   
   <img src="https://github.com/Samo276/Organizer3/blob/main/ReadmePhotos/0.5.png?raw=true"/></li>
   
-  <li>Alows creation of schedules for employees and registering their leaves
+  <li>Create schedules for employees and register leaves
   
   <img src="https://github.com/Samo276/Organizer3/blob/main/ReadmePhotos/05.png?raw=true"/></li>
   
-  <li>Alows checking said schedule by employees
+  <li>Checking employee schedule 
   
   <img src="https://github.com/Samo276/Organizer3/blob/main/ReadmePhotos/03.png?raw=true"/></li>
   
-  <li>Displays blog style announcements
+  <li>Display blog style announcements
   
   <img src="https://github.com/Samo276/Organizer3/blob/main/ReadmePhotos/01.png?raw=true"/></li>
   
-  <li>Alows reading CV's send by potential future employees
+  <li>Reading CV's sent by potential employees
   
   <img src="https://github.com/Samo276/Organizer3/blob/main/ReadmePhotos/04.png?raw=true"/></li>
   
