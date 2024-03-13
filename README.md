@@ -1,6 +1,8 @@
 # Organizer3
 
 WebApp created using ASP.NET(MVC), Enetity Framework and Identity for user auth.
+Before use run database migration.
+To create Admin account, register using Identity form, and set permissions in database.
 
 <img src="https://github.com/Samo276/Organizer3/blob/main/ReadmePhotos/02.png?raw=true"/>
 
