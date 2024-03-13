@@ -7,7 +7,7 @@ To create Admin account: run database migration, register using Identity form, a
 <img src="https://github.com/Samo276/Organizer3/blob/main/ReadmePhotos/02.png?raw=true"/>
 
 <ul>
-  <li>Stores users personal data, profile photos and alows uploads of profile pictures
+  <li>Store users personal data, profile photos and uploads profile pictures
   
   <img src="https://github.com/Samo276/Organizer3/blob/main/ReadmePhotos/0.5.png?raw=true"/></li>
   
